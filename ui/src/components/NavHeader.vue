@@ -9,7 +9,7 @@
       <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
         <nav class="relative flex flex-grow">
           <ul class="flex flex-wrap items-center justify-end w-full m-0">
-            <NavItems />
+            <NavItems/>
           </ul>
         </nav>
       </div>
@@ -26,7 +26,7 @@ const NavItems = defineComponent({
   setup() {
     return () => navItems.value.map(item => h('li', {
       'class': 'relative flex flex-wrap just-fu-start m-0 hover:text-green-600'
-    }, item)) 
+    }, item))
   }
 })
 </script>

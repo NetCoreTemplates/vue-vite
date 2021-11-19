@@ -11,7 +11,8 @@ export function createAttrs(auth?: AuthenticateResponse) {
     ] : []
 }
 
-export const auth = ref(await checkAuth())
+export const auth = ref<AuthenticateResponse|undefined>()
+checkAuth().then(r => auth.value = r)
 
 export async function revalidate() {
     loading.value = true
@@ -26,7 +27,6 @@ export const signedIn = () => auth.value !== undefined
 export const attrs = computed(() => createAttrs(auth.value))
 
 export const signin = (response?: AuthenticateResponse) => {
-    console.log('signin', response)
     return auth.value = response;
 }
 

@@ -2,27 +2,31 @@ import { attrs, signout } from "./auth"
 import { createRouter, createWebHistory, Router } from "vue-router"
 import { Component, computed, h } from "vue"
 
-import routes from "pages-generated"
-
 import NotFound from "@/views/NotFound.vue"
 import NavLink from "@/components/NavLink.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SecondaryButton from "@/components/form/SecondaryButton.vue"
+
+// Auto generated routes by https://github.com/hannoeru/vite-plugin-pages 
+import routes from "~pages"
+
+// Nav Components
+const link = bindNavComponent(NavLink),
+      btn1 = bindNavComponent(PrimaryButton),
+      btn2 = bindNavComponent(SecondaryButton)
 
 function bindNavComponent(component: Component) {
     return (slot: any, props: any, visibility?: { show?: string, hide?: string }) =>
         ({ el: h(component, props, () => slot), ...visibility })
 }
 
-const link = bindNavComponent(NavLink),
-    btn1 = bindNavComponent(PrimaryButton),
-    btn2 = bindNavComponent(SecondaryButton);
-
+// Typed Routes used in Components
 export const Routes = {
     signin: (redirectTo?:string) => redirectTo ? `/signin?redirect=${redirectTo}` : `/signin`,
     forbidden: () => '/forbidden',
 }
 
+// Header Navigation
 let nav = [
     link('Markdown', { href: '/posts/typography' }),
     link('About',    { href: '/about' }),
@@ -35,12 +39,14 @@ let nav = [
     btn1('Register', { href: '/signup', class: 'mx-2' }, { hide: 'auth' }),
 ]
 
+
 // return which nav items to show based on the Authenticated Users attributes
 export const navItems = computed(() => nav.filter(item => {
     if (item.show) return attrs.value.indexOf(item.show) >= 0
     if (item.hide) return attrs.value.indexOf(item.hide) == -1
     return true
 }).map(navItem => navItem.el))
+
 
 export const router = createRouter({
     history: createWebHistory(),

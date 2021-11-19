@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { effect, watchEffect } from "vue"
-import { auth, signedIn, hasRole }  from "@/auth"
+import { effect } from "vue"
+import { auth, signedIn, hasRole } from "@/auth"
 import { Routes, router, getRedirect } from "@/router"
 
 const props = defineProps<{
@@ -21,9 +21,8 @@ const shouldRedirect = () => !signedIn()
             ? Routes.forbidden()
             : null;
 
-watchEffect(async () => {
+effect(async () => {
   const goTo = shouldRedirect()
-  console.log('ValidateAuth goTo', goTo)
   if (goTo) {
     await router.replace(goTo)
   }

@@ -53,9 +53,9 @@ import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import { createError, leftPart, ResponseStatus, rightPart, serializeToObject, toPascalCase } from "@servicestack/client"
 import { client } from "@/api"
 import { Register } from "@/dtos"
-import { revalidate } from "@/auth"
-import { useRouter } from "vue-router"
-import { ref } from "vue";
+import { auth, revalidate } from "@/auth"
+import { router, getRedirect } from "@/router"
+import { ref, effect } from "vue"
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()
@@ -63,6 +63,17 @@ const displayName = ref("")
 const username = ref("")
 const password = ref("")
 const confirmPassword = ref("")
+
+let hasRedirected = false
+
+effect(async () => {
+  if (auth.value) {
+    if (hasRedirected) return
+    hasRedirected = true
+    const goTo = getRedirect(router) ?? '/'
+    await router.push(goTo)
+  }
+})
 
 const setUser = (email: string) => {
   let first = leftPart(email, '@');
@@ -72,9 +83,7 @@ const setUser = (email: string) => {
   confirmPassword.value = password.value = 'p@55wOrd'
 }
 
-const router = useRouter()
-
-const onSubmit = async (e: SubmitEvent) => {
+const onSubmit = async (e: Event) => {
   const {
     displayName,
     userName,
@@ -85,11 +94,10 @@ const onSubmit = async (e: SubmitEvent) => {
   if (password !== confirmPassword) {
     throw createError("ValidationException", "Passwords do not match", "confirmPassword")
   }
-  return client.post(new Register({displayName, email: userName, password, confirmPassword, autoLogin}))
+  return client.post(new Register({ displayName, email: userName, password, confirmPassword, autoLogin }))
 }
 const onSuccess = async () => {
   await revalidate()
   await router.push("/signin")
 }
-
 </script>

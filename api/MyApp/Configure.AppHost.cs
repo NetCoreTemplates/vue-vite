@@ -17,7 +17,9 @@ public class AppHost : AppHostBase, IHostingStartup
         SetConfig(new HostConfig {
         });
 
-        Plugins.Add(new SpaFeature());
+        Plugins.Add(new SpaFeature {
+            EnableSpaFallback = true
+        });
         Plugins.Add(new CorsFeature(allowOriginWhitelist:new[]{ 
             "https://localhost:5001",
             "http://localhost:5000",

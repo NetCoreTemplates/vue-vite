@@ -53,11 +53,11 @@ import FormLoading from "@/components/form/FormLoading.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SecondaryButton from "@/components/form/SecondaryButton.vue"
 
-import { ref, watchEffect } from "vue"
+import { ref, effect } from "vue"
 import { ResponseStatus, serializeToObject } from "@servicestack/client"
 import { client } from "@/api"
 import { Authenticate } from "@/dtos"
-import { signedIn, auth, revalidate } from "@/auth"
+import { auth, revalidate } from "@/auth"
 import { router, getRedirect } from "@/router";
 
 const loading = ref(false)
@@ -65,11 +65,13 @@ const status = ref<ResponseStatus | undefined>()
 const username = ref('')
 const password = ref('')
 
-const stop = watchEffect(async () => {
+let hasRedirected = false
+
+effect(async () => {
   if (auth.value) {
-    stop()
+    if (hasRedirected) return
+    hasRedirected = true
     const goTo = getRedirect(router) ?? '/'
-    console.log('Signin goTo', goTo)
     await router.push(goTo)
   }
 })
@@ -79,7 +81,7 @@ const setUser = (email: string) => {
   password.value = "p@55wOrd"
 }
 
-const onSubmit = async (e: SubmitEvent) => {
+const onSubmit = async (e: Event) => {
   const { userName, password, rememberMe } = serializeToObject(e.currentTarget as HTMLFormElement);
   return await client.post(new Authenticate({ provider: 'credentials', userName, password, rememberMe }))
 }
