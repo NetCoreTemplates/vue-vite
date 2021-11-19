@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "5b8fff01-1e0b-477d-9d7f-93016c128b23": {
+      "ProjectGuid": "5b8fff01-1e0b-477d-9d7f-93016c128b23",
+      "DisplayName": "MyApp.ServiceInterface",
+      "ColorIndex": 0
+    },
+    "455ec1ef-134f-4cd4-9c78-e813e4e6d8f6": {
+      "ProjectGuid": "455ec1ef-134f-4cd4-9c78-e813e4e6d8f6",
+      "DisplayName": "MyApp.Tests",
+      "ColorIndex": 1
+    },
+    "0127b6ca-1b79-46a6-8307-b36836d107f0": {
+      "ProjectGuid": "0127b6ca-1b79-46a6-8307-b36836d107f0",
+      "DisplayName": "MyApp.ServiceModel",
+      "ColorIndex": 2
+    },
+    "5f817400-1a3a-48df-98a6-e7e5a3dc762f": {
+      "ProjectGuid": "5f817400-1a3a-48df-98a6-e7e5a3dc762f",
+      "DisplayName": "MyApp",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 4
+}
