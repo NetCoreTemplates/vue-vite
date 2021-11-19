@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   
@@ -28,16 +27,20 @@
 
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="5.*" />
-    <PackageReference Include="ServiceStack.Client" Version="5.13.1" />
+    <PackageReference Include="ServiceStack.Client" Version="5.*" />
     <PackageReference Include="ServiceStack.Extensions" Version="5.*" />
     <PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="5.*" />
     <PackageReference Include="ServiceStack.Server" Version="5.*" />
-    <PackageReference Include="ServiceStack.Text" Version="5.13.1" />
+    <PackageReference Include="ServiceStack.Text" Version="5.*" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MyApp.ServiceInterface\MyApp.ServiceInterface.csproj" />
     <ProjectReference Include="..\MyApp.ServiceModel\MyApp.ServiceModel.csproj" />
   </ItemGroup>
+  
+  <Target Name="Bundle" BeforeTargets="AfterPublish">
+    <Copy SourceFiles="wwwroot/index.html" DestinationFolder="$(OutputPath)/404.html" ContinueOnError="true" />
+  </Target>
 
 </Project>
