@@ -4,6 +4,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "types": ["vite-plugin-pages/client"],
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",

@@ -21,7 +21,7 @@ import { CheckIcon } from "@heroicons/vue/outline"
 
 let successText = ref('')
 
-function copy(e: PointerEvent) {
+function copy(e: MouseEvent) {
   let $el = document.createElement("input")
   let $lbl = (e.target as HTMLElement).parentElement!.querySelector('label')!
 

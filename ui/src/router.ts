@@ -1,11 +1,13 @@
-import { auth, attrs, signout } from "./auth"
-import { createRouter, createWebHistory, LocationQuery, Router, RouteRecordRaw } from "vue-router"
+import { attrs, signout } from "./auth"
+import { createRouter, createWebHistory, Router } from "vue-router"
 import { Component, computed, h } from "vue"
 
+import routes from "pages-generated"
+
+import NotFound from "@/views/NotFound.vue"
 import NavLink from "@/components/NavLink.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SecondaryButton from "@/components/form/SecondaryButton.vue"
-import { withoutSuffix } from "@/utils"
 
 function bindNavComponent(component: Component) {
     return (slot: any, props: any, visibility?: { show?: string, hide?: string }) =>
@@ -22,6 +24,7 @@ export const Routes = {
 }
 
 let nav = [
+    link('Markdown', { href: '/posts/typography' }),
     link('About',    { href: '/about' }),
 
     link('Profile',  { href: '/profile' }, { show: 'auth' }),
@@ -39,42 +42,12 @@ export const navItems = computed(() => nav.filter(item => {
     return true
 }).map(navItem => navItem.el))
 
-// All Page Routes for this App
-const routes: RouteRecordRaw[] = []
-
-// Override default route convention for View Components:
-const ViewCustomRoutes: { [key: string]: string } = {
-    'Index': '/',
-}
-
-// Use default path convention based on Component name 
-const toKebabCase = (s: string) => s
-    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)!
-    .map(x => x.toLowerCase()).join('-');
-
-const resolveRoutePath = (componentName: string) =>
-    ViewCustomRoutes[componentName] ?? '/' + toKebabCase(withoutSuffix(componentName, 'Page'))
-
-
-// Auto define and register routes for all App Views
-const registerAppViews = (components: Record<string, { [key: string]: any }>) => {
-    Object.entries(components).forEach(([path, definition]) => {
-        // Get name of component, based on filename
-        const componentName = path.split('/').pop()!.replace(/\.\w+$/, '')
-        // Auto register Route for this View Component
-        routes.push({
-            path: resolveRoutePath(componentName),
-            name: componentName,
-            component: definition.default,
-        })
-    })
-}
-registerAppViews(import.meta.globEager('./views/*.vue'))
-
-
 export const router = createRouter({
     history: createWebHistory(),
-    routes,
+    routes: [
+        ...routes,
+        { path: '/:pathMatch(.*)*', component: NotFound },
+    ],
 })
 
 export function getRedirect(router:Router) {

@@ -8,7 +8,7 @@
 import { ResponseStatus } from "@servicestack/client"
 
 const { onSubmit } = defineProps<{
-  onSubmit?: (e: SubmitEvent) => Promise<any> | any
+  onSubmit?: (e: Event) => Promise<any> | any
 }>()
 
 const emit = defineEmits<{
@@ -19,7 +19,7 @@ const emit = defineEmits<{
   (e: "update:loading", loading: boolean): void
 }>()
 
-const handleSubmit = async (e: SubmitEvent) => {
+const handleSubmit = async (e: Event) => {
   e.preventDefault()
 
   if (onSubmit) {
