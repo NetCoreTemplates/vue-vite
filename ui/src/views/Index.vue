@@ -84,17 +84,30 @@
               <div class="flex flex-col">
 
                 <h4 class="py-6 text-center text-xl">Create New Project</h4>
+                <input type="text" v-model="project" autocomplete="off" spellcheck="false"
+                       class="mb-8 sm:text-lg rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300"/>
+                
                 <ShellCommand class="mb-2">dotnet tool install -g x</ShellCommand>
-                <ShellCommand class="mb-2">mkdir ProjectName && cd ProjectName</ShellCommand>
-                <ShellCommand class="mb-2">x new vue-vite</ShellCommand>
+                <ShellCommand class="mb-2">x new vue-vite {{project}}</ShellCommand>
 
                 <h4 class="py-6 text-center text-xl">Build &amp; Run Client Dev Server</h4>
-                <ShellCommand class="mb-2">cd ui &amp;&amp; npm run build:local</ShellCommand>
+                <ShellCommand class="mb-2">cd {{uiPath()}}</ShellCommand>
+                <ShellCommand class="mb-2">npm run build:local</ShellCommand>
                 <ShellCommand class="mb-2">npm run dev</ShellCommand>
 
-                <h4 class="py-6 text-center text-xl">Run Server .NET Project</h4>
-                <ShellCommand class="mb-2">dotnet run --project api/ProjectName/ProjectName.csproj</ShellCommand>
+                <h4 class="py-6 text-center text-xl">Run Server .NET Project (New Terminal)</h4>
+                <ShellCommand class="mb-2">cd {{apiPath()}}</ShellCommand>
+                <ShellCommand class="mb-2">dotnet watch</ShellCommand>
 
+                <div class="mt-8">
+
+                  <h3 class="mt-4 text-lg font-bold">Use npm dev server for UI development</h3>
+                  <div><a href="http://localhost:3000">http://localhost:3000</a></div>
+
+                  <h3 class="mt-4 text-lg font-bold">Preview `build:local` output in .NET App</h3>
+                  <div><a href="https://localhost:5001">https://localhost:5001</a></div>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -111,4 +124,8 @@ import HelloApi from "@/components/HelloApi.vue"
 import { ref } from "vue"
 
 const inputValue = ref('Vue.js')
+const project = ref('ProjectName')
+const resolvePath = (path:string) => navigator.userAgent.indexOf("Win") >= 0 ? path.replace(/\//g,'\\') : path
+const uiPath = () => resolvePath(`ui/${project.value}`)
+const apiPath = () => resolvePath(`api/${project.value}/${project.value}`)
 </script>
