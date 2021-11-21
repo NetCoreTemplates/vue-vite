@@ -49,7 +49,7 @@ export type Crumb = {
 }
 
 const { current } = withDefaults(defineProps<{
-  crumbs: Crumb[],
+  crumbs?: Crumb[],
   name: string, 
   href?: string,
   current?: boolean, 

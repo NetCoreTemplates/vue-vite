@@ -33,10 +33,10 @@ let nav = [
 
     link('Profile',  { href: '/profile' }, { show: 'auth' }),
     link('Admin',    { href: '/admin' },   { show: 'role:Admin' }),
-    btn2('Sign Out', { onclick: (e: any) => signout('/'), class: 'mx-2' }, { show: 'auth' }),
+    btn2('Sign Out', { onclick: (e: any) => signout('/'), style: 'margin:0 .5rem' }, { show: 'auth' }),
 
-    btn2('Sign In',  { href: '/signin', class: 'mx-2' }, { hide: 'auth' }),
-    btn1('Register', { href: '/signup', class: 'mx-2' }, { hide: 'auth' }),
+    btn2('Sign In',  { href: '/signin', style: 'margin:0 .5rem' }, { hide: 'auth' }),
+    btn1('Register', { href: '/signup', style: 'margin:0 .5rem' }, { hide: 'auth' }),
 ]
 
 
