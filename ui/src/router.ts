@@ -10,7 +10,13 @@ import SecondaryButton from "@/components/form/SecondaryButton.vue"
 // Auto generated routes by https://github.com/hannoeru/vite-plugin-pages 
 import routes from "~pages"
 
-// Nav Components
+// Typed Routes used in Components
+export const Routes = {
+    signin: (redirectTo?:string) => redirectTo ? `/signin?redirect=${redirectTo}` : `/signin`,
+    forbidden: () => '/forbidden',
+}
+
+// Components used in Header Navigation
 const link = bindNavComponent(NavLink),
       btn1 = bindNavComponent(PrimaryButton),
       btn2 = bindNavComponent(SecondaryButton)
@@ -18,12 +24,6 @@ const link = bindNavComponent(NavLink),
 function bindNavComponent(component: Component) {
     return (slot: any, props: any, visibility?: { show?: string, hide?: string }) =>
         ({ el: h(component, props, () => slot), ...visibility })
-}
-
-// Typed Routes used in Components
-export const Routes = {
-    signin: (redirectTo?:string) => redirectTo ? `/signin?redirect=${redirectTo}` : `/signin`,
-    forbidden: () => '/forbidden',
 }
 
 // Header Navigation
