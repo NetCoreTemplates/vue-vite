@@ -88,12 +88,12 @@
                 <ShellCommand class="mb-2">mkdir ProjectName && cd ProjectName</ShellCommand>
                 <ShellCommand class="mb-2">x new vue-vite</ShellCommand>
 
-                <h4 class="py-6 text-center text-xl">Run Server .NET Project</h4>
-                <ShellCommand class="mb-2">dotnet run --project api/ProjectName.csproj</ShellCommand>
-
-                <h4 class="py-6 text-center text-xl">Run Client Dev Server</h4>
-                <ShellCommand class="mb-2">cd ui</ShellCommand>
+                <h4 class="py-6 text-center text-xl">Build &amp; Run Client Dev Server</h4>
+                <ShellCommand class="mb-2">cd ui &amp;&amp; npm run build:local</ShellCommand>
                 <ShellCommand class="mb-2">npm run dev</ShellCommand>
+
+                <h4 class="py-6 text-center text-xl">Run Server .NET Project</h4>
+                <ShellCommand class="mb-2">dotnet run --project api/ProjectName/ProjectName.csproj</ShellCommand>
 
               </div>
             </div>
