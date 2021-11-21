@@ -101,11 +101,11 @@
 
                 <div class="mt-8">
 
-                  <h3 class="mt-4 text-lg font-bold">Use npm dev server for UI development</h3>
-                  <div class="text-center"><a href="http://localhost:3000">http://localhost:3000</a></div>
+                  <h3 class="mt-4 text-2xl">Use npm dev server for UI Development</h3>
+                  <div class="text-center text-lg hover:text-green-600"><a href="http://localhost:3000">http://localhost:3000</a></div>
 
-                  <h3 class="mt-4 text-lg font-bold">Preview `build:local` output in .NET App</h3>
-                  <div class="text-center"><a href="https://localhost:5001">https://localhost:5001</a></div>
+                  <h3 class="mt-4 text-2xl">Preview `build:local` output in .NET App</h3>
+                  <div class="text-center text-lg hover:text-green-600"><a href="https://localhost:5001">https://localhost:5001</a></div>
                 </div>
                 
               </div>

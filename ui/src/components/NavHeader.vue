@@ -25,7 +25,7 @@ import { navItems } from "@/router"
 const NavItems = defineComponent({
   setup() {
     return () => navItems.value.map(item => h('li', {
-      'class': 'relative flex flex-wrap just-fu-start m-0 hover:text-green-600'
+      'class': 'relative flex flex-wrap just-fu-start m-0'
     }, item))
   }
 })
