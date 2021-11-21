@@ -11,6 +11,16 @@
           </router-link>
         </div>
       </li>
+      <li v-for="crumb in crumbs">
+        <div class="flex items-center">
+          <ChevronRightIcon class="flex-shrink-0 h-8 w-8 text-gray-400" aria-hidden="true"/>
+          <router-link :to="crumb.href">
+            <a class="ml-4 text-2xl text-gray-500 hover:text-gray-700">
+              {{ crumb.name }}
+            </a>
+          </router-link>
+        </div>
+      </li>
       <li>
         <div class="flex items-center">
           <ChevronRightIcon class="flex-shrink-0 h-8 w-8 text-gray-400" aria-hidden="true"/>
@@ -20,8 +30,8 @@
             </a>
           </router-link>
           <span v-else class="ml-4 text-3xl text-gray-700" :aria-current="ariaCurrent">
-        {{ name }}
-      </span>
+            {{ name }}
+          </span>
         </div>
       </li>
     </ol>
@@ -33,8 +43,19 @@ import { HomeIcon } from "@heroicons/vue/solid"
 import { ChevronRightIcon } from "@heroicons/vue/outline"
 import { computed } from "vue"
 
-const { current } = withDefaults(defineProps<{ name: string, href?: string, current?: boolean }>(), {
-  current: true
+export type Crumb = {
+  name:  string,
+  href: string
+}
+
+const { current } = withDefaults(defineProps<{
+  crumbs: Crumb[],
+  name: string, 
+  href?: string,
+  current?: boolean, 
+}>(), {
+  current: true,
+  crumbs: () => []
 })
 
 const ariaCurrent = computed(() => current ? 'page' : undefined)

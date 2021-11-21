@@ -2,6 +2,8 @@
 /// <reference types="node" />
 
 // TODO: replace with your production URLs
+import * as fs from "fs";
+
 const PROD_API = 'https://vue-vite.web-templates.io'
 const PROD_CDN = 'https://vue-vite-gh.web-templates.io'
 const USE_DEV_PROXY = false // Change to use CORS-free dev proxy at: http://localhost:3000/api
@@ -9,6 +11,8 @@ const USE_DEV_PROXY = false // Change to use CORS-free dev proxy at: http://loca
 import vue from "@vitejs/plugin-vue"
 import Markdown from "vite-plugin-md"
 import Pages from "vite-plugin-pages"
+import Components from "unplugin-vue-components/vite"
+import matter from "gray-matter"
 import path from "path"
 import { defineConfig } from "vite"
 
@@ -30,6 +34,11 @@ export default defineConfig(({ command, mode }) => {
             vue({
                 include: [/\.vue$/, /\.md$/],
             }),
+            Components({
+                extensions: ['vue', 'md'],
+                include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+                dirs: ['src/components'],
+            }),
 
             // Auto generate routes from file conventions https://github.com/hannoeru/vite-plugin-pages
             Pages({
@@ -38,6 +47,15 @@ export default defineConfig(({ command, mode }) => {
                     { dir: "src/views", baseRoute: command ? "" : "" },
                 ],
                 extensions: ['vue', 'md'],
+                extendRoute(route) {
+                    const filePath = path.resolve(__dirname, route.component.slice(1))
+                    if (filePath.endsWith('.md')) {
+                        const md = fs.readFileSync(filePath, 'utf-8')
+                        const { data:frontmatter } = matter(md)
+                        route.meta = Object.assign(route.meta || {}, { frontmatter })
+                    }
+                    return route
+                },            
             }),
 
             // Enable Markdown Support https://github.com/antfu/vite-plugin-md

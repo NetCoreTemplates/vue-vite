@@ -41,5 +41,6 @@ yarn-error.log*
 # vercel
 .vercel
 .idea
+.vs
 obj/
 bin/

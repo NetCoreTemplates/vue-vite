@@ -28,7 +28,7 @@ export const Routes = {
 
 // Header Navigation
 let nav = [
-    link('Markdown', { href: '/posts/typography' }),
+    link('Markdown Posts', { href: '/posts' }),
     link('About',    { href: '/about' }),
 
     link('Profile',  { href: '/profile' }, { show: 'auth' }),
