@@ -88,11 +88,10 @@
                        class="mb-8 sm:text-lg rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300"/>
                 
                 <ShellCommand class="mb-2">dotnet tool install -g x</ShellCommand>
-                <ShellCommand class="mb-2">x new vue-vite {{project}}</ShellCommand>
+                <ShellCommand class="mb-2">x new vue-vite {{project}} && cd {{project}}</ShellCommand>
 
                 <h4 class="py-6 text-center text-xl">Build &amp; Run Client Dev Server</h4>
-                <ShellCommand class="mb-2">cd {{uiPath()}}</ShellCommand>
-                <ShellCommand class="mb-2">npm run build:local</ShellCommand>
+                <ShellCommand class="mb-2">cd {{uiPath()}} &amp;&amp; npm run build:local</ShellCommand>
                 <ShellCommand class="mb-2">npm run dev</ShellCommand>
 
                 <h4 class="py-6 text-center text-xl">Run Server .NET Project (New Terminal)</h4>
@@ -126,6 +125,6 @@ import { ref } from "vue"
 const inputValue = ref('Vue.js')
 const project = ref('ProjectName')
 const resolvePath = (path:string) => navigator.userAgent.indexOf("Win") >= 0 ? path.replace(/\//g,'\\') : path
-const uiPath = () => resolvePath(`${project.value}/ui`)
+const uiPath = () => resolvePath(`ui`)
 const apiPath = () => resolvePath(`${project.value}/api/${project.value}`)
 </script>
