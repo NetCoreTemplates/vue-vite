@@ -1,12 +1,36 @@
-# Vue 3 + Typescript + Vite
+
+# .NET 6.0 Vue 3 + Vite + Tailwindcss Template
 
 This template should help get you started developing with Vue 3 and Typescript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+```bash
+$ dotnet tool install -g x
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+$ x new vue-vite ProjectName
+```
 
-## Type Support For `.vue` Imports in TS
+## Getting Started
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's `.vue` type support plugin by running `Volar: Switch TS Plugin on/off` from VSCode command palette.
+Build Client UI & Run Dev Server
+
+```bash
+$ cd ui && npm run build:local
+$ npm run dev
+```
+
+Run Server .NET Project (New Terminal)
+
+```bash
+$ cd api\ProjectName
+$ dotnet watch
+```
+
+#### Use npm dev server for UI Development
+
+- http://localhost:3000
+
+#### `npm run build:local` to view in .NET App
+
+- https://localhost:5001
+
 
