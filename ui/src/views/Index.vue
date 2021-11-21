@@ -126,6 +126,6 @@ import { ref } from "vue"
 const inputValue = ref('Vue.js')
 const project = ref('ProjectName')
 const resolvePath = (path:string) => navigator.userAgent.indexOf("Win") >= 0 ? path.replace(/\//g,'\\') : path
-const uiPath = () => resolvePath(`ui/${project.value}`)
-const apiPath = () => resolvePath(`api/${project.value}/${project.value}`)
+const uiPath = () => resolvePath(`${project.value}/ui`)
+const apiPath = () => resolvePath(`${project.value}/api/${project.value}`)
 </script>
