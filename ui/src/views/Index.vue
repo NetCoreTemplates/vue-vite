@@ -91,7 +91,7 @@
                 <ShellCommand class="mb-2">mkdir {{project}} && cd {{project}}</ShellCommand>
                 <ShellCommand class="mb-2">x new vue-vite</ShellCommand>
 
-                <h4 class="py-6 text-center text-xl">Build &amp; Run Client Dev Server</h4>
+                <h4 class="py-6 text-center text-xl">Build Client UI &amp; Run Dev Server</h4>
                 <ShellCommand class="mb-2">cd {{uiPath()}} &amp;&amp; npm run build:local</ShellCommand>
                 <ShellCommand class="mb-2">npm run dev</ShellCommand>
 
@@ -104,7 +104,7 @@
                   <h3 class="mt-4 text-2xl">Use npm dev server for UI Development</h3>
                   <div class="text-center text-lg hover:text-green-600"><a href="http://localhost:3000">http://localhost:3000</a></div>
 
-                  <h3 class="mt-4 text-2xl">Preview `build:local` output in .NET App</h3>
+                  <h3 class="mt-4 text-2xl">`npm run build:local` to view in .NET App</h3>
                   <div class="text-center text-lg hover:text-green-600"><a href="https://localhost:5001">https://localhost:5001</a></div>
                 </div>
                 
