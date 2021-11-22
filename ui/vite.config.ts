@@ -43,12 +43,12 @@ export default defineConfig(({ command, mode }) => {
 
             // Auto generate routes from file conventions https://github.com/hannoeru/vite-plugin-pages
             Pages({
-                pages: [
+                dirs: [
                     { dir: "src/pages", baseRoute: "posts" },
                     { dir: "src/views", baseRoute: command ? "" : "" },
                 ],
                 extensions: ['vue', 'md'],
-                extendRoute(route) {
+                extendRoute(route:any) {
                     const filePath = path.resolve(__dirname, route.component.slice(1))
                     if (filePath.endsWith('.md')) {
                         const md = fs.readFileSync(filePath, 'utf-8')
