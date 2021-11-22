@@ -39,8 +39,8 @@ jobs:
 
       - name: Replace vite.config.js values for prod deployment
         run: |
-          sed -i 's/$PROD_API/${{ env.deploy_api }}' ./ui/vite.config.js
-          sed -i 's/$PROD_CDN/${{ env.deploy_cdn }}' ./ui/vite.config.js
+          sed -i 's/$PROD_API/${{ env.deploy_api }}/g' ./ui/vite.config.js
+          sed -i 's/$PROD_CDN/${{ env.deploy_cdn }}/g' ./ui/vite.config.js
       - name: Replace vite.config.js values for prod deployment
         uses: danielr1996/envsubst-action@1.1.0
         env:
