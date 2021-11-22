@@ -2,8 +2,8 @@
 /// <reference types="node" />
 
 // TODO: replace with your production URLs
-const PROD_API = '' // e.g. 'https://vue-vite.web-templates.io'
-const PROD_CDN = '' // e.g. 'https://vue-vite-gh.web-templates.io'
+const PROD_API = 'https://${DEPLOY_HOST}' // e.g. 'https://vue-vite.web-templates.io'
+const PROD_CDN = 'https://${DEPLOY_STATIC}' // e.g. 'https://vue-vite-gh.web-templates.io'
 const USE_DEV_PROXY = false // Change to use CORS-free dev proxy at: http://localhost:3000/api
 const DEV_API = 'http://localhost:5000'
 
