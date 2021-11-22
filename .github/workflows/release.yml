@@ -42,16 +42,16 @@ jobs:
           DEPLOY_HOST: ${{ env.DEPLOY_HOST }}
           DEPLOY_STATIC: ${{ env.DEPLOY_STATIC }}
         with:
-          input: .ui/vite.config.ts
-          output: .ui/vite.config.ts
+          input: ./ui/vite.config.ts
+          output: ./ui/vite.config.ts
 
       - name: Replace CNAME value for prod deployment
         uses: danielr1996/envsubst-action@1.0.0
         env:
           DEPLOY_STATIC: ${{ env.DEPLOY_STATIC }}
         with:
-          input: .ui/public/CNAME
-          output: .ui/public/CNAME
+          input: ./ui/public/CNAME
+          output: ./ui/public/CNAME
 
       - name: Setup node
         uses: actions/setup-node@v1
