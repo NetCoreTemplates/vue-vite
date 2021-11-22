@@ -37,35 +37,35 @@ jobs:
           echo "DEPLOY_HOST=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
           echo "DEPLOY_STATIC=${{ secrets.DEPLOY_STATIC }}" >> $GITHUB_ENV
 
-      - name: Replace vite.config.js values for prod deployment
-        uses: danielr1996/envsubst-action@1.0.0
-        env:
-          DEPLOY_HOST: ${{ env.DEPLOY_HOST }}
-          DEPLOY_STATIC: ${{ env.DEPLOY_STATIC }}
-        with:
-          input: ./ui/vite.config.ts
-          output: ./ui/vite.config.ts
-
-      - name: Replace CNAME value for prod deployment
-        uses: danielr1996/envsubst-action@1.0.0
-        env:
-          DEPLOY_STATIC: ${{ env.DEPLOY_STATIC }}
-        with:
-          input: ./ui/public/CNAME
-          output: ./ui/public/CNAME
+#      - name: Replace vite.config.js values for prod deployment
+#        uses: danielr1996/envsubst-action@1.0.0
+#        env:
+#          DEPLOY_HOST: ${{ env.DEPLOY_HOST }}
+#          DEPLOY_STATIC: ${{ env.DEPLOY_STATIC }}
+#        with:
+#          input: ./ui/vite.config.ts
+#          output: ./ui/vite.config.ts
+#
+#      - name: Replace CNAME value for prod deployment
+#        uses: danielr1996/envsubst-action@1.0.0
+#        env:
+#          DEPLOY_STATIC: ${{ env.DEPLOY_STATIC }}
+#        with:
+#          input: ./ui/public/CNAME
+#          output: ./ui/public/CNAME
 
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: 14
+
       # Build UI which is copied to local server wwwroot directory to match content
       - name: Install and build npm
         run: |
-          cat ./vite.config.ts
-          cat ./public/CNAME
           npm install
-          npm run publish
+          npm run build
         working-directory: ./ui
+
       # Assign environment variables used in subsequent steps
       - name: repository name fix
         run: echo "image_repository_name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
