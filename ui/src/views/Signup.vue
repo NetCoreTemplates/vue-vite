@@ -46,7 +46,7 @@ import AppPage from "@/components/AppPage.vue"
 import ApiForm from "@/components/form/ApiForm.vue"
 import ErrorSummary from "@/components/form/ErrorSummary.vue"
 import TextInput from "@/components/form/TextInput.vue"
-import CheckBox from "../components/form/CheckBox.vue"
+import CheckBox from "@/components/form/Checkbox.vue"
 import FormLoading from "@/components/form/FormLoading.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 
