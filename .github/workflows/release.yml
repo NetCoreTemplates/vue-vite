@@ -34,14 +34,14 @@ jobs:
 
       - name: vite.config variable assignment
         run: |
-          echo "DEPLOY_HOST=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
-          echo "DEPLOY_STATIC=${{ secrets.DEPLOY_STATIC }}" >> $GITHUB_ENV
+          echo "deploy_api=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
+          echo "deploy_cdn=${{ secrets.DEPLOY_STATIC }}" >> $GITHUB_ENV
 
       - name: Replace vite.config.js values for prod deployment
         uses: danielr1996/envsubst-action@1.1.0
         env:
-          PROD_API: ${{ env.DEPLOY_HOST }}
-          PROD_CDN: ${{ env.DEPLOY_STATIC }}
+          PROD_API: ${{ env.deploy_api }}
+          PROD_CDN: ${{ env.deploy_cdn }}
         with:
           input: ./ui/vite.config.ts
           output: ./ui/vite.config.ts
