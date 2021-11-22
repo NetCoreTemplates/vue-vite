@@ -38,13 +38,4 @@
     <ProjectReference Include="..\MyApp.ServiceInterface\MyApp.ServiceInterface.csproj" />
     <ProjectReference Include="..\MyApp.ServiceModel\MyApp.ServiceModel.csproj" />
   </ItemGroup>
-
-    <ItemGroup>
-      <FileToRename Include="$(ProjectDir)\wwwroot\index.html" />
-    </ItemGroup>
-
-    <Target Name="Bundle" AfterTargets="Publish">
-      <Copy SourceFiles="@(FileToRename)" DestinationFiles="@(FileToRename->Replace('index','404'))"/>
-    </Target>
-
 </Project>

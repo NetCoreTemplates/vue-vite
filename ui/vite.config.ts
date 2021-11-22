@@ -18,6 +18,7 @@ import { defineConfig } from "vite"
 
 const isProd = process.env.NODE_ENV === 'production'
 
+// @ts-ignore
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
 
@@ -68,6 +69,15 @@ export default defineConfig(({ command, mode }) => {
                 },
                 wrapperComponent: 'MarkdownPage'
             }),
+            {   // 404.html required for hosting SPA's on GitHub Pages CDN
+                name: 'copy-cdn-spa-fallback',
+                writeBundle() {
+                    fs.copyFileSync(
+                        path.resolve('../api/MyApp/wwwroot/index.html'),
+                        path.resolve('../api/MyApp/wwwroot/404.html')
+                    );
+                }
+            }
         ],
         define: { API_URL: `"${API_URL}"` },
         resolve: {
