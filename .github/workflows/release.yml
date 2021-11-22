@@ -41,14 +41,6 @@ jobs:
         run: |
           sed -i 's/$PROD_API/${{ env.deploy_api }}/g' ./ui/vite.config.ts
           sed -i 's/$PROD_CDN/${{ env.deploy_cdn }}/g' ./ui/vite.config.ts
-      - name: Replace vite.config.js values for prod deployment
-        uses: danielr1996/envsubst-action@1.1.0
-        env:
-          PROD_API: ${{ env.deploy_api }}
-          PROD_CDN: ${{ env.deploy_cdn }}
-        with:
-          input: ./ui/vite.config.ts
-          output: ./ui/vite.config.ts
 
       - name: Replace CNAME value for prod deployment
         uses: danielr1996/envsubst-action@1.1.0
