@@ -61,7 +61,7 @@ jobs:
       # Build UI which is copied to local server wwwroot directory to match content
       - name: Install and build npm
         run: |
-          cat ./vite.config.js
+          cat ./vite.config.ts
           cat ./public/CNAME
           npm install
           npm run publish
