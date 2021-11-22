@@ -49,7 +49,7 @@ jobs:
       - name: Replace CNAME value for prod deployment
         uses: danielr1996/envsubst-action@1.1.0
         env:
-          PROD_CDN: ${{ env.DEPLOY_STATIC }}
+          PROD_CDN: ${{ env.deploy_cdn }}
         with:
           input: ./ui/public/CNAME
           output: ./ui/public/CNAME
