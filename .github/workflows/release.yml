@@ -166,7 +166,7 @@ jobs:
           username: ${{ secrets.DEPLOY_USERNAME }}
           port: ${{ secrets.DEPLOY_PORT }}
           key: ${{ secrets.DEPLOY_KEY }}
-          source: ".deploy/MyApp-docker-compose.yml"
+          source: ".deploy/${{ github.event.repository.name }}-docker-compose.yml"
           target: "~/"
 
       - name: Set the value
@@ -188,5 +188,5 @@ jobs:
           envs: APPTOKEN,USERNAME
           script: |
             echo $APPTOKEN | docker login ghcr.io -u $USERNAME --password-stdin
-            docker-compose -f ~/.deploy/MyApp-docker-compose.yml pull
-            docker-compose -f ~/.deploy/MyApp-docker-compose.yml up -d
+            docker-compose -f ~/.deploy/${{ github.event.repository.name }}-docker-compose.yml pull
+            docker-compose -f ~/.deploy/${{ github.event.repository.name }}-docker-compose.yml up -d
