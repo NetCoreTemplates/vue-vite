@@ -41,6 +41,7 @@ jobs:
         run: |
           sed -i 's/$PROD_API/${{ env.deploy_api }}/g' ./ui/vite.config.ts
           sed -i 's/$PROD_CDN/${{ env.deploy_cdn }}/g' ./ui/vite.config.ts
+          sed -i 's/$PROD_CDN/${{ env.deploy_cdn }}/g' ./api/MyApp/Configure.AppHost.cs
 
       - name: Replace CNAME value for prod deployment
         uses: danielr1996/envsubst-action@1.1.0

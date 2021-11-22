@@ -24,7 +24,7 @@ public class AppHost : AppHostBase, IHostingStartup
             "https://localhost:5001",
             "http://localhost:5000",
             "http://localhost:3000",
-            "https://my-app.example.com"
+            "https://$PROD_CDN"
         }, allowCredentials:true));
     }
 
