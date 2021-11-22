@@ -156,7 +156,7 @@ jobs:
           LETSENCRYPT_EMAIL: ${{ env.letsencrypt_email }}
         with:
           input: .deploy/docker-compose-template.yml
-          output: .deploy/MyApp-docker-compose.yml
+          output: .deploy/${{ env.image_repository_name }}-docker-compose.yml
 
       # Copy only the docker-compose.yml to remote server home folder
       - name: copy compose file via scp
