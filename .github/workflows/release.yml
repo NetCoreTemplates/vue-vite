@@ -32,7 +32,7 @@ jobs:
         with:
           ref: refs/tags/${{ github.event.inputs.version }}
 
-      - name: repository name fix
+      - name: vite.config variable assignment
         run: |
           echo "DEPLOY_HOST=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
           echo "DEPLOY_STATIC=${{ secrets.DEPLOY_STATIC }}" >> $GITHUB_ENV
@@ -188,4 +188,5 @@ jobs:
           envs: APPTOKEN,USERNAME
           script: |
             echo $APPTOKEN | docker login ghcr.io -u $USERNAME --password-stdin
+            docker-compose -f ~/.deploy/MyApp-docker-compose.yml pull
             docker-compose -f ~/.deploy/MyApp-docker-compose.yml up -d
