@@ -11,12 +11,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14
-    - name: Install and build npm
+    - name: npm install
       run: |
         npm install
-        npm run build
       working-directory: ./ui
-    - name: Build npm
+
+    - name: npm run build
       run: |
         cd ./ui
         npm run build
