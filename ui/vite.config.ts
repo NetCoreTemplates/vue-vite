@@ -72,7 +72,7 @@ export default defineConfig(({ command, mode }) => {
         define: { API_URL: `"${API_URL}"` },
         resolve: {
             alias: {
-                '@/': `${path.resolve(__dirname, 'src')}/`
+                '@/': `${path.resolve(__dirname, './src')}/`
             }
         },
         server: {

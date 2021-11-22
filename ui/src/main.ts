@@ -1,5 +1,5 @@
-import "./styles/form.css"
-import "./styles/index.css"
+import "@/styles/form.css"
+import "@/styles/index.css"
 import { createApp } from "vue"
 
 import App from "@/App.vue"
