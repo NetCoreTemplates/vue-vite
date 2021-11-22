@@ -2,8 +2,8 @@
 /// <reference types="node" />
 
 // TODO: replace with your production URLs
-const PROD_API = 'https://$PROD_API' // e.g. 'https://vue-vite.web-templates.io'
-const PROD_CDN = 'https://$PROD_CDN' // e.g. 'https://vue-vite-gh.web-templates.io'
+const DEPLOY_API = 'https://$DEPLOY_API' // e.g. 'https://vue-vite.web-templates.io'
+const DEPLOY_CDN = 'https://$DEPLOY_CDN' // e.g. 'https://vue-vite-gh.web-templates.io'
 const USE_DEV_PROXY = false // Change to use CORS-free dev proxy at: http://localhost:3000/api
 const DEV_API = 'http://localhost:5000'
 
@@ -23,8 +23,8 @@ const isProd = process.env.NODE_ENV === 'production'
 export default defineConfig(({ command, mode }) => {
 
     const buildLocal = command == "build" && mode == "development"
-    const API_URL = isProd ? PROD_API : (USE_DEV_PROXY || buildLocal ? '' : DEV_API)
-    const CDN_URL = isProd ? PROD_CDN : API_URL
+    const API_URL = isProd ? DEPLOY_API : (USE_DEV_PROXY || buildLocal ? '' : DEV_API)
+    const CDN_URL = isProd ? DEPLOY_CDN : API_URL
 
     return ({
         build: {

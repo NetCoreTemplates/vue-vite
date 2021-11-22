@@ -94,8 +94,8 @@ For more optimal deployments you can choose to host your `/ui` static assets on 
 configure the production url for your C# Server and CDN by modifying the variables below in your `vite.config.ts`:
 
 ```csharp
-const PROD_API = 'https://vue-vite.web-templates.io'
-const PROD_CDN = 'https://vue-vite-gh.web-templates.io'
+const DEPLOY_API = 'https://vue-vite.web-templates.io'
+const DEPLOY_CDN = 'https://vue-vite-gh.web-templates.io'
 ```
 
 ### Get Started
