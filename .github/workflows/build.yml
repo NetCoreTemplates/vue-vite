@@ -16,6 +16,10 @@ jobs:
         npm install
         npm run build
       working-directory: ./ui
+    - name: Build npm
+      run: |
+        cd ./ui
+        npm run build
     - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
