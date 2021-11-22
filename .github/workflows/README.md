@@ -32,7 +32,7 @@ This will run an nginx reverse proxy along with a companion container that will 
 The `release.yml` assumes 6 secrets have been setup.
 
 - CR_PAT - GitHub Personal Token with read/write access to packages.
-- DEPLOY_HOST - hostname used to SSH to, this can either be an IP address or subdomain with A record pointing to the server.
+- DEPLOY_API - hostname used to SSH to, this can either be an IP address or subdomain with A record pointing to the server.
 - DEPLOY_PORT - SSH port, usually `22`.
 - DEPLOY_USERNAME - the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.
 - DEPLOY_KEY - SSH private key used to remotely access deploy server/app host.
@@ -42,7 +42,7 @@ These secrets can use the [GitHub CLI](https://cli.github.com/manual/gh_secret_s
 
 ```bash
 gh secret set CR_PAT -b"<CR_PAT, Container Registry Personal Access Token>"
-gh secret set DEPLOY_HOST -b"<DEPLOY_HOST, domain or subdomain for your application and server host.>"
+gh secret set DEPLOY_API -b"<DEPLOY_API, domain or subdomain for your application and server host.>"
 gh secret set DEPLOY_PORT -b"<DEPLOY_PORT, eg SSH port, usually 22>"
 gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME, the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.>"
 gh secret set DEPLOY_KEY -b"<DEPLOY_KEY, SSH private key used to remotely access deploy server/app host.>"

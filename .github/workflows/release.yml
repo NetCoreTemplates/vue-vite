@@ -34,9 +34,13 @@ jobs:
 
       - name: vite.config variable assignment
         run: |
-          echo "deploy_api=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
-          echo "deploy_cdn=${{ secrets.DEPLOY_STATIC }}" >> $GITHUB_ENV
+          echo "deploy_api=${{ secrets.DEPLOY_API }}" >> $GITHUB_ENV
+          echo "deploy_cdn=${{ secrets.DEPLOY_CDN }}" >> $GITHUB_ENV
 
+      - name: Replace vite.config.js values for prod deployment
+        run: |
+          sed -i 's/$PROD_API/${{ env.deploy_api }}' ./ui/vite.config.js
+          sed -i 's/$PROD_CDN/${{ env.deploy_cdn }}' ./ui/vite.config.js
       - name: Replace vite.config.js values for prod deployment
         uses: danielr1996/envsubst-action@1.1.0
         env:
@@ -136,7 +140,7 @@ jobs:
       - name: repository name fix and env
         run: |
           echo "image_repository_name=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-          echo "domain=${{ secrets.DEPLOY_HOST }}" >> $GITHUB_ENV
+          echo "domain=${{ secrets.DEPLOY_API }}" >> $GITHUB_ENV
           echo "letsencrypt_email=${{ secrets.LETSENCRYPT_EMAIL }}" >> $GITHUB_ENV
           echo "TAG_NAME=latest" >> $GITHUB_ENV
           if [ "${{ github.event.release.tag_name }}" != "" ]; then
@@ -162,7 +166,7 @@ jobs:
       - name: copy compose file via scp
         uses: appleboy/scp-action@v0.1.1
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
+          host: ${{ secrets.DEPLOY_API }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           port: ${{ secrets.DEPLOY_PORT }}
           key: ${{ secrets.DEPLOY_KEY }}
@@ -181,7 +185,7 @@ jobs:
           APPTOKEN: ${{ env.GH_TOKEN }}
           USERNAME: ${{ env.USERNAME }}
         with:
-          host: ${{ secrets.DEPLOY_HOST }}
+          host: ${{ secrets.DEPLOY_API }}
           username: ${{ secrets.DEPLOY_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT }}
