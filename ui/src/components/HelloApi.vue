@@ -4,12 +4,10 @@
 </template>
 
 <script setup lang="ts">
-import useSWRV from "swrv"
 import { Hello } from "@/dtos"
-import { client } from "@/api"
+import { client, swrClient } from "@/api"
 
 const props = defineProps<{ name: string }>()
 
-const { data, error } = useSWRV(() => props.name, key =>
-    client.get(new Hello({ name: props.name })))
+const { data, error } = swrClient.get(() => new Hello({ name: props.name }))
 </script>
