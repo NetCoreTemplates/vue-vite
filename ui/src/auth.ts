@@ -33,9 +33,8 @@ export const signin = (response?: AuthenticateResponse) => {
 export const signout = async (redirectTo?: string) => {
     auth.value = undefined
     await logout()
-    if (redirectTo) {
-        await router.push(redirectTo)
-    }
+    // Always redirect to force re-running auth route guards
+    await router.replace({ path: redirectTo ?? router.currentRoute.value.path, force: true })
 }
 
 export const hasRole = (role: string) => (auth?.value?.roles || []).indexOf(role) >= 0

@@ -1,6 +1,6 @@
-import { attrs, signout } from "./auth"
-import { createRouter, createWebHistory, Router } from "vue-router"
-import { Component, computed, h } from "vue"
+import { attrs, loading, signout } from "./auth"
+import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized, Router } from "vue-router"
+import { Component, computed, h, nextTick, watchEffect } from "vue"
 
 import NotFound from "@/views/NotFound.vue"
 import NavLink from "@/components/NavLink.vue"
@@ -23,11 +23,11 @@ const link = bindNavComponent(NavLink),
 
 function bindNavComponent(component: Component) {
     return (slot: any, props: any, visibility?: { show?: string, hide?: string }) =>
-        ({ el: h(component, props, () => slot), ...visibility })
+        ({ el: h(component, props, () => slot), path:props.href, ...visibility })
 }
 
 // Header Navigation
-let nav = [
+let NAV = [
     link('Markdown Posts', { href: '/posts' }),
     link('About',    { href: '/about' }),
 
@@ -39,9 +39,14 @@ let nav = [
     btn1('Register', { href: '/signup', style: 'margin:0 .5rem' }, { hide: 'auth' }),
 ]
 
+type RouteGuard = { path:string, attr:string }
+const ROUTE_GUARDS:RouteGuard[] = [
+    ...NAV.filter(x => x.path && x.show).map(({ path, show }) => ({ path, attr:show! })),
+    // Additional guards not defined in Header nav
+]
 
 // return which nav items to show based on the Authenticated Users attributes
-export const navItems = computed(() => nav.filter(item => {
+export const navItems = computed(() => NAV.filter(item => {
     if (item.show) return attrs.value.indexOf(item.show) >= 0
     if (item.hide) return attrs.value.indexOf(item.hide) == -1
     return true
@@ -54,6 +59,35 @@ export const router = createRouter({
         ...routes,
         { path: '/:pathMatch(.*)*', component: NotFound },
     ],
+})
+
+const invalidAttrRedirect = (to:RouteLocationNormalized, guardAttr:string, userAttrs:string[]) => userAttrs.indexOf('auth') === -1
+    ? Routes.signin(to.path)
+    : Routes.forbidden()
+
+// Validate Route guards against Authenticated User's Attributes
+const validateRoute = (to:RouteLocationNormalized, next:NavigationGuardNext, attrs:string[]) => {
+    for (let i=0; i<ROUTE_GUARDS.length; i++) {
+        const { path, attr } = ROUTE_GUARDS[i]
+        if (!to.path.startsWith(path)) continue
+        if (attrs.indexOf(attr) === -1) {
+            const goTo = invalidAttrRedirect(to, attr, attrs)
+            next(goTo)
+            return
+        }
+    }
+    next()
+}
+
+router.beforeEach((to,from,next) => {
+    if (loading) {
+        const stop = watchEffect(() => {
+            validateRoute(to, next, attrs.value)
+            nextTick(() => stop())
+        })
+    } else {
+        validateRoute(to, next, attrs.value)
+    }
 })
 
 export function getRedirect(router:Router) {

@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { effect } from "vue"
-import { auth, signedIn, hasRole } from "@/auth"
+import { signedIn, hasRole } from "@/auth"
 import { Routes, router, getRedirect } from "@/router"
 
 const props = defineProps<{
