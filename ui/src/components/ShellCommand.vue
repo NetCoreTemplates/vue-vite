@@ -8,7 +8,7 @@
     </div>
     <div v-if="successText" class="-mr-24 right-0 absolute text-md text-gray-200 bg-green-700 px-1 rounded">
       <div class="flex pr-1">
-        <CheckIcon class="w-5 h-5 mt-0.5"/>
+        <MdiCheck class="w-5 h-5 mt-0.5"/>
         {{ successText }}
       </div>
     </div>
@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-import { CheckIcon } from "@heroicons/vue/outline"
 
 let successText = ref('')
 

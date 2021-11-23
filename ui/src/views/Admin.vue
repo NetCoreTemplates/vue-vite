@@ -1,7 +1,7 @@
 <template>
   <AppPage v-if="user" title="Admin Page">
     <div class="flex flex-col items-center justify-center">
-      <ShieldCheckIcon class="w-36 h-36 text-gray-700"/>
+      <MdiShieldAccount class="w-36 h-36 text-gray-700"/>
       <div>{{ user.displayName }}</div>
       <div>{{ user.userName }}</div>
       <div class="mt-2">
@@ -19,7 +19,6 @@
 <script setup lang="ts">
 import AppPage from "@/components/AppPage.vue"
 import SecondaryButton from "@/components/form/SecondaryButton.vue"
-import { ShieldCheckIcon } from "@heroicons/vue/outline"
 import { auth, signout } from "@/auth"
 
 const user = auth.value!

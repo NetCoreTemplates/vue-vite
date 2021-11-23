@@ -5,7 +5,7 @@
         <div>
           <router-link to="/">
             <a class="text-gray-600 hover:text-gray-700">
-              <HomeIcon class="flex-shrink-0 h-8 w-8" aria-hidden="true"/>
+              <MdiHome class="flex-shrink-0 h-10 w-10" aria-hidden="true"/>
               <span class="sr-only">Home</span>
             </a>
           </router-link>
@@ -13,7 +13,7 @@
       </li>
       <li v-for="crumb in crumbs">
         <div class="flex items-center">
-          <ChevronRightIcon class="flex-shrink-0 h-8 w-8 text-gray-400" aria-hidden="true"/>
+          <MdiChevronRight class="flex-shrink-0 h-8 w-8 text-gray-400" aria-hidden="true"/>
           <router-link :to="crumb.href">
             <a class="ml-4 text-2xl text-gray-500 hover:text-gray-700">
               {{ crumb.name }}
@@ -23,7 +23,7 @@
       </li>
       <li>
         <div class="flex items-center">
-          <ChevronRightIcon class="flex-shrink-0 h-8 w-8 text-gray-400" aria-hidden="true"/>
+          <MdiChevronRight class="flex-shrink-0 h-8 w-8 text-gray-400" aria-hidden="true"/>
           <router-link v-if="href" :to="href">
             <a class="ml-4 text-2xl text-gray-500 hover:text-gray-700" :aria-current="ariaCurrent">
               {{ name }}
@@ -39,8 +39,6 @@
 </template>
 
 <script setup lang="ts">
-import { HomeIcon } from "@heroicons/vue/solid"
-import { ChevronRightIcon } from "@heroicons/vue/outline"
 import { computed } from "vue"
 
 export type Crumb = {

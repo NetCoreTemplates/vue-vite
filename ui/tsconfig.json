@@ -4,7 +4,10 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["vite-plugin-pages/client"],
+    "types": [
+      "vite-plugin-pages/client",
+      "unplugin-icons/types/vue"
+    ],
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -16,5 +19,6 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["dist", "node_modules"]
 }

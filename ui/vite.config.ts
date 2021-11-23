@@ -12,6 +12,8 @@ import vue from "@vitejs/plugin-vue"
 import Markdown from "vite-plugin-md"
 import Pages from "vite-plugin-pages"
 import Components from "unplugin-vue-components/vite"
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 import matter from "gray-matter"
 import path from "path"
 import { defineConfig } from "vite"
@@ -38,8 +40,17 @@ export default defineConfig(({ command, mode }) => {
             Components({
                 extensions: ['vue', 'md'],
                 include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-                dirs: ['src/components'],
+                resolvers: [
+                    // auto import icons https://github.com/antfu/unplugin-icons
+                    IconsResolver({
+                        componentPrefix: ''
+                    }),
+                ],
+                dts: 'src/components.d.ts',
             }),
+
+            // https://github.com/antfu/unplugin-icons
+            Icons({ }),
 
             // Auto generate routes from file conventions https://github.com/hannoeru/vite-plugin-pages
             Pages({
@@ -77,7 +88,7 @@ export default defineConfig(({ command, mode }) => {
                         path.resolve('../api/MyApp/wwwroot/404.html')
                     );
                 }
-            }
+            },
         ],
         define: { API_URL: `"${API_URL}"` },
         resolve: {

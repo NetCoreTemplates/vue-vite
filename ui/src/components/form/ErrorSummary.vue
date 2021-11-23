@@ -2,7 +2,7 @@
   <div v-if="errorSummary" class="bg-red-50 border-l-4 border-red-400 p-4">
     <div class="flex">
       <div class="flex-shrink-0">
-        <XCircleIcon class="h-5 w-5 text-red-400" aria-hidden="true"/>
+        <MdiCloseCircle class="h-5 w-5 text-red-400" aria-hidden="true"/>
       </div>
       <div class="ml-3">
         <p class="text-sm text-red-700">{{ errorSummary }}</p>
@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { XCircleIcon } from "@heroicons/vue/solid"
+
 import { errorResponseExcept, ResponseStatus } from "@servicestack/client"
 import { computed } from "vue";
 
