@@ -98,6 +98,8 @@ const DEPLOY_API = 'https://vue-vite.web-templates.io'
 const DEPLOY_CDN = 'https://vue-vite-gh.web-templates.io'
 ```
 
+For more info, see [GitHub Actions Deployments](/posts/deploy).
+
 ### Get Started
 
 Driven by the static typing benefits of TypeScript, Vue 3 was itself written in TypeScript, a benefit that sees it 

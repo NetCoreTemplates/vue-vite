@@ -4,15 +4,6 @@ summary: Exploring development workflow in VS Code and Visual Studio .NET
 date: 2021-11-10
 ---
 
-<div class="flex flex-col float-left mr-8">
-<a href="https://visualstudio.microsoft.com/" title="VS Code">
-<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/vs-code.svg" 
-     class="w-24 h-24" style="margin-top:1rem"></a>
-<a href="https://code.visualstudio.com/" title="Visual Studio">
-<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/vs-2019.svg"
-     class="w-24 h-24" style="margin-top:0"></a>
-</div>
-
 A popular alternative development environment to our preferred [JetBrains Rider](/posts/rider) IDE is to use
 Visual Studio, the primary issue with this is that VS Code is a better IDE with richer support for npm
 projects whilst Visual Studio is a better IDE for C# Projects. 
@@ -21,6 +12,10 @@ Essentially this is why we recommend Rider where it's best at both, where both C
 be developed from within the same solution.
 
 ### Developing with just VS Code
+
+<a href="https://visualstudio.microsoft.com/" title="VS Code" class="float-left mr-8">
+<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/vs-code.svg" 
+     class="w-24 h-24" style="margin-top:1rem"></a>
 
 If you prefer the dev UX of a lightweight text editor or your C# project isn't large, than VS Code on its own
 can provide a great development UX which is also what [Vue recommends themselves](https://v3.vuejs.org/api/sfc-tooling.html#ide-support),
@@ -54,6 +49,10 @@ Which will publish your Vue 3's App static assets to the .NET App's `/wwwroot` w
 
 ### Using Visual Studio
 
+<a href="https://code.visualstudio.com/" title="Visual Studio" class="float-left mr-8">
+<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/vs-2019.svg"
+     class="w-24 h-24" style="margin-top:.5rem; margin-bottom:1rem"></a>
+
 As your C# project grows you'll want to consider running the back-end C# Solution with Visual Studio .NET with its
 much improved intelli-sense, navigation, tests runner & debug capabilities. 
 
@@ -75,9 +74,11 @@ For more optimal deployments you can choose to host your `/ui` static assets on 
 configure the production url for your C# Server and CDN by modifying the variables below in your `vite.config.ts`:
 
 ```csharp
-const PROD_API = 'https://vue-vite.web-templates.io'
-const PROD_CDN = 'https://vue-vite-gh.web-templates.io'
+const DEPLOY_API = 'https://vue-vite.web-templates.io'
+const DEPLOY_CDN = 'https://vue-vite-gh.web-templates.io'
 ```
+
+For more info, see [GitHub Actions Deployments](/posts/deploy). 
 
 ### Get Started
 
