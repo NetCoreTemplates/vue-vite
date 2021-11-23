@@ -1,5 +1,13 @@
-# ServiceStack mix GitHub Actions
-`release.yml` generated from `x mix release-ghr-vanilla`, this template in designed to help with CI deployment to a dedicated server with SSH access.
+---
+title: Deployment with GitHub Actions
+summary: Configuring your GitHub repo for SSH and CDN deployments
+date: 2021-11-09
+---
+
+# ServiceStack GitHub Action Deployments
+
+The [release.yml](https://github.com/NetCoreTemplates/vue-vite/blob/main/.github/workflows/release.yml) 
+in this template enables GitHub Actions CI deployment to a dedicated server with SSH access.
 
 ## Overview
 `release.yml` is designed to work with a ServiceStack app deploying directly to a single server via SSH. A docker image is built and stored on GitHub's `ghcr.io` docker registry when a GitHub Release is created.
@@ -14,7 +22,7 @@ To get this working, a server needs to be setup with the following:
 - docker-compose
 - ports 443 and 80 for web access of your hosted application
 
-This can be your own server or any cloud hosted server like Digital Ocean, AWS, Azure etc. 
+This can be your own server or any cloud hosted server like Digital Ocean, AWS, Azure etc.
 
 When setting up your server, you'll want to use a dedicated SSH key for access to be used by GitHub Actions. GitHub Actions will need the *private* SSH key within a GitHub Secret to authenticate. This can be done via ssh-keygen and copying the public key to the authorized clients on the server.
 
