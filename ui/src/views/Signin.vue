@@ -53,7 +53,7 @@ import FormLoading from "@/components/form/FormLoading.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SecondaryButton from "@/components/form/SecondaryButton.vue"
 
-import { ref, effect } from "vue"
+import { ref, effect, watchEffect, nextTick } from "vue"
 import { ResponseStatus, serializeToObject } from "@servicestack/client"
 import { client } from "@/api"
 import { Authenticate } from "@/dtos"
@@ -65,14 +65,10 @@ const status = ref<ResponseStatus | undefined>()
 const username = ref('')
 const password = ref('')
 
-let hasRedirected = false
-
-effect(async () => {
+let stop = watchEffect(async () => {
   if (auth.value) {
-    if (hasRedirected) return
-    hasRedirected = true
-    const goTo = getRedirect(router) ?? '/'
-    await router.push(goTo)
+    await router.push(getRedirect(router) ?? '/')
+    await nextTick(stop)
   }
 })
 

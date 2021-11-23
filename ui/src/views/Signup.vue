@@ -55,7 +55,7 @@ import { client } from "@/api"
 import { Register } from "@/dtos"
 import { auth, revalidate } from "@/auth"
 import { router, getRedirect } from "@/router"
-import { ref, effect } from "vue"
+import { ref, effect, watchEffect, nextTick } from "vue"
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()
@@ -64,14 +64,10 @@ const username = ref("")
 const password = ref("")
 const confirmPassword = ref("")
 
-let hasRedirected = false
-
-effect(async () => {
+let stop = watchEffect(async () => {
   if (auth.value) {
-    if (hasRedirected) return
-    hasRedirected = true
-    const goTo = getRedirect(router) ?? '/'
-    await router.push(goTo)
+    await router.push(getRedirect(router) ?? '/')
+    await nextTick(stop)
   }
 })
 
