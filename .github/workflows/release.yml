@@ -19,13 +19,6 @@ on:
 
 jobs:
   push_to_registry:
-    permissions:
-      packages: write
-      contents: write
-      pull-requests: read
-      repository-projects: read
-      statuses: read
-      
     runs-on: ubuntu-20.04
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
@@ -82,8 +75,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
 
       # Build and push new docker image, skip for manual redeploy other than 'latest'
       - name: Build and push Docker images
@@ -113,13 +106,6 @@ jobs:
           directory: ./api/MyApp/wwwroot
   
   deploy_via_ssh:
-    permissions:
-      packages: write
-      contents: write
-      pull-requests: read
-      repository-projects: read
-      statuses: read
-    
     needs: push_to_registry
     runs-on: ubuntu-20.04
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -173,8 +159,8 @@ jobs:
 
       - name: Set the value
         run: |
-          echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
-          echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
+          echo "GH_TOKEN=${{ secrets.CR_PAT }}" >> $GITHUB_ENV
+          echo "USERNAME=${{ secrets.DEPLOY_USERNAME }}" >> $GITHUB_ENV
 
       # Deploy Docker image with ServiceStack application using `docker compose up` remotely
       - name: remote docker-compose up via ssh
