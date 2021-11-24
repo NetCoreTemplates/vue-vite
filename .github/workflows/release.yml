@@ -114,7 +114,6 @@ jobs:
           directory: ./api/MyApp/wwwroot
   
   deploy_via_ssh:
-    needs: push_to_registry
     permissions:
       packages: write
       contents: write
@@ -122,6 +121,8 @@ jobs:
       pull-requests: read
       repository-projects: read
       statuses: read
+    
+    needs: push_to_registry
     runs-on: ubuntu-20.04
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
