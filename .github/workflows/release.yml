@@ -32,35 +32,26 @@ jobs:
         with:
           ref: refs/tags/${{ github.event.inputs.version }}
 
-      - name: vite.config variable assignment
+      - name: Create Prod API and CDN URLs
         run: |
           echo "deploy_api=${{ secrets.DEPLOY_API }}" >> $GITHUB_ENV
           echo "deploy_cdn=${{ secrets.DEPLOY_CDN }}" >> $GITHUB_ENV
 
-      - name: Replace vite.config.js values for prod deployment
+      - name: Replace Prod API and CDN URLs
         run: |
           sed -i 's/$DEPLOY_API/${{ env.deploy_api }}/g' ./ui/vite.config.ts
           sed -i 's/$DEPLOY_CDN/${{ env.deploy_cdn }}/g' ./ui/vite.config.ts
           sed -i 's/$DEPLOY_CDN/${{ env.deploy_cdn }}/g' ./api/MyApp/Configure.AppHost.cs
-
-      - name: Replace CNAME value for prod deployment
-        uses: danielr1996/envsubst-action@1.1.0
-        env:
-          DEPLOY_CDN: ${{ env.deploy_cdn }}
-        with:
-          input: ./ui/public/CNAME
-          output: ./ui/public/CNAME
+          sed -i 's/$DEPLOY_CDN/${{ env.deploy_cdn }}/g' ./ui/public/CNAME
 
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 16
 
       # Build UI which is copied to local server wwwroot directory to match content
       - name: Install and build npm
         run: |
-          cat ./vite.config.ts
-          cat ./public/CNAME
           npm install
           npm run build
         working-directory: ./ui
