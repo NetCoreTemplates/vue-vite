@@ -160,7 +160,7 @@ jobs:
       - name: Set the value
         run: |
           echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
-          echo "USERNAME=${{ secrets.DEPLOY_USERNAME }}" >> $GITHUB_ENV
+          echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
 
       # Deploy Docker image with ServiceStack application using `docker compose up` remotely
       - name: remote docker-compose up via ssh
