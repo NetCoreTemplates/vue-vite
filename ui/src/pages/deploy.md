@@ -74,7 +74,7 @@ gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL, Email address for your TL
 These secrets are used to populate variables within GitHub Actions and other configuration files.
 
 ## UI Deployment
-The Vue 3 `ui` application is build and deployed to GitHub Pages during the `release.yml` workflow process by committing the result of `vite build` to `gh-pages` branch in the repository.
+The Vue 3 `ui` application is built and deployed to GitHub Pages during the `release.yml` workflow process by committing the result of `vite build` to `gh-pages` branch in the repository.
 
 Variable replacement of `$PROD_API` and `$PROD_CDN` is performed on the following files as a way to coordinate configuration between the `ui` and `api` project.
 
