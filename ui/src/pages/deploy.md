@@ -26,7 +26,7 @@ This can be your own server or any cloud hosted server like Digital Ocean, AWS, 
 
 When setting up your server, you'll want to use a dedicated SSH key for access to be used by GitHub Actions. GitHub Actions will need the *private* SSH key within a GitHub Secret to authenticate. This can be done via ssh-keygen and copying the public key to the authorized clients on the server.
 
-To let your server handle multiple ServiceStack applications and automate the generation and management of TLS certificates, an additional docker-compose file is provided via the `x mix` template, `nginx-proxy-compose.yml`. This docker-compose file is ready to run and can be copied to the deployment server.
+To let your server handle multiple ServiceStack applications and automate the generation and management of TLS certificates, an additional docker-compose file is provided in this template, `nginx-proxy-compose.yml`. This docker-compose file is ready to run and can be copied to the deployment server.
 
 For example, once copied to remote `~/nginx-proxy-compose.yml`, the following command can be run on the remote server.
 
@@ -39,7 +39,7 @@ This will run an nginx reverse proxy along with a companion container that will 
 ## GitHub Repository setup
 The `release.yml` assumes 6 secrets have been setup.
 
-- CR_PAT - GitHub Personal Token with read/write access to packages.
+- DEPLOY_CDN - hostname of the static web UI application from `ui` directory in this template.
 - DEPLOY_API - hostname used to SSH to, this can either be an IP address or subdomain with A record pointing to the server.
 - DEPLOY_PORT - SSH port, usually `22`.
 - DEPLOY_USERNAME - the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.
@@ -49,7 +49,7 @@ The `release.yml` assumes 6 secrets have been setup.
 These secrets can use the [GitHub CLI](https://cli.github.com/manual/gh_secret_set) for ease of creation. Eg, using the GitHub CLI the following can be set.
 
 ```bash
-gh secret set CR_PAT -b"<CR_PAT, Container Registry Personal Access Token>"
+gh secret set DEPLOY_API -b"<DEPLOY_CDN, domain or subdomain for your `ui` application.>"
 gh secret set DEPLOY_API -b"<DEPLOY_API, domain or subdomain for your application and server host.>"
 gh secret set DEPLOY_PORT -b"<DEPLOY_PORT, eg SSH port, usually 22>"
 gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME, the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.>"

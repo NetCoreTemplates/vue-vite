@@ -76,7 +76,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.CR_PAT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       # Build and push new docker image, skip for manual redeploy other than 'latest'
       - name: Build and push Docker images
@@ -159,7 +159,7 @@ jobs:
 
       - name: Set the value
         run: |
-          echo "GH_TOKEN=${{ secrets.CR_PAT }}" >> $GITHUB_ENV
+          echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
           echo "USERNAME=${{ secrets.DEPLOY_USERNAME }}" >> $GITHUB_ENV
 
       # Deploy Docker image with ServiceStack application using `docker compose up` remotely
