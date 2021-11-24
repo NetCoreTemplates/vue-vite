@@ -22,7 +22,6 @@ jobs:
     permissions:
       packages: write
       contents: write
-      id-token: read
       pull-requests: read
       repository-projects: read
       statuses: read
