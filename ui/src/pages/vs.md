@@ -67,18 +67,21 @@ When you're ready to deploy your App you can create a production build with:
 $ npm run publish
 ```
 
-Which will generate production builds of your npm and C# projects which by default assumes it's deploying the UI
-together with your C# .NET App.
+Which will generate production builds of your C# projects and npm projects with its static generated UI assets
+written to `/wwwroot` to be deployed together with your complete .NET App.
 
-For more optimal deployments you can choose to host your `/ui` static assets on a CDN in which case you need to
-configure the production url for your C# Server and CDN by modifying the variables below in your `vite.config.ts`:
+Our recommendation for the best possible responsive UX is to deploy your App's `/wwwwroot` static assets to a CDN in
+order for the initial load of your App to be downloaded from nearby CDN edge caches.
+
+To do this configure the production url the UI should use for all its `/api` Ajax requests by modifying
+`DEPLOY_API` in your `vite.config.ts`:
 
 ```csharp
 const DEPLOY_API = 'https://vue-vite.web-templates.io'
-const DEPLOY_CDN = 'https://vue-vite-gh.web-templates.io'
 ```
 
-For more info, see [GitHub Actions Deployments](/posts/deploy). 
+This template also includes the necessary GitHub Actions to deploy this Apps production static assets to GitHub Pages CDN,
+for more info, checkout [GitHub Actions Deployments](/posts/deploy).
 
 ### Get Started
 
