@@ -47,7 +47,7 @@ This token will need to have access to `write:packages` to the GitHub Package Re
 
 The first time the `release.yml` process successfully runs and creates your GitHub Container Repository for your project, you then have the option to [upgrade the workflow to use GITHUB_TOKEN](https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-ghcrio) replacing the `CR_PAT`. 
 
-### Required Secrets
+### GitHub Actions secrets
 
 The `release.yml` assumes 5 secrets have been set:
 
