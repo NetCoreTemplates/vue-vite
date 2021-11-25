@@ -81,7 +81,7 @@ These secrets are used to populate variables within GitHub Actions and other con
 ## UI Deployment
 The Vue 3 `ui` application is built and deployed to GitHub Pages during the `release.yml` workflow process by committing the result of `vite build` to `gh-pages` branch in the repository.
 
-Variable replacement of `$PROD_API` and `$PROD_CDN` is performed on the following files as a way to coordinate configuration between the `ui` and `api` project.
+Variable replacement of `$DEPLOY_API` and `$DEPLOY_CDN` is performed on the following files as a way to coordinate configuration between the `ui` and `api` project.
 
 - `ui/vite.config.ts` - Config for `JsonServiceClient`
 - `ui/public/CNAME` - Config for GitHub Pages
