@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 /// <reference types="node" />
 
-// TODO: replace with your production URLs
+// TODO: replace with production URL of .NET App
 const DEPLOY_API = 'https://$DEPLOY_API' // e.g. 'https://vue-vite.web-templates.io'
 const USE_DEV_PROXY = false // Change to use CORS-free dev proxy at: http://localhost:3000/api
 const DEV_API = 'http://localhost:5000'
@@ -73,17 +73,23 @@ export default defineConfig(({ command, mode }) => {
                     // html: true,
                 },
                 markdownItSetup(md) {
-                    //md.use(require('markdown-it-anchor'))
+                    //md.use(markdownPlugin)
                 },
                 wrapperComponent: 'MarkdownPage'
             }),
-            {   // 404.html required for hosting SPA's on GitHub Pages CDN
-                name: 'copy-cdn-spa-fallback',
+            {
+                name: 'cdn-spa',
                 writeBundle() {
+                    const DIST = '../api/MyApp/wwwroot'
+
+                    // GitHub Pages CDN: 404.html required for hosting SPA's
                     fs.copyFileSync(
-                        path.resolve('../api/MyApp/wwwroot/index.html'),
-                        path.resolve('../api/MyApp/wwwroot/404.html')
-                    );
+                        path.resolve(`${DIST}/index.html`),
+                        path.resolve(`${DIST}/404.html`))
+                    
+                    // Cloudflare or Netlify CDN: define /api proxy routes  
+                    fs.writeFileSync(`${DIST}/_redirects`, 
+                        fs.readFileSync(`${DIST}/_redirects`, 'utf-8').replace(/\$DEPLOY_API/g,DEPLOY_API));
                 }
             },
         ],
