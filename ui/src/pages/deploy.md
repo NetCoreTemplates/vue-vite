@@ -49,26 +49,31 @@ The first time the `release.yml` process successfully runs and creates your GitH
 
 ### Required Secrets
 
-The `release.yml` assumes 6 secrets have been setup.
+The `release.yml` assumes 5 secrets have been set:
 
-| Name | Description |
+| Required Secrets | Description |
 | -- | -- |
 | `CR_PAT` | GitHub Personal Token with read/write access to packages |
-| `DEPLOY_CDN` | Hostname where static **/wwwroot** assets should be deployed to |
-| `DEPLOY_API` | Hostname used to SSH to, this can either be an IP address or subdomain with A record pointing to the server |
+| `DEPLOY_API` | Hostname used to SSH deploy .NET App to, this can either be an IP address or subdomain with A record pointing to the server |
 | `DEPLOY_USERNAME` | Username to log in with via SSH e.g, **ubuntu**, **ec2-user**, **root** |
-| `DEPLOY_KEY` | SSH private key used to remotely access deploy server/app host |
+| `DEPLOY_KEY` | SSH private key used to remotely access deploy .NET App |
 | `LETSENCRYPT_EMAIL` | Email required for Let's Encrypt automated TLS certificates |
+
+To also enable deploying static assets to a CDN:
+
+| Optional Secrets | Description |
+| -- | -- |
+| `DEPLOY_CDN` | Hostname where static **/wwwroot** assets should be deployed to |
 
 These secrets can use the [GitHub CLI](https://cli.github.com/manual/gh_secret_set) for ease of creation. Eg, using the GitHub CLI the following can be set.
 
 ```bash
 gh secret set CR_PAT -b"<CR_PAT>"
-gh secret set DEPLOY_API -b"<DEPLOY_CDN>"
 gh secret set DEPLOY_API -b"<DEPLOY_API>"
 gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME>"
 gh secret set DEPLOY_KEY < key.pem # DEPLOY_KEY
 gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL>"
+gh secret set DEPLOY_CDN -b"<DEPLOY_CDN>"
 ```
 
 These secrets are used to populate variables within GitHub Actions and other configuration files.
@@ -92,3 +97,23 @@ The template also will run the release process on the creation of a GitHub Relea
 Additionally, the `release.yml` workflow can be run manually specifying a version. This enables production rollbacks based on previously tagged releases.
 A release must have already been created for the rollback build to work, it doesn't create a new Docker build based on previous code state, only redeploys as existing Docker image.
 
+## No CORS Hosting Options
+
+The `CorsFeature` needs to be enabled when adopting our recommended deployment configuration of having static 
+`/wwwroot` assets hosted from a CDN in order to make cross-domain requests to your .NET APIs. 
+
+### Using a CDN Proxy
+Should you want to, our recommended approach to avoid your App making CORS requests is to define an `/api` proxy route
+on your CDN to your `$DEPLOY_API` server. 
+
+To better support this use-case, this template includes populating the `_redirects` file used by popular CDNs like
+[Cloudflare proxy redirects](https://developers.cloudflare.com/pages/platform/redirects) and
+[Netlify proxies](https://docs.netlify.com/routing/redirects/rewrites-proxies/#proxy-to-another-service) to define
+redirect and proxy rules. For AWS CloudFront you would need to define a 
+[Behavior for a custom origin](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/RequestAndResponseBehaviorCustomOrigin.html).
+
+### No CDN
+
+Of course the easiest solution is to not need CORS in the first place by not deploying to a CDN and serving both `/api`
+and UI from your .NET App. But this would forgo all the performance & UX benefits that has made 
+[Jamstack](https://jamstack.org) approach so popular.
