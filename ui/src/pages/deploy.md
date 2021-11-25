@@ -51,24 +51,24 @@ The first time the `release.yml` process successfully runs and creates your GitH
 
 The `release.yml` assumes 7 secrets have been setup.
 
-- CR_PAT - GitHub Personal Token with read/write access to packages.
-- DEPLOY_CDN - hostname of the static web UI application from `ui` directory in this template.
-- DEPLOY_API - hostname used to SSH to, this can either be an IP address or subdomain with A record pointing to the server.
-- DEPLOY_PORT - SSH port, usually `22`.
-- DEPLOY_USERNAME - the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.
-- DEPLOY_KEY - SSH private key used to remotely access deploy server/app host.
-- LETSENCRYPT_EMAIL - Email address, required for Let's Encrypt automated TLS certificates.
+| Name | Description |
+| -- | -- |
+| `CR_PAT` | GitHub Personal Token with read/write access to packages |
+| `DEPLOY_API` | Hostname used to SSH to, this can either be an IP address or subdomain with A record pointing to the server |
+| `DEPLOY_CDN` | Hostname where static **/wwwroot** assets should be deployed to | 
+| `DEPLOY_USERNAME` | Username to log in with via SSH. Eg, **ubuntu**, **ec2-user**, **root** |
+| `DEPLOY_KEY` | SSH private key used to remotely access deploy server/app host |
+| `LETSENCRYPT_EMAIL` | Email required for Let's Encrypt automated TLS certificates |
 
 These secrets can use the [GitHub CLI](https://cli.github.com/manual/gh_secret_set) for ease of creation. Eg, using the GitHub CLI the following can be set.
 
 ```bash
-gh secret set CR_PAT -b"<CR_PAT, Container Registry Personal Access Token>"
-gh secret set DEPLOY_API -b"<DEPLOY_CDN, domain or subdomain for your `ui` application.>"
-gh secret set DEPLOY_API -b"<DEPLOY_API, domain or subdomain for your application and server host.>"
-gh secret set DEPLOY_PORT -b"<DEPLOY_PORT, eg SSH port, usually 22>"
-gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME, the username being logged into via SSH. Eg, `ubuntu`, `ec2-user`, `root` etc.>"
-gh secret set DEPLOY_KEY < key.pem # DEPLOY_KEY, SSH private key used to remotely access deploy server/app host.
-gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL, Email address for your TLS certificate generation, eg me@example.com>"
+gh secret set CR_PAT -b"<CR_PAT>"
+gh secret set DEPLOY_API -b"<DEPLOY_CDN>"
+gh secret set DEPLOY_API -b"<DEPLOY_API>"
+gh secret set DEPLOY_USERNAME -b"<DEPLOY_USERNAME>"
+gh secret set DEPLOY_KEY < key.pem # DEPLOY_KEY
+gh secret set LETSENCRYPT_EMAIL -b"<LETSENCRYPT_EMAIL>"
 ```
 
 These secrets are used to populate variables within GitHub Actions and other configuration files.
