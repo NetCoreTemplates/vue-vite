@@ -49,14 +49,14 @@ The first time the `release.yml` process successfully runs and creates your GitH
 
 ### Required Secrets
 
-The `release.yml` assumes 7 secrets have been setup.
+The `release.yml` assumes 6 secrets have been setup.
 
 | Name | Description |
 | -- | -- |
 | `CR_PAT` | GitHub Personal Token with read/write access to packages |
+| `DEPLOY_CDN` | Hostname where static **/wwwroot** assets should be deployed to |
 | `DEPLOY_API` | Hostname used to SSH to, this can either be an IP address or subdomain with A record pointing to the server |
-| `DEPLOY_CDN` | Hostname where static **/wwwroot** assets should be deployed to | 
-| `DEPLOY_USERNAME` | Username to log in with via SSH. Eg, **ubuntu**, **ec2-user**, **root** |
+| `DEPLOY_USERNAME` | Username to log in with via SSH e.g, **ubuntu**, **ec2-user**, **root** |
 | `DEPLOY_KEY` | SSH private key used to remotely access deploy server/app host |
 | `LETSENCRYPT_EMAIL` | Email required for Let's Encrypt automated TLS certificates |
 
@@ -91,3 +91,4 @@ The template also will run the release process on the creation of a GitHub Relea
 
 Additionally, the `release.yml` workflow can be run manually specifying a version. This enables production rollbacks based on previously tagged releases.
 A release must have already been created for the rollback build to work, it doesn't create a new Docker build based on previous code state, only redeploys as existing Docker image.
+
