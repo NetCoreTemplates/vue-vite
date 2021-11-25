@@ -82,3 +82,12 @@ Variable replacement of `$PROD_API` and `$PROD_CDN` is performed on the followin
 - `ui/public/CNAME` - Config for GitHub Pages
 - `api/MyApp/Configure.AppHost.cs` - Config for CORS support
 
+## Pushing updates and rollbacks
+
+By default, deployments of both the `ui` and `api` occur on commit to your main branch. A new Docker image for your ServiceStack API is produced, pushed to GHCR.io and hosted on your Linux server with Docker Compose.
+Your Vue UI is built and pushed to the repository GitHub Pages.
+
+The template also will run the release process on the creation of a GitHub Release making it easier to switch to manual production releases.
+
+Additionally, the `release.yml` workflow can be run manually specifying a version. This enables production rollbacks based on previously tagged releases.
+A release must have already been created for the rollback build to work, it doesn't create a new Docker build based on previous code state, only redeploys as existing Docker image.
