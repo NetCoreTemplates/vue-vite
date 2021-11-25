@@ -29,8 +29,8 @@ public class AppHost : AppHostBase, IHostingStartup
     }
 
     public void Configure(IWebHostBuilder builder) => builder
-        // .ConfigureServices((context, services) => 
-        //     services.ConfigureNonBreakingSameSiteCookies(context.HostingEnvironment))
+        .ConfigureServices((context, services) => 
+            services.ConfigureNonBreakingSameSiteCookies(context.HostingEnvironment))
         .Configure(app => {
             if (!HasInit) 
                 app.UseServiceStack(new AppHost());
