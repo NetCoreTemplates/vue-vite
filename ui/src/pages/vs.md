@@ -1,7 +1,7 @@
 ---
 title: Develop using Visual Studio
 summary: Exploring development workflow in VS Code and Visual Studio .NET
-date: 2021-11-10
+date: 2021-11-22
 ---
 
 A popular alternative development environment to our preferred [JetBrains Rider](/posts/rider) IDE is to use

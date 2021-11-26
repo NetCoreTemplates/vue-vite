@@ -1,7 +1,7 @@
 ---
 title: Tailwind Typography
 summary: tailwindcss/typography enabled for Markdown pages
-date: 2021-11-12
+date: 2021-11-20
 ---
 
 <p class="lead">

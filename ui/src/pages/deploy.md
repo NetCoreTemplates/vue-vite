@@ -1,7 +1,7 @@
 ---
 title: Deployment with GitHub Actions
 summary: Configuring your GitHub repo for SSH and CDN deployments
-date: 2021-11-09
+date: 2021-11-21
 ---
 
 # ServiceStack GitHub Action Deployments

@@ -1,7 +1,7 @@
 ---
 title: Develop using JetBrains Rider
 summary: Setting up & exploring development workflow in Rider
-date: 2021-11-11
+date: 2021-11-23
 ---
 
 <a href="https://www.jetbrains.com/rider/">

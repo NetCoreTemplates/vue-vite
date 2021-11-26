@@ -15,6 +15,7 @@ declare module 'vue' {
     IMdiAccountCircle: typeof import('~icons/mdi/account-circle')['default']
     InputDescription: typeof import('./components/form/InputDescription.vue')['default']
     MarkdownPage: typeof import('./components/MarkdownPage.vue')['default']
+    MarkdownPost: typeof import('./components/MarkdownPost.vue')['default']
     MdiAccount: typeof import('~icons/mdi/account')['default']
     MdiAccountCircle: typeof import('~icons/mdi/account-circle')['default']
     MdiAlertCircle: typeof import('~icons/mdi/alert-circle')['default']

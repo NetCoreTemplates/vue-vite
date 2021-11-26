@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { Hello } from "@/dtos"
-import { client, swrClient } from "@/api"
+import { swrClient } from "@/api"
 
 const props = defineProps<{ name: string }>()
 

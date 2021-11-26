@@ -34,16 +34,17 @@ export default defineConfig(({ command, mode }) => {
             vue({
                 include: [/\.vue$/, /\.md$/],
             }),
-            Components({
+            // Auto Register Vue Components https://github.com/antfu/unplugin-vue-components
+            Components({ 
                 extensions: ['vue', 'md'],
                 include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
                 resolvers: [
-                    // auto import icons https://github.com/antfu/unplugin-icons
+                    // auto import icons without any 'i-' prefix https://github.com/antfu/unplugin-icons
                     IconsResolver({
                         componentPrefix: ''
                     }),
                 ],
-                dts: 'src/components.d.ts',
+                dts: 'src/components.d.ts', // auto-generated component type definitions
             }),
 
             // https://github.com/antfu/unplugin-icons
@@ -52,8 +53,8 @@ export default defineConfig(({ command, mode }) => {
             // Auto generate routes from file conventions https://github.com/hannoeru/vite-plugin-pages
             Pages({
                 dirs: [
-                    { dir: "src/pages", baseRoute: "posts" },
-                    { dir: "src/views", baseRoute: command ? "" : "" },
+                    { dir: "src/pages", baseRoute: "posts" }, // at: /posts/*
+                    { dir: "src/views", baseRoute: "" },      // at: /*
                 ],
                 extensions: ['vue', 'md'],
                 extendRoute(route:any) {
@@ -61,7 +62,13 @@ export default defineConfig(({ command, mode }) => {
                     if (filePath.endsWith('.md')) {
                         const md = fs.readFileSync(filePath, 'utf-8')
                         const { data:frontmatter } = matter(md)
-                        route.meta = Object.assign(route.meta || {}, { frontmatter })
+                        const type = route.component.startsWith('/src/pages') ? 'post' : 'page'
+                        const crumbs = type == "post" 
+                            ? [{ name: 'posts', href: '/posts' }]
+                            : route.component.substring('/src/'.length).split('/')
+                                .filter((x:string) => !(x == 'views')).slice(0, -1)
+                                .map((name:string) => ({ name, href:`/${name}` }))
+                        route.meta = Object.assign(route.meta || {}, { type, crumbs, frontmatter })
                     }
                     return route
                 },            
@@ -82,7 +89,7 @@ export default defineConfig(({ command, mode }) => {
                 writeBundle() {
                     const DIST = '../api/MyApp/wwwroot'
 
-                    // GitHub Pages CDN: 404.html required for hosting SPA's
+                    // 404.html SPA fallback (supported by GitHub Pages, Cloudflare & Netlify CDNs)
                     fs.copyFileSync(
                         path.resolve(`${DIST}/index.html`),
                         path.resolve(`${DIST}/404.html`))

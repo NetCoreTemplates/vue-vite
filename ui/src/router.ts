@@ -29,14 +29,14 @@ function bindNavComponent(component: Component) {
 // Header Navigation
 let NAV = [
     link('Markdown Posts', { href: '/posts' }),
-    link('About',    { href: '/about' }),
+    link('Features',    { href: '/features' }),
 
-    link('Profile',  { href: '/profile' }, { show: 'auth' }),
-    link('Admin',    { href: '/admin' },   { show: 'role:Admin' }),
-    btn2('Sign Out', { onclick: (e: any) => signout('/'), style: 'margin:0 .5rem' }, { show: 'auth' }),
+    link('Profile',     { href: '/profile' }, { show: 'auth' }),
+    link('Admin',       { href: '/admin' },   { show: 'role:Admin' }),
+    btn2('Sign Out',    { onclick: (e: any) => signout('/'), style: 'margin:0 .5rem' }, { show: 'auth' }),
 
-    btn2('Sign In',  { href: '/signin', style: 'margin:0 .5rem' }, { hide: 'auth' }),
-    btn1('Register', { href: '/signup', style: 'margin:0 .5rem' }, { hide: 'auth' }),
+    btn2('Sign In',     { href: '/signin', style: 'margin:0 .5rem' }, { hide: 'auth' }),
+    btn1('Register',    { href: '/signup', style: 'margin:0 .5rem' }, { hide: 'auth' }),
 ]
 
 type RouteGuard = { path:string, attr:string }
