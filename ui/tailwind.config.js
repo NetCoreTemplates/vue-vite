@@ -1,12 +1,13 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
+  mode: 'jit', // in preview: https://tailwindcss.com/docs/just-in-time-mode
   purge: {
     enabled: process.env.NODE_ENV === 'production',
     content: [
       "./src/*.vue",
       "./src/components/**/*.vue",
-      "./src/views/**/*.vue",
+      "./src/views/**/*.{vue,md}",
       "./src/pages/**/*.md",
       "./src/public/**/*.html",
     ]
