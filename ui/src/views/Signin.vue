@@ -67,8 +67,8 @@ const password = ref('')
 
 let stop = watchEffect(async () => {
   if (auth.value) {
-    await router.push(getRedirect(router) ?? '/')
     await nextTick(stop)
+    await router.push(getRedirect(router) ?? '/')
   }
 })
 

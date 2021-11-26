@@ -12,7 +12,7 @@ productivity and performance.
 | [Tailwindcss](https://tailwindcss.com) | Productive responsive-first utility-based css framework with growing [rich component ecosystem](https://tailwindcomponents.com) |
 | [TypeScript](https://www.typescriptlang.org) | Advanced type-safety, static analysis and richer IDE tooling |
 | [Iconify](https://iconify.design) | Unified registry to access 100k+ high quality SVG icons from 100+ icon sets |
-| [Markdown](https://github.com/markdown-it/markdown-it) | Native Markdown integration with advanced featureset supporting embedding of Vue Components & HTML |
+| [Markdown](https://github.com/markdown-it/markdown-it) | Native Markdown integration with advanced featureset supporting embedding of HTML & Vue Components |
 | [SWRV](https://github.com/Kong/swrv) | stale-while-revalidate library for Vue 3's composition API enabling optimal end-user UX for API integrations |
 
 ## Vue Plugins
@@ -115,6 +115,8 @@ enable making API requests without CORS.
 By default this template isn't configured to use this route & makes use of CORS so it can be hosted freely on GitHub pages CDN.
 
 For more info see docs on [GitHub Action Deployments](/posts/deploy).
+
+## App Features
 
 ### Stale While Revalidate
 
