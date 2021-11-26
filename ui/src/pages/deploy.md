@@ -82,7 +82,7 @@ These secrets are used to populate variables within GitHub Actions and other con
 
 The Vue 3 `ui` application is built and deployed to GitHub Pages during the `release.yml` workflow process by committing the result of `vite build` to `gh-pages` branch in the repository.
 
-Variable replacement of `$DEPLOY_API` and `$DEPLOY_CDN` is performed on the following files as a way to coordinate configuration between the `ui` and `api` project.
+Variable replacement of `{DEPLOY_API}` and `{DEPLOY_CDN}` is performed on the following files as a way to coordinate configuration between the `ui` and `api` project.
 
 - `ui/vite.config.ts` - Config for `JsonServiceClient`
 - `ui/public/CNAME` - Config for GitHub Pages
@@ -99,8 +99,8 @@ const fs = require("fs")
 const path = require("path")
 
 // Replaced in release.yml with GitHub Actions secrets
-const DEPLOY_API = 'https://$DEPLOY_API'
-const DEPLOY_CDN = 'https://$DEPLOY_CDN'
+const DEPLOY_API = 'https://{DEPLOY_API}'
+const DEPLOY_CDN = 'https://{DEPLOY_CDN}'
 
 const DIST = '../api/MyApp/wwwroot'
 
@@ -112,7 +112,7 @@ fs.copyFileSync(
 // define /api proxy routes (supported by Cloudflare & Netlify)
 fs.writeFileSync(`${DIST}/_redirects`,
     fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
-        .replace(/\$DEPLOY_API/g,DEPLOY_API))
+        .replace(/\{DEPLOY_API}/g,DEPLOY_API))
 ```
 
 Whilst the `_redirects` file is a convention supported by many [popular Jamstack CDNs](https://jamstack.wtf/#deployment)
@@ -120,7 +120,7 @@ that sets up a new rule that proxies `/api*` requests to where the production .N
 for API requests to not need CORS:
 
 ```
-/api/*  $DEPLOY_API/api/:splat  200
+/api/*  {DEPLOY_API}/api/:splat  200
 ```
 
 By default this template doesn't use the `/api` proxy route & makes CORS API requests so it can be freely hosted 
@@ -143,7 +143,7 @@ The `CorsFeature` needs to be enabled when adopting our recommended deployment c
 
 ### Using a CDN Proxy
 Should you want to, our recommended approach to avoid your App making CORS requests is to define an `/api` proxy route
-on your CDN to your `$DEPLOY_API` server. 
+on your CDN to your `{DEPLOY_API}` server. 
 
 To better support this use-case, this template includes populating the `_redirects` file used by popular CDNs like
 [Cloudflare proxy redirects](https://developers.cloudflare.com/pages/platform/redirects) and
