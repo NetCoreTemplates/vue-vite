@@ -2,8 +2,8 @@ const fs = require("fs")
 const path = require("path")
 
 // Replaced in release.yml with GitHub Actions secrets
-const DEPLOY_API = 'https://{DEPLOY_API}'
-const DEPLOY_CDN = 'https://{DEPLOY_CDN}'
+const DEPLOY_API = 'https://$DEPLOY_API'
+const DEPLOY_CDN = 'https://$DEPLOY_CDN'
 
 const DIST = '../api/MyApp/wwwroot'
 
@@ -12,6 +12,8 @@ fs.copyFileSync(
     path.resolve(`${DIST}/index.html`),
     path.resolve(`${DIST}/404.html`))
 
+const REPLACE_API_REGEX = new RegExp('$' + 'DEPLOY_API', 'g') 
 // define /api proxy routes (supported by Cloudflare or Netlify CDNs)  
 fs.writeFileSync(`${DIST}/_redirects`,
-    fs.readFileSync(`${DIST}/_redirects`, 'utf-8').replace(/{DEPLOY_API}/g,DEPLOY_API))
+    fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
+        .replace(REPLACE_API_REGEX, DEPLOY_API))

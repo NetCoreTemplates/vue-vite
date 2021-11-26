@@ -21,10 +21,10 @@ public class AppHost : AppHostBase, IHostingStartup
             EnableSpaFallback = true
         });
         Plugins.Add(new CorsFeature(allowOriginWhitelist:new[]{ 
-            "https://localhost:5001",
             "http://localhost:5000",
             "http://localhost:3000",
-            "https://{DEPLOY_API}"
+            "https://localhost:5001",
+            "https://$DEPLOY_API"
         }, allowCredentials:true));
     }
 
