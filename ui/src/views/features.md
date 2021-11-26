@@ -80,42 +80,6 @@ Markdown({
 })
 ```
 
-### Inline CDN SPA Plugin
-
-The optional inline Vite plugin below helps when using CDN deployments by copying the generated `index.html` home page
-into `404.html` in order to enable full page reloads to use SPA client routing: 
-
-```ts
-{
-    name: 'cdn-spa',
-    writeBundle() {
-        const DIST = '../api/MyApp/wwwroot'
-
-        // 404.html SPA fallback (convention supported by many CDNs)
-        fs.copyFileSync(
-            path.resolve(`${DIST}/index.html`),
-            path.resolve(`${DIST}/404.html`))
-        
-        // Cloudflare or Netlify CDN: define /api proxy routes  
-        fs.writeFileSync(`${DIST}/_redirects`, 
-            fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
-                .replace(/\$DEPLOY_API/g,DEPLOY_API))
-    }
-}
-```
-
-The `_redirects` file is a popular convention supported by many [popular Jamstack CDNs](https://jamstack.wtf/#deployment)
-that sets up a new rule that proxies `/api*` requests to where the production .NET App is deployed to in order to 
-enable making API requests without CORS.
-
-```
-/api/*  $DEPLOY_API/api/:splat  200
-```
-
-By default this template isn't configured to use this route & makes use of CORS so it can be hosted freely on GitHub pages CDN.
-
-For more info see docs on [GitHub Action Deployments](/posts/deploy).
-
 ## App Features
 
 ### Stale While Revalidate

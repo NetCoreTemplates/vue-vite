@@ -6,15 +6,15 @@ const DEPLOY_API = 'https://$DEPLOY_API' // e.g. 'https://vue-vite.web-templates
 const USE_DEV_PROXY = false // Change to use CORS-free dev proxy at: http://localhost:3000/api
 const DEV_API = 'http://localhost:5000'
 
-import * as fs from "fs";
+import * as fs from "fs"
+import path from "path"
+import matter from "gray-matter"
 import vue from "@vitejs/plugin-vue"
 import Markdown from "vite-plugin-md"
 import Pages from "vite-plugin-pages"
 import Components from "unplugin-vue-components/vite"
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
-import matter from "gray-matter"
-import path from "path"
 import { defineConfig } from "vite"
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -83,22 +83,7 @@ export default defineConfig(({ command, mode }) => {
                     //md.use(markdownPlugin)
                 },
                 wrapperComponent: 'MarkdownPage'
-            }),
-            {
-                name: 'cdn-spa',
-                writeBundle() {
-                    const DIST = '../api/MyApp/wwwroot'
-
-                    // 404.html SPA fallback (supported by GitHub Pages, Cloudflare & Netlify CDNs)
-                    fs.copyFileSync(
-                        path.resolve(`${DIST}/index.html`),
-                        path.resolve(`${DIST}/404.html`))
-                    
-                    // Cloudflare or Netlify CDN: define /api proxy routes  
-                    fs.writeFileSync(`${DIST}/_redirects`, 
-                        fs.readFileSync(`${DIST}/_redirects`, 'utf-8').replace(/\$DEPLOY_API/g,DEPLOY_API));
-                }
-            },
+            })
         ],
         define: { API_URL: `"${API_URL}"` },
         resolve: {

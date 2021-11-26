@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build --emptyOutDir",
     "build:local": "vue-tsc --noEmit && vite build --mode development --emptyOutDir",
-    "publish": "npm run build && dotnet publish ../api/MyApp/MyApp.csproj -c Release",
+    "publish": "npm run build && dotnet publish ../api/MyApp/MyApp.csproj -c Release && node post.publish.js",
     "serve": "vite preview"
   },
   "dependencies": {
