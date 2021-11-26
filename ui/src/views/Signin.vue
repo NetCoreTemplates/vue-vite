@@ -65,10 +65,10 @@ const status = ref<ResponseStatus | undefined>()
 const username = ref('')
 const password = ref('')
 
-let stop = watchEffect(async () => {
+let stop = watchEffect(() => {
   if (auth.value) {
-    await nextTick(stop)
-    await router.push(getRedirect(router) ?? '/')
+    router.push(getRedirect(router) ?? '/')
+    nextTick(stop)
   }
 })
 

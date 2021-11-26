@@ -64,10 +64,10 @@ const username = ref("")
 const password = ref("")
 const confirmPassword = ref("")
 
-let stop = watchEffect(async () => {
+let stop = watchEffect(() => {
   if (auth.value) {
-    await nextTick(stop)
-    await router.push(getRedirect(router) ?? '/')
+    router.push(getRedirect(router) ?? '/')
+    nextTick(stop)
   }
 })
 
