@@ -42,8 +42,7 @@ jobs:
           sed -i 's/$DEPLOY_API/${{ env.deploy_api }}/g' ./ui/vite.config.ts
           sed -i 's/$DEPLOY_CDN/${{ env.deploy_cdn }}/g' ./api/MyApp/Configure.AppHost.cs
           [[ -f ./ui/public/CNAME ]] && sed -i 's/$DEPLOY_CDN/${{ env.deploy_cdn }}/g' ./ui/public/CNAME
-          [[ -f ./ui/post.publish.js ]] && \
-            sed -i 's/$DEPLOY_API/${{ env.deploy_api }}/g;s/$DEPLOY_CDN/${{ env.deploy_cdn }}/g' ./ui/post.publish.js
+          [[ -f ./ui/post.publish.js ]] && sed -i 's/$DEPLOY_API/${{ env.deploy_api }}/g;s/$DEPLOY_CDN/${{ env.deploy_cdn }}/g' ./ui/post.publish.js
 
       - name: Setup node
         uses: actions/setup-node@v1
