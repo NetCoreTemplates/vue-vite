@@ -23,7 +23,7 @@ const isProd = process.env.NODE_ENV === 'production'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
 
-    const buildLocal = command == "build" && mode == "development"
+    const buildLocal = command == 'build' && mode == 'development'
     const API_URL = isProd ? DEPLOY_API : (USE_DEV_PROXY || buildLocal ? '' : DEV_API)
 
     return ({
