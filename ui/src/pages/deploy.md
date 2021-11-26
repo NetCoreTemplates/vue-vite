@@ -112,7 +112,7 @@ fs.copyFileSync(
 // define /api proxy routes (supported by Cloudflare & Netlify)
 fs.writeFileSync(`${DIST}/_redirects`,
     fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
-        .replace(/\{DEPLOY_API}/g,DEPLOY_API))
+        .replace(/{DEPLOY_API}/g,DEPLOY_API))
 ```
 
 Whilst the `_redirects` file is a convention supported by many [popular Jamstack CDNs](https://jamstack.wtf/#deployment)
