@@ -105,7 +105,7 @@ jobs:
           branch: gh-pages
           force: true
           directory: ./api/MyApp/wwwroot
-  
+
   deploy_via_ssh:
     needs: push_to_registry
     runs-on: ubuntu-20.04
@@ -137,7 +137,7 @@ jobs:
 
       # Populate docker-compose.yml with variables from build process, including TAG_NAME.
       - name: docker-compose file prep
-        uses: danielr1996/envsubst-action@1.0.0
+        uses: danielr1996/envsubst-action@1.1.0
         env:
           RELEASE_VERSION: ${{ env.TAG_NAME }}
           IMAGE_REPO: ${{ env.image_repository_name }}
