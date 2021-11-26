@@ -112,7 +112,7 @@ fs.copyFileSync(
 // define /api proxy routes (supported by Cloudflare & Netlify)
 fs.writeFileSync(`${DIST}/_redirects`,
     fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
-        .replace(/$DEPLOY_API/g,DEPLOY_API))
+        .replace(/{DEPLOY_API}/g, DEPLOY_API))
 ```
 
 Whilst the `_redirects` file is a convention supported by many [popular Jamstack CDNs](https://jamstack.wtf/#deployment)
@@ -120,7 +120,7 @@ that sets up a new rule that proxies `/api*` requests to where the production .N
 for API requests to not need CORS:
 
 ```
-/api/*  $DEPLOY_API/api/:splat  200
+/api/*  {DEPLOY_API}/api/:splat  200
 ```
 
 By default this template doesn't use the `/api` proxy route & makes CORS API requests so it can be freely hosted 

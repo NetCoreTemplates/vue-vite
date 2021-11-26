@@ -12,8 +12,7 @@ fs.copyFileSync(
     path.resolve(`${DIST}/index.html`),
     path.resolve(`${DIST}/404.html`))
 
-const REPLACE_API_REGEX = new RegExp('$' + 'DEPLOY_API', 'g') 
 // define /api proxy routes (supported by Cloudflare or Netlify CDNs)  
 fs.writeFileSync(`${DIST}/_redirects`,
     fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
-        .replace(REPLACE_API_REGEX, DEPLOY_API))
+        .replace(/{DEPLOY_API}/g, DEPLOY_API))
