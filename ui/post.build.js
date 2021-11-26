@@ -15,3 +15,7 @@ fs.copyFileSync(
 // define /api proxy routes (supported by Cloudflare or Netlify CDNs)  
 fs.writeFileSync(`${DIST}/_redirects`,
     fs.readFileSync(`${DIST}/_redirects`, 'utf-8').replace(/\$DEPLOY_API/g,DEPLOY_API))
+
+console.log('post.build.js', DEPLOY_API, DEPLOY_CDN
+    , fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
+    , fs.readFileSync(`${DIST}/CNAME`, 'utf-8'))
