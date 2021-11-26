@@ -16,6 +16,8 @@ fs.copyFileSync(
 fs.writeFileSync(`${DIST}/_redirects`,
     fs.readFileSync(`${DIST}/_redirects`, 'utf-8').replace(/\$DEPLOY_API/g,DEPLOY_API))
 
-console.log('post.build.js', DEPLOY_API, DEPLOY_CDN
-    , fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
-    , fs.readFileSync(`${DIST}/CNAME`, 'utf-8'))
+let redirects_contents = fs.readFileSync(`${DIST}/_redirects`, 'utf-8')
+console.log('post.build.js', 'DEPLOY_API:', DEPLOY_API, 'DEPLOY_CDN:', DEPLOY_CDN
+    , '_redirects:', redirects_contents
+    , '_replace:', redirects_contents.replace(/\$DEPLOY_API/g,DEPLOY_API)
+    , 'CNAME:', fs.readFileSync(`${DIST}/CNAME`, 'utf-8'))
