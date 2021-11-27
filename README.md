@@ -2,6 +2,7 @@
 # .NET 6.0 Vue 3 + Vite + Tailwindcss Template
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-vite.png)](https://vue-vite-gh.web-templates.io)
+[![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/start/vue-vite.png)](https://vue-vite-gh.web-templates.io)
 
 > Browse [source code](https://github.com/NetCoreTemplates/vue-vite), view live demo [vue-vite.web-templates.io](https://vue-vite-gh.web-templates.io) and install with [x new](https://docs.servicestack.net/dotnet-new):
 
