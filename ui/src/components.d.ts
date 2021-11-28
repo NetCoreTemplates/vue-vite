@@ -10,6 +10,7 @@ declare module 'vue' {
     Checkbox: typeof import('./components/form/Checkbox.vue')['default']
     ErrorSummary: typeof import('./components/form/ErrorSummary.vue')['default']
     FormLoading: typeof import('./components/form/FormLoading.vue')['default']
+    GettingStarted: typeof import('./components/GettingStarted.vue')['default']
     HelloApi: typeof import('./components/HelloApi.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     IMdiAccountCircle: typeof import('~icons/mdi/account-circle')['default']
