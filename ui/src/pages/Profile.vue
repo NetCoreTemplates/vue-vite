@@ -11,7 +11,7 @@
           {{ role }}
         </span>
       </div>
-      <SecondaryButton class="mt-8" @click="signout()">Sign Out</SecondaryButton>
+      <SecondaryButton class="mt-8" @click="signout($router)">Sign Out</SecondaryButton>
     </div>
   </AppPage>
 </template>

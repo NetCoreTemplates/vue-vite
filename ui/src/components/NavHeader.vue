@@ -9,7 +9,27 @@
       <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">
         <nav class="relative flex flex-grow">
           <ul class="flex flex-wrap items-center justify-end w-full m-0">
-            <NavItems/>
+            <NavItem>
+              <NavLink href="/posts">Markdown Blog</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/features">Features</NavLink>
+            </NavItem>
+            <NavItem show="auth">
+              <NavLink href="/profile">Profile</NavLink>
+            </NavItem>
+            <NavItem show="role:Admin">
+              <NavLink href="/admin">Admin</NavLink>
+            </NavItem>
+            <NavItem show="auth">
+              <SecondaryButton class="mx-1" @click="signout($router)">Sign Out</SecondaryButton>
+            </NavItem>
+            <NavItem hide="auth">
+              <SecondaryButton class="mx-1" href="/signin">Sign In</SecondaryButton>
+            </NavItem>
+            <NavItem hide="auth">
+              <PrimaryButton class="mx-1" href="/signup">Register</PrimaryButton>
+            </NavItem>
           </ul>
         </nav>
       </div>
@@ -18,15 +38,10 @@
 </template>
 
 <script setup lang="ts">
-import { h, defineComponent } from "vue"
-import { navItems } from "@/router"
+import NavItem from "@/components/NavItem.vue"
+import NavLink from "@/components/NavLink.vue"
+import SecondaryButton from "@/components/form/SecondaryButton.vue"
+import PrimaryButton from "@/components/form/PrimaryButton.vue"
 
-// Custom Nav Component to render all dynamic Nav Items
-const NavItems = defineComponent({
-  setup() {
-    return () => navItems.value.map(item => h('li', {
-      'class': 'relative flex flex-wrap just-fu-start m-0'
-    }, item))
-  }
-})
+import { signout } from "@/auth"
 </script>

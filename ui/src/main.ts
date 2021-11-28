@@ -3,9 +3,12 @@ import { createApp } from "vue"
 
 import App from "@/App.vue"
 import { router } from "@/router"
+import { createHead } from "@vueuse/head"
 
-const vueApp = createApp(App)
+const app = createApp(App)
+const head = createHead()
 
-vueApp
+app
+    .use(head)
     .use(router)
     .mount('#app')

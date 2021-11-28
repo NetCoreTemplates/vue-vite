@@ -1,7 +1,7 @@
 import { ref, computed } from "vue"
 import { checkAuth, client, logout } from "./api"
 import { AuthenticateResponse } from "./dtos"
-import { router } from "./router"
+import { Router } from "vue-router"
 
 export function createAttrs(auth?: AuthenticateResponse) {
     return auth ? [
@@ -30,11 +30,11 @@ export const signin = (response?: AuthenticateResponse) => {
     return auth.value = response;
 }
 
-export const signout = async (redirectTo?: string) => {
+export const signout = async (router:Router, redirectTo?: string) => {
     auth.value = undefined
     await logout()
     // Always redirect to force re-running auth route guards
-    await router.replace({ path: redirectTo ?? router.currentRoute.value.path, force: true })
+    await router.replace({ path: redirectTo ?? router?.currentRoute?.value.path, force: true })
 }
 
 export const hasRole = (role: string) => (auth?.value?.roles || []).indexOf(role) >= 0

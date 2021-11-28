@@ -54,21 +54,23 @@ import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SecondaryButton from "@/components/form/SecondaryButton.vue"
 
 import { ref, effect, watchEffect, nextTick } from "vue"
+import { useRouter } from "vue-router"
 import { ResponseStatus, serializeToObject } from "@servicestack/client"
 import { client } from "@/api"
 import { Authenticate } from "@/dtos"
 import { auth, revalidate } from "@/auth"
-import { router, getRedirect } from "@/router";
+import { getRedirect } from "@/router";
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()
 const username = ref('')
 const password = ref('')
+const router = useRouter()
 
 let stop = watchEffect(() => {
   if (auth.value) {
     router.push(getRedirect(router) ?? '/')
-    nextTick(stop)
+    nextTick(() => stop())
   }
 })
 

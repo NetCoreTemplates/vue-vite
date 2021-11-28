@@ -1,14 +1,10 @@
 import { attrs, loading, signout } from "./auth"
 import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized, Router } from "vue-router"
-import { Component, computed, h, nextTick, watchEffect } from "vue"
-
-import NotFound from "@/pages/NotFound.vue"
-import NavLink from "@/components/NavLink.vue"
-import PrimaryButton from "@/components/form/PrimaryButton.vue"
-import SecondaryButton from "@/components/form/SecondaryButton.vue"
+import { nextTick, watchEffect } from "vue"
 
 // Auto generated routes by https://github.com/hannoeru/vite-plugin-pages 
-import routes from "~pages"
+import { setupLayouts } from "virtual:generated-layouts"
+import generatedRoutes from "~pages"
 
 // Typed Routes used in Components
 export const Routes = {
@@ -16,49 +12,18 @@ export const Routes = {
     forbidden: () => '/forbidden',
 }
 
-// Components used in Header Navigation
-const link = bindNavComponent(NavLink),
-      btn1 = bindNavComponent(PrimaryButton),
-      btn2 = bindNavComponent(SecondaryButton)
-
-function bindNavComponent(component: Component) {
-    return (slot: any, props: any, visibility?: { show?: string, hide?: string }) =>
-        ({ el: h(component, props, () => slot), path:props.href, ...visibility })
-}
-
-// Header Navigation
-let NAV = [
-    link('Markdown Blog', { href: '/posts' }),
-    link('Features',      { href: '/features' }),
-
-    link('Profile',       { href: '/profile' }, { show: 'auth' }),
-    link('Admin',         { href: '/admin' },   { show: 'role:Admin' }),
-    btn2('Sign Out',      { onclick: (e: any) => signout('/'), style: 'margin:0 .5rem' }, { show: 'auth' }),
-
-    btn2('Sign In',       { href: '/signin', style: 'margin:0 .5rem' }, { hide: 'auth' }),
-    btn1('Register',      { href: '/signup', style: 'margin:0 .5rem' }, { hide: 'auth' }),
-]
-
 type RouteGuard = { path:string, attr:string }
 const ROUTE_GUARDS:RouteGuard[] = [
-    ...NAV.filter(x => x.path && x.show).map(({ path, show }) => ({ path, attr:show! })),
-    // Additional guards not defined in Header nav
+    { path:'/profile', attr:'auth' },
+    { path:'/admin',   attr:'role:Admin' },
+    // Additional guards to protect against 
 ]
 
-// return which nav items to show based on the Authenticated Users attributes
-export const navItems = computed(() => NAV.filter(item => {
-    if (item.show) return attrs.value.indexOf(item.show) >= 0
-    if (item.hide) return attrs.value.indexOf(item.hide) == -1
-    return true
-}).map(navItem => navItem.el))
-
+const routes = setupLayouts(generatedRoutes)
 
 export const router = createRouter({
     history: createWebHistory(),
-    routes: [
-        ...routes,
-        { path: '/:pathMatch(.*)*', component: NotFound },
-    ],
+    routes,
 })
 
 const invalidAttrRedirect = (to:RouteLocationNormalized, guardAttr:string, userAttrs:string[]) => userAttrs.indexOf('auth') === -1

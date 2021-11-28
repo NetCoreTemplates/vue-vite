@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import AppBreadcrumb from '@/components/AppBreadcrumb.vue'
+import AppBreadcrumb from "@/components/AppBreadcrumb.vue"
 
 defineProps<{ title: string }>()
 </script>

@@ -5,8 +5,10 @@
       "@/*": ["./src/*"]
     },
     "types": [
+      "node",
+      "vite/client",
       "vite-plugin-pages/client",
-      "unplugin-icons/types/vue"
+      "vite-plugin-vue-layouts/client"
     ],
     "target": "esnext",
     "useDefineForClassFields": true,
