@@ -21,7 +21,7 @@ Rider already understands and provides excellent support npm so you're immediate
 the only plugin we'd add is:
 
 <a href="https://plugins.jetbrains.com/plugin/15321-tailwind-css" class="text-2xl flex items-center" style="text-decoration:none">
-     <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/tailwindcss.svg" class="float-left w-12 h-12" style="margin:0 .5rem 0 0">
+     <LogosTailwindcssIcon class="float-left w-12 h-12" style="margin:0 .5rem 0 0" />
      <span class="">Tailwind CSS Plugin</span>
 </a>
 

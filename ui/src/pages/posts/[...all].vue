@@ -2,7 +2,7 @@
   <div class="min-h-screen">
     <main class="flex justify-center">
       <div class="mx-auto px-5">
-        <AppBreadcrumb class="my-8" name="Markdown Posts"/>
+        <AppBreadcrumb class="my-8" name="Markdown Blog"/>
         <h3 class="text-lg mb-8">
           List of Markdown Posts in <span class="bg-blue-50 text-blue-500 py-1 px-2 rounded">/posts</span>
         </h3>

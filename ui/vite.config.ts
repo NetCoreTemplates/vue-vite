@@ -27,9 +27,15 @@ export default defineConfig(({ command, mode }) => {
     const API_URL = isProd ? DEPLOY_API : (USE_DEV_PROXY || buildLocal ? '' : DEV_API)
 
     return ({
+        resolve: {
+            alias: {
+                '@/': `${path.resolve(__dirname, './src')}/`
+            }
+        },
         build: {
             outDir: '../api/MyApp/wwwroot',
         },
+        define: { API_URL: `"${API_URL}"` },
         plugins: [
             vue({
                 include: [/\.vue$/, /\.md$/],
@@ -52,23 +58,16 @@ export default defineConfig(({ command, mode }) => {
 
             // Auto generate routes from file conventions https://github.com/hannoeru/vite-plugin-pages
             Pages({
-                dirs: [
-                    { dir: "src/posts", baseRoute: "posts" }, // at: /posts/*
-                    { dir: "src/pages", baseRoute: "" },      // at: /*
-                ],
                 extensions: ['vue', 'md'],
                 extendRoute(route:any) {
                     const filePath = path.resolve(__dirname, route.component.slice(1))
                     if (filePath.endsWith('.md')) {
                         const md = fs.readFileSync(filePath, 'utf-8')
                         const { data:frontmatter } = matter(md)
-                        const type = route.component.startsWith('/src/posts') ? 'post' : 'page'
-                        const crumbs = type == "post" 
-                            ? [{ name: 'posts', href: '/posts' }]
-                            : route.component.substring('/src/'.length).split('/')
-                                .filter((x:string) => !(x == 'pages')).slice(0, -1)
-                                .map((name:string) => ({ name, href:`/${name}` }))
-                        route.meta = Object.assign(route.meta || {}, { type, crumbs, frontmatter })
+                        const crumbs =  route.component.substring('/src/'.length).split('/')
+                            .filter((x:string) => !(x == 'pages')).slice(0, -1)
+                            .map((name:string) => ({ name, href:`/${name}` }))
+                        route.meta = Object.assign(route.meta || {}, { crumbs, frontmatter })
                     }
                     return route
                 },            
@@ -85,12 +84,6 @@ export default defineConfig(({ command, mode }) => {
                 wrapperComponent: 'MarkdownPage'
             })
         ],
-        define: { API_URL: `"${API_URL}"` },
-        resolve: {
-            alias: {
-                '@/': `${path.resolve(__dirname, './src')}/`
-            }
-        },
         server: {
             proxy: USE_DEV_PROXY ? {
                 '/api': {

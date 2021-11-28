@@ -14,8 +14,8 @@ be developed from within the same solution.
 ### Developing with just VS Code
 
 <a href="https://visualstudio.microsoft.com/" title="VS Code" class="float-left mr-8">
-<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/vs-code.svg" 
-     class="w-24 h-24" style="margin-top:1rem"></a>
+<LogosVisualStudioCode class="w-24 h-24" style="margin-top:1rem" />
+</a>
 
 If you prefer the dev UX of a lightweight text editor or your C# project isn't large, than VS Code on its own
 can provide a great development UX which is also what [Vue recommends themselves](https://v3.vuejs.org/api/sfc-tooling.html#ide-support),
@@ -50,8 +50,8 @@ Which will publish your Vue 3's App static assets to the .NET App's `/wwwroot` w
 ### Using Visual Studio
 
 <a href="https://code.visualstudio.com/" title="Visual Studio" class="float-left mr-8">
-<img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/vs-2019.svg"
-     class="w-24 h-24" style="margin-top:.5rem; margin-bottom:1rem"></a>
+<LogosVisualStudio class="w-24 h-24" style="margin-top:1rem" />
+</a>
 
 As your C# project grows you'll want to consider running the back-end C# Solution with Visual Studio .NET with its
 much improved intelli-sense, navigation, tests runner & debug capabilities. 
