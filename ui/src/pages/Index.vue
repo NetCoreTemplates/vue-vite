@@ -38,7 +38,7 @@
               <div>
                 <a href="https://vuejs.org"
                    class="flex flex-col items-center sm:rounded sm:px-3 sm:py-2 sm:hover:shadow">
-                  <img class="w-52 h-52 sm:p-2" src="@/assets/img/vue.svg" alt="Vue.js logo">
+                  <LogosVue class="w-52 h-52 sm:p-2" alt="Vue.js logo" />
                   <span class="block text-center sm:text-2xl">
                 Modern Reactive Elegance
             </span>
@@ -47,7 +47,7 @@
               <div>
                 <a href="https://vitejs.dev"
                    class="flex flex-col items-center sm:rounded sm:px-3 sm:py-2 sm:hover:shadow">
-                  <img class="w-52 h-52" src="@/assets/img/vite.svg" alt="Vite logo">
+                  <LogosVitejs class="w-52 h-52" alt="Vite logo" />
                   <span class="block text-center sm:text-2xl">
               Supercharged Productivity
             </span>
@@ -56,7 +56,7 @@
               <div>
                 <a href="https://www.typescriptlang.org"
                    class="flex flex-col items-center sm:rounded sm:px-3 sm:py-2 sm:hover:shadow">
-                  <img class="w-52 h-52 sm:p-4" src="@/assets/img/typescript.svg" alt="Typescript logo">
+                  <LogosTypescriptIcon class="w-52 h-52 sm:p-4" alt="Typescript logo" />
                   <span class="block text-center sm:text-2xl">
             Industrial Typed Strength
           </span>
@@ -65,7 +65,7 @@
               <div>
                 <a href="https://tailwindcss.com"
                    class="flex flex-col items-center sm:rounded sm:px-3 sm:py-2 sm:hover:shadow">
-                  <img class="w-52 h-52 sm:p-1" src="@/assets/img/tailwindcss.svg" alt="tailwindcss logo">
+                  <LogosTailwindcssIcon class="w-52 h-52 sm:p-1" alt="Tailwindcss logo" />
                   <span class="block text-center sm:text-2xl">
               Rapid Fluid Design
             </span>

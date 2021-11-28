@@ -3,7 +3,7 @@
     <div class="flex flex-wrap items-center">
       <div class="flex-shrink flex-grow-0">
         <router-link to="/">
-          <div class="p-4 cursor-pointer"><img class="w-9 h-9" src="@/assets/img/logo.png" alt="MyApp logo"></div>
+          <div class="p-4 cursor-pointer"><img class="w-9 h-9" src="@/assets/img/logo.svg" alt="MyApp logo"></div>
         </router-link>
       </div>
       <div class="flex flex-grow flex-shrink flex-nowrap justify-end items-center">

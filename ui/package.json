@@ -16,6 +16,7 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@iconify-json/logos": "^1.0.1",
     "@iconify-json/mdi": "^1.0.10",
     "@types/node": "^16.11.7",
     "@vitejs/plugin-vue": "^1.9.4",
