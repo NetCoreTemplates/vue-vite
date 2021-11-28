@@ -8,8 +8,8 @@
         <div class="flex flex-col">
 
           <h4 class="py-6 text-center text-xl">Create New Project</h4>
-          <input type="text" v-model="project" autocomplete="off" spellcheck="false"
-                 class="mb-8 sm:text-lg rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300"/>
+          <input type="text" v-model="project" autocomplete="off" spellcheck="false" @keydown="validateSafeName"
+                 class="mb-8 sm:text-lg rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 dark:bg-gray-800"/>
 
           <ShellCommand class="mb-2">dotnet tool install -g x</ShellCommand>
           <ShellCommand class="mb-2">mkdir {{project}} &amp;&amp; cd {{project}}</ShellCommand>
@@ -52,4 +52,10 @@ const project = ref('ProjectName')
 const resolvePath = (path:string) => navigator.userAgent.indexOf("Win") >= 0 ? path.replace(/\//g,'\\') : path
 const uiPath = () => resolvePath(`ui`)
 const apiPath = () => resolvePath(`api/${project.value}`)
+const validateSafeName = (e:KeyboardEvent) => {
+  if (e.key.match(/[\W]+/g)) {
+    e.preventDefault()
+    return false
+  }
+}
 </script>
