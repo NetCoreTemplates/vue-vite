@@ -2,7 +2,7 @@ import { attrs, loading, signout } from "./auth"
 import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized, Router } from "vue-router"
 import { Component, computed, h, nextTick, watchEffect } from "vue"
 
-import NotFound from "@/views/NotFound.vue"
+import NotFound from "@/pages/NotFound.vue"
 import NavLink from "@/components/NavLink.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SecondaryButton from "@/components/form/SecondaryButton.vue"

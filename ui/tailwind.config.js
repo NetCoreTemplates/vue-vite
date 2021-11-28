@@ -5,11 +5,8 @@ module.exports = {
   purge: {
     enabled: process.env.NODE_ENV === 'production',
     content: [
-      "./src/*.vue",
-      "./src/components/**/*.vue",
-      "./src/views/**/*.{vue,md}",
-      "./src/pages/**/*.md",
-      "./src/public/**/*.html",
+      "./src/**/*.{vue,md}",
+      "./public/**/*.html",
     ]
   },
   darkMode: false, // or 'media' or 'class'
