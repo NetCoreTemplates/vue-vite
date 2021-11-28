@@ -38,43 +38,43 @@
               <div>
                 <a href="https://vuejs.org"
                    class="flex flex-col items-center sm:rounded sm:px-3 sm:py-2 sm:hover:shadow">
-                  <LogosVue class="w-52 h-52 sm:p-2" alt="Vue.js logo" />
+                  <LogosVue class="w-52 h-52 sm:p-2" alt="Vue.js logo"/>
                   <span class="block text-center sm:text-2xl">
-                Modern Reactive Elegance
-            </span>
+                    Modern Reactive Elegance
+                  </span>
                 </a>
               </div>
               <div>
                 <a href="https://vitejs.dev"
                    class="flex flex-col items-center sm:rounded sm:px-3 sm:py-2 sm:hover:shadow">
-                  <LogosVitejs class="w-52 h-52" alt="Vite logo" />
+                  <LogosVitejs class="w-52 h-52" alt="Vite logo"/>
                   <span class="block text-center sm:text-2xl">
-              Supercharged Productivity
-            </span>
+                    Supercharged Productivity
+                  </span>
                 </a>
               </div>
               <div>
                 <a href="https://www.typescriptlang.org"
                    class="flex flex-col items-center sm:rounded sm:px-3 sm:py-2 sm:hover:shadow">
-                  <LogosTypescriptIcon class="w-52 h-52 sm:p-4" alt="Typescript logo" />
+                  <LogosTypescriptIcon class="w-52 h-52 sm:p-4" alt="Typescript logo"/>
                   <span class="block text-center sm:text-2xl">
-            Industrial Typed Strength
-          </span>
+                    Industrial Typed Strength
+                  </span>
                 </a>
               </div>
               <div>
                 <a href="https://tailwindcss.com"
                    class="flex flex-col items-center sm:rounded sm:px-3 sm:py-2 sm:hover:shadow">
-                  <LogosTailwindcssIcon class="w-52 h-52 sm:p-1" alt="Tailwindcss logo" />
+                  <LogosTailwindcssIcon class="w-52 h-52 sm:p-1" alt="Tailwindcss logo"/>
                   <span class="block text-center sm:text-2xl">
-              Rapid Fluid Design
-            </span>
+                    Rapid Fluid Design
+                  </span>
                 </a>
               </div>
             </div>
           </div>
         </section>
-
+        
         <GettingStarted />
 
       </div>
