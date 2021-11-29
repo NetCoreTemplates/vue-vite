@@ -3,7 +3,6 @@ const path = require("path")
 
 // Replaced in release.yml with GitHub Actions secrets
 const DEPLOY_API = 'https://$DEPLOY_API'
-const DEPLOY_CDN = 'https://$DEPLOY_CDN'
 
 const DIST = '../api/MyApp/wwwroot'
 
