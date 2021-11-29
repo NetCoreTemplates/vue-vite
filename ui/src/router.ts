@@ -8,7 +8,7 @@ export const Routes = {
     forbidden: () => '/forbidden',
 }
 
-// Use Route Guards to protect against protected pages 
+// Use Route Guards to guard against access to pages 
 type RouteGuard = { path:string, attr:string }
 const ROUTE_GUARDS:RouteGuard[] = [
     { path:'/profile', attr:'auth' },
