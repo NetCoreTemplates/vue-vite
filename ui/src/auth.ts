@@ -1,5 +1,5 @@
 import { ref, computed } from "vue"
-import { checkAuth, client, logout } from "./api"
+import { checkAuth, logout } from "./api"
 import { AuthenticateResponse } from "./dtos"
 import { Router } from "vue-router"
 

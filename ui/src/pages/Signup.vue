@@ -50,13 +50,13 @@ import CheckBox from "@/components/form/Checkbox.vue"
 import FormLoading from "@/components/form/FormLoading.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 
+import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"
 import { createError, leftPart, ResponseStatus, rightPart, serializeToObject, toPascalCase } from "@servicestack/client"
 import { client } from "@/api"
 import { Register } from "@/dtos"
 import { auth, revalidate } from "@/auth"
 import { getRedirect } from "@/router"
-import { ref, effect, watchEffect, nextTick } from "vue"
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()

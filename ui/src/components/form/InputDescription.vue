@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { Ref } from "vue"
 
-const { id, description, errorField } = defineProps<{
+defineProps<{
   id: string
   description?: string
   errorField?: Ref<string>

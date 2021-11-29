@@ -53,7 +53,7 @@ import FormLoading from "@/components/form/FormLoading.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SecondaryButton from "@/components/form/SecondaryButton.vue"
 
-import { ref, effect, watchEffect, nextTick } from "vue"
+import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"
 import { ResponseStatus, serializeToObject } from "@servicestack/client"
 import { client } from "@/api"

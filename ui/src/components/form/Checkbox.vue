@@ -7,7 +7,7 @@
           type="checkbox"
           value="true"
           class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-          v-bind="remainingAttrs">
+          v-bind="remaining">
     </div>
     <div class="ml-3 text-sm">
       <label :for="id" class="font-medium text-gray-700 select-none">
@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import InputDescription from "@/components/form/InputDescription.vue"
-import { errorResponse, omit, ResponseStatus } from "@servicestack/client"
+import { errorResponse, ResponseStatus } from "@servicestack/client"
 import { computed, useAttrs } from "vue";
 import { remainingAttrs } from "@/utils";
 

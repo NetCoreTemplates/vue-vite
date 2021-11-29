@@ -1,4 +1,4 @@
-import { attrs, loading, signout } from "./auth"
+import { attrs, loading } from "./auth"
 import { createRouter, createWebHistory, NavigationGuardNext, RouteLocationNormalized, Router } from "vue-router"
 import { nextTick, watchEffect } from "vue"
 
