@@ -37,7 +37,6 @@ declare module 'vue' {
     SecondaryButton: typeof import('./components/form/SecondaryButton.vue')['default']
     ShellCommand: typeof import('./components/ShellCommand.vue')['default']
     TextInput: typeof import('./components/form/TextInput.vue')['default']
-    ValidateAuth: typeof import('./components/ValidateAuth.vue')['default']
   }
 }
 
