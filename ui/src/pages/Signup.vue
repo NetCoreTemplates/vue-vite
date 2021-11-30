@@ -56,7 +56,7 @@ import { createError, leftPart, ResponseStatus, rightPart, serializeToObject, to
 import { client } from "@/api"
 import { Register } from "@/dtos"
 import { auth, revalidate } from "@/auth"
-import { getRedirect } from "@/router"
+import { getRedirect } from "@/routing"
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()

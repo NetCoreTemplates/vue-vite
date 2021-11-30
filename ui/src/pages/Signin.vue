@@ -59,7 +59,7 @@ import { ResponseStatus, serializeToObject } from "@servicestack/client"
 import { client } from "@/api"
 import { Authenticate } from "@/dtos"
 import { auth, revalidate } from "@/auth"
-import { getRedirect } from "@/router";
+import { getRedirect } from "@/routing";
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()
