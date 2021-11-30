@@ -1,6 +1,6 @@
 <template>
   <nav class="flex" aria-label="Breadcrumb">
-    <ol role="list" class="flex items-center space-x-4">
+    <ol role="list" class="flex items-center space-x-4 flex-wrap sm:flex-nowrap">
       <li>
         <div>
           <router-link to="/">
