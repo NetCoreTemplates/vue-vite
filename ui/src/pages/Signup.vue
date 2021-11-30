@@ -1,7 +1,7 @@
 <template>
-  <AppPage title="Sign Up">
-    <ApiForm class="max-w-prose"
-             v-model:loading="loading"
+  <AppPage title="Sign Up" class="max-w-xl">
+    
+    <ApiForm v-model:loading="loading"
              v-model:status="status"
              @submit="onSubmit"
              @success="onSuccess">
@@ -38,6 +38,7 @@
       </button>
     </span>
     </div>
+    
   </AppPage>
 </template>
 
@@ -56,7 +57,7 @@ import { createError, leftPart, ResponseStatus, rightPart, serializeToObject, to
 import { client } from "@/api"
 import { Register } from "@/dtos"
 import { auth, revalidate } from "@/auth"
-import { getRedirect } from "@/routing"
+import { getRedirect } from "@/routing";
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()

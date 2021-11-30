@@ -1,7 +1,7 @@
 <template>
-  <AppPage title="Sign In">
-    <ApiForm class="max-w-prose"
-             v-model:loading="loading"
+  <AppPage title="Sign In" class="max-w-xl">
+    
+    <ApiForm v-model:loading="loading"
              v-model:status="status"
              @submit="onSubmit"
              @success="revalidate">
@@ -40,6 +40,7 @@
       </button>
     </span>
     </div>
+    
   </AppPage>
 </template>
 

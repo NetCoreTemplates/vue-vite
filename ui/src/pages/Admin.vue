@@ -1,5 +1,5 @@
 <template>
-  <AppPage v-if="user" title="Admin Page">
+  <AppPage v-if="user" title="Admin Page" class="max-w-prose flex justify-center">
     <div class="flex flex-col items-center justify-center">
       <MdiShieldAccount class="w-36 h-36 text-gray-700"/>
       <div>{{ user.displayName }}</div>
