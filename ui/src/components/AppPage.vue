@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen">
-    <main>
-      <div class="container mx-auto px-5">
+    <main class="flex justify-center">
+      <div class="mx-auto px-5 mb-32">
         <AppBreadcrumb class="my-8" :name="title"/>
         <slot></slot>
       </div>
