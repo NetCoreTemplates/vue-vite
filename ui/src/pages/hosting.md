@@ -45,7 +45,7 @@ entire App when served directly from its server:
 
 ### Digital Ocean
 
-### [vue-vite.web-templates.io](https://vue-vite-gh.web-templates.io)
+### [vue-vite.web-templates.io](https://vue-vite.web-templates.io)
 
 Or when served from the CDN at [vue-vite-gh.web-templates.io](https://vue-vite-gh.web-templates.io), only its back-end 
 JSON APIs are used to power its dynamic features.
