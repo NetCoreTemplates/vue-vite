@@ -10,6 +10,14 @@
         <nav class="relative flex flex-grow">
           <ul class="flex flex-wrap items-center justify-end w-full m-0">
             <NavItem>
+              <SecondaryButton href="/hosting">
+                <div class="flex align-middle">
+                  <MdiCurrencyUsd class="text-gray-700 w-5 h-5" />
+                  .44c /mo
+                </div>
+              </SecondaryButton>
+            </NavItem>
+            <NavItem>
               <NavLink href="/posts">Markdown Blog</NavLink>
             </NavItem>
             <NavItem>
