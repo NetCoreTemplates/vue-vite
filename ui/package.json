@@ -18,6 +18,7 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@iconify-json/emojione": "^1.0.2",
     "@iconify-json/logos": "^1.0.1",
     "@iconify-json/mdi": "^1.0.10",
     "@types/node": "^16.11.7",
