@@ -16,6 +16,8 @@ declare module 'vue' {
     InputDescription: typeof import('./components/form/InputDescription.vue')['default']
     LogosTailwindcssIcon: typeof import('~icons/logos/tailwindcss-icon')['default']
     LogosTypescriptIcon: typeof import('~icons/logos/typescript-icon')['default']
+    LogosVisualStudio: typeof import('~icons/logos/visual-studio')['default']
+    LogosVisualStudioCode: typeof import('~icons/logos/visual-studio-code')['default']
     LogosVitejs: typeof import('~icons/logos/vitejs')['default']
     LogosVue: typeof import('~icons/logos/vue')['default']
     MarkdownPage: typeof import('./components/MarkdownPage.vue')['default']
