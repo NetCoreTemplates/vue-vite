@@ -23,18 +23,18 @@
           <ShellCommand class="mb-2">cd {{apiPath()}}</ShellCommand>
           <ShellCommand class="mb-2">dotnet watch</ShellCommand>
 
-          <div class="mt-8">
+          <div class="mt-8 text-center">
 
             <div class="flex justify-center">
               <router-link class="bg-purple-500 text-purple-50 rounded px-2 py-0.5 mx-1" to="/posts/rider">rider</router-link>
               <router-link class="bg-purple-500 text-purple-50 rounded px-2 py-0.5 mx-1" to="/posts/vs">visualstudio</router-link>
             </div>
 
-            <h3 class="mt-4 text-2xl">Use npm dev server for UI Development</h3>
-            <div class="text-center text-lg hover:text-green-600"><a href="http://localhost:3000">http://localhost:3000</a></div>
+            <h3 class="mt-4 sm:text-2xl">Use npm dev server for UI Development</h3>
+            <div class="text-lg hover:text-green-600"><a href="http://localhost:3000">http://localhost:3000</a></div>
 
-            <h3 class="mt-4 text-2xl">`npm run build:local` to view in .NET App</h3>
-            <div class="text-center text-lg hover:text-green-600"><a href="https://localhost:5001">https://localhost:5001</a></div>
+            <h3 class="mt-4 sm:text-2xl">`npm run build:local` to view in .NET App</h3>
+            <div class="text-lg hover:text-green-600"><a href="https://localhost:5001">https://localhost:5001</a></div>
 
           </div>
 

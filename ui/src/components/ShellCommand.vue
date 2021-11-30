@@ -1,5 +1,5 @@
 <template>
-  <div class="lang relative bg-gray-700 text-gray-300 pl-5 py-3 rounded flex">
+  <div class="lang relative bg-gray-700 text-gray-300 pl-5 py-3 sm:rounded flex">
     <div class="flex ml-2 w-full justify-between cursor-pointer" @click="copy">
       <label class="">
         <slot></slot>

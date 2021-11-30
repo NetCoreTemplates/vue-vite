@@ -14,6 +14,14 @@ productivity and performance.
 | [Iconify](https://iconify.design) | Unified registry to access 100k+ high quality SVG icons from 100+ icon sets |
 | [Markdown](https://github.com/markdown-it/markdown-it) | Native Markdown integration with advanced featureset supporting embedding of HTML & Vue Components |
 | [SWRV](https://github.com/Kong/swrv) | stale-while-revalidate library for Vue 3's composition API enabling optimal end-user UX for API integrations |
+| [tailwind/typography](https://tailwindcss-typography.vercel.app) | Beautiful css typography for markdown articles & blog posts |
+| [tailwind/forms](https://github.com/tailwindlabs/tailwindcss-forms) | Beautiful css form & input styles that's easy to override with utilities |
+| [plugin/pages](https://github.com/hannoeru/vite-plugin-pages) | Conventional file system based routing for Vue 3 on Vite |
+| [plugin/layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts) | Support for multiple page layouts |
+| [plugin/components](https://github.com/antfu/unplugin-vue-components) | Auto importing & registering of components on-demand |
+| [plugin/auto-import](https://github.com/antfu/unplugin-auto-import) | Global imports in source files for reduced boilerplate |
+| [Authentication](https://docs.servicestack.net/auth) | Simple, built-in flexible auth protected by route guards |
+| [Validation](https://docs.servicestack.net/validation) | Auto form binding, submission, loading and validation |
 
 ## Vue Plugins
 
@@ -33,7 +41,7 @@ Components({
             componentPrefix: ''
         }),
     ],
-    dts: 'src/components.d.ts', // auto-generated type definitions
+    dts: 'src/components.d.ts', // auto-gen type definitions
 })
 ```
 
@@ -52,14 +60,14 @@ For auto generating vue routing configurations for each Vue 3 component from
 
 ```ts
 Pages({
-    dirs: [
-        { dir: "src/pages", baseRoute: "posts" }, // at: /posts/*
-        { dir: "src/views", baseRoute: "" },      // at: /*
-    ],
-    extensions: ['vue', 'md'],
-    extendRoute(route:any) {
-        // attach markdown frontmatter metadata to their routes
-    },
+  dirs: [
+    { dir: "src/pages", baseRoute: "posts" }, // at: /posts/*
+    { dir: "src/views", baseRoute: "" },      // at: /*
+  ],
+  extensions: ['vue', 'md'],
+  extendRoute(route:any) {
+    // attach markdown frontmatter metadata to their routes
+  },
 })
 ```
 
@@ -93,18 +101,18 @@ library for making typed API Requests with ServiceStack's typed
 
 ```html
 <template>
-    <div v-if="error">{{ error.message }}</div>
-    <div v-else>{{ data ? data.result : 'loading...' }}</div>
+  <div v-if="error">{{ error.message }}</div>
+  <div v-else>{{data ? data.result :'loading...'}}</div>
 </template>
 
 <script setup lang="ts">
-    import { Hello } from "@/dtos"
-    import { swrClient } from "@/api"
+import { Hello } from "@/dtos"
+import { swrClient } from "@/api"
 
-    const props = defineProps<{ name: string }>()
+const props = defineProps<{ name: string }>()
 
-    const { data, error } = swrClient.get(() => 
-            new Hello({ name: props.name }))
+const { data, error } = swrClient.get(() => 
+    new Hello({ name: props.name }))
 </script>
 ```
 
