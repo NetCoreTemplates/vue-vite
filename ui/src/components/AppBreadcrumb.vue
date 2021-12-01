@@ -1,6 +1,6 @@
 <template>
   <nav class="flex" aria-label="Breadcrumb">
-    <ol role="list" class="flex items-center space-x-4 flex-wrap sm:flex-nowrap">
+    <ol role="list" class="flex items-center sm:space-x-4 flex-wrap sm:flex-nowrap">
       <li>
         <div>
           <router-link to="/">
@@ -15,7 +15,7 @@
         <div class="flex items-center">
           <MdiChevronRight class="flex-shrink-0 h-8 w-8 text-gray-400" aria-hidden="true"/>
           <router-link :to="crumb.href">
-            <a class="ml-4 text-2xl text-gray-500 hover:text-gray-700">
+            <a class="ml-1 sm:ml-4 sm:text-2xl text-gray-500 hover:text-gray-700">
               {{ crumb.name }}
             </a>
           </router-link>
@@ -25,11 +25,11 @@
         <div class="flex items-center">
           <MdiChevronRight class="flex-shrink-0 h-8 w-8 text-gray-400" aria-hidden="true"/>
           <router-link v-if="href" :to="href">
-            <a class="ml-4 text-2xl text-gray-500 hover:text-gray-700" :aria-current="ariaCurrent">
+            <a class="ml-1 sm:ml-4 sm:text-2xl text-gray-500 hover:text-gray-700" :aria-current="ariaCurrent">
               {{ name }}
             </a>
           </router-link>
-          <span v-else class="ml-4 text-3xl text-gray-700" :aria-current="ariaCurrent">
+          <span v-else class="ml-1 sm:ml-4 sm:text-3xl text-gray-700" :aria-current="ariaCurrent">
             {{ name }}
           </span>
         </div>

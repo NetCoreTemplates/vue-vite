@@ -13,7 +13,7 @@ be developed from within the same solution.
 
 ### Developing with just VS Code
 
-<a href="https://visualstudio.microsoft.com/" title="VS Code" class="float-left mr-8">
+<a href="https://visualstudio.microsoft.com/" title="VS Code" class="sm:float-left mr-8">
 <LogosVisualStudioCode class="w-24 h-24" style="margin-top:1rem" />
 </a>
 
@@ -49,7 +49,7 @@ Which will publish your Vue 3's App static assets to the .NET App's `/wwwroot` w
 
 ### Using Visual Studio
 
-<a href="https://code.visualstudio.com/" title="Visual Studio" class="float-left mr-8">
+<a href="https://code.visualstudio.com/" title="Visual Studio" class="sm:float-left mr-8">
 <LogosVisualStudio class="w-24 h-24" style="margin-top:1rem" />
 </a>
 

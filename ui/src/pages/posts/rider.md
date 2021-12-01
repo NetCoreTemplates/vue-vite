@@ -6,14 +6,14 @@ date: 2021-11-23
 
 <a href="https://www.jetbrains.com/rider/">
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/svg/rider.svg" 
-     class="float-left mr-8 w-24 h-24" style="margin-top:0"></a>
+     class="sm:float-left mr-8 w-24 h-24" style="margin-top:0"></a>
 
 [JetBrains Rider](https://www.jetbrains.com/rider/) is our recommended IDE for any C# + npm SPA development as it 
 offers a great development UX for both C# and npm projects, including excellent support 
 for TypeScript and popular JavaScript Framework SPA assets like [Vue SFC's](https://v3.vuejs.org/guide/single-file-component.html).
 
 <img src="https://raw.githubusercontent.com/ServiceStack/docs/master/docs/images/spa/vue-vite-rider-sln.png"
-     class="float-right w-60 ml-8" style="margin-top:1rem">
+     class="sm:float-right w-60 ml-8" style="margin-top:1rem">
 
 #### Setup Rider IDE
 
@@ -21,7 +21,7 @@ Rider already understands and provides excellent support npm so you're immediate
 the only plugin we'd add is:
 
 <a href="https://plugins.jetbrains.com/plugin/15321-tailwind-css" class="text-2xl flex items-center" style="text-decoration:none">
-     <LogosTailwindcssIcon class="float-left w-12 h-12" style="margin:0 .5rem 0 0" />
+     <LogosTailwindcssIcon class="sm:float-left w-12 h-12" style="margin:0 .5rem 0 0" />
      <span class="">Tailwind CSS Plugin</span>
 </a>
 
@@ -47,7 +47,7 @@ UI development through its dev server which you can do in rider by opening `pack
 
 
 <img src="https://github.com/ServiceStack/docs/raw/master/docs/images/spa/vue-vite-run-myapp.png"
-class="float-right w-72" style="margin:0 0 0 1rem">
+class="sm:float-right w-72" style="margin:0 0 0 1rem">
 
 This launch vite in HMR mode where any changes to `/ui` assets will have immediate effect.
 

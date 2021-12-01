@@ -10,7 +10,7 @@
         <nav class="relative flex flex-grow">
           <ul class="flex flex-wrap items-center justify-end w-full m-0">
             <NavItem>
-              <SecondaryButton class="m-1" href="/hosting">
+              <SecondaryButton class="m-2" href="/hosting">
                 <div class="flex align-middle">
                   <MdiCurrencyUsd class="text-gray-700 w-5 h-5" />
                   .44c /mo
@@ -30,13 +30,13 @@
               <NavLink href="/admin">Admin</NavLink>
             </NavItem>
             <NavItem show="auth">
-              <SecondaryButton class="m-1" @click="signout($router)">Sign Out</SecondaryButton>
+              <SecondaryButton class="m-2" @click="signout($router)">Sign Out</SecondaryButton>
             </NavItem>
             <NavItem hide="auth">
-              <SecondaryButton class="m-1" href="/signin">Sign In</SecondaryButton>
+              <SecondaryButton class="m-2" href="/signin">Sign In</SecondaryButton>
             </NavItem>
             <NavItem hide="auth">
-              <PrimaryButton class="m-1" href="/signup">Register</PrimaryButton>
+              <PrimaryButton class="m-2" href="/signup">Register</PrimaryButton>
             </NavItem>
           </ul>
         </nav>
