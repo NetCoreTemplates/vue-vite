@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
+    "dtos": "cd src && x ts",
     "build": "vue-tsc --noEmit && vite build --emptyOutDir && node post.build.js",
     "build:local": "vue-tsc --noEmit && vite build --mode development --emptyOutDir",
     "publish": "npm run build && dotnet publish ../api/MyApp/MyApp.csproj -c Release && node post.build.js",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@servicestack/client": "^1.0.57",

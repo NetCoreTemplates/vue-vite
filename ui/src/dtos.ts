@@ -1,6 +1,6 @@
 /* Options:
-Date: 2021-11-18 02:02:16
-Version: 5.131
+Date: 2021-12-01 15:22:54
+Version: 5.133
 Tip: To override a DTO option, remove "//" prefix before updating
 BaseUrl: https://localhost:5001
 
@@ -129,6 +129,24 @@ export class AuthenticateResponse implements IHasSessionId, IHasBearerToken
 }
 
 // @DataContract
+export class AssignRolesResponse
+{
+    // @DataMember(Order=1)
+    public allRoles?: string[];
+
+    // @DataMember(Order=2)
+    public allPermissions?: string[];
+
+    // @DataMember(Order=3)
+    public meta?: { [index: string]: string; };
+
+    // @DataMember(Order=4)
+    public responseStatus?: ResponseStatus;
+
+    public constructor(init?: Partial<AssignRolesResponse>) { (Object as any).assign(this, init); }
+}
+
+// @DataContract
 export class UnAssignRolesResponse
 {
     // @DataMember(Order=1)
@@ -147,21 +165,36 @@ export class UnAssignRolesResponse
 }
 
 // @DataContract
-export class AssignRolesResponse
+export class ConvertSessionToTokenResponse
 {
     // @DataMember(Order=1)
-    public allRoles?: string[];
+    public meta?: { [index: string]: string; };
 
     // @DataMember(Order=2)
-    public allPermissions?: string[];
+    public accessToken?: string;
 
     // @DataMember(Order=3)
-    public meta?: { [index: string]: string; };
+    public refreshToken?: string;
 
     // @DataMember(Order=4)
     public responseStatus?: ResponseStatus;
 
-    public constructor(init?: Partial<AssignRolesResponse>) { (Object as any).assign(this, init); }
+    public constructor(init?: Partial<ConvertSessionToTokenResponse>) { (Object as any).assign(this, init); }
+}
+
+// @DataContract
+export class GetAccessTokenResponse
+{
+    // @DataMember(Order=1)
+    public accessToken?: string;
+
+    // @DataMember(Order=2)
+    public meta?: { [index: string]: string; };
+
+    // @DataMember(Order=3)
+    public responseStatus?: ResponseStatus;
+
+    public constructor(init?: Partial<GetAccessTokenResponse>) { (Object as any).assign(this, init); }
 }
 
 // @DataContract
@@ -272,6 +305,27 @@ export class Authenticate implements IReturn<AuthenticateResponse>, IPost
     public getTypeName() { return 'Authenticate'; }
 }
 
+// @Route("/assignroles")
+// @DataContract
+export class AssignRoles implements IReturn<AssignRolesResponse>, IPost
+{
+    // @DataMember(Order=1)
+    public userName?: string;
+
+    // @DataMember(Order=2)
+    public permissions?: string[];
+
+    // @DataMember(Order=3)
+    public roles?: string[];
+
+    // @DataMember(Order=4)
+    public meta?: { [index: string]: string; };
+
+    public constructor(init?: Partial<AssignRoles>) { (Object as any).assign(this, init); }
+    public createResponse() { return new AssignRolesResponse(); }
+    public getTypeName() { return 'AssignRoles'; }
+}
+
 // @Route("/unassignroles")
 // @DataContract
 export class UnAssignRoles implements IReturn<UnAssignRolesResponse>, IPost
@@ -293,25 +347,37 @@ export class UnAssignRoles implements IReturn<UnAssignRolesResponse>, IPost
     public getTypeName() { return 'UnAssignRoles'; }
 }
 
-// @Route("/assignroles")
+// @Route("/session-to-token")
 // @DataContract
-export class AssignRoles implements IReturn<AssignRolesResponse>, IPost
+export class ConvertSessionToToken implements IReturn<ConvertSessionToTokenResponse>, IPost
 {
     // @DataMember(Order=1)
-    public userName?: string;
+    public preserveSession?: boolean;
 
     // @DataMember(Order=2)
-    public permissions?: string[];
-
-    // @DataMember(Order=3)
-    public roles?: string[];
-
-    // @DataMember(Order=4)
     public meta?: { [index: string]: string; };
 
-    public constructor(init?: Partial<AssignRoles>) { (Object as any).assign(this, init); }
-    public createResponse() { return new AssignRolesResponse(); }
-    public getTypeName() { return 'AssignRoles'; }
+    public constructor(init?: Partial<ConvertSessionToToken>) { (Object as any).assign(this, init); }
+    public createResponse() { return new ConvertSessionToTokenResponse(); }
+    public getTypeName() { return 'ConvertSessionToToken'; }
+}
+
+// @Route("/access-token")
+// @DataContract
+export class GetAccessToken implements IReturn<GetAccessTokenResponse>, IPost
+{
+    // @DataMember(Order=1)
+    public refreshToken?: string;
+
+    // @DataMember(Order=2)
+    public useTokenCookie?: boolean;
+
+    // @DataMember(Order=3)
+    public meta?: { [index: string]: string; };
+
+    public constructor(init?: Partial<GetAccessToken>) { (Object as any).assign(this, init); }
+    public createResponse() { return new GetAccessTokenResponse(); }
+    public getTypeName() { return 'GetAccessToken'; }
 }
 
 // @Route("/register")
