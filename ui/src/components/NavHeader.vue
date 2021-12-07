@@ -13,7 +13,7 @@
               <SecondaryButton class="m-2" href="/hosting">
                 <div class="flex align-middle">
                   <MdiCurrencyUsd class="text-gray-700 w-5 h-5" />
-                  .40c /mo
+                  0.40 /mo
                 </div>
               </SecondaryButton>
             </NavItem>
