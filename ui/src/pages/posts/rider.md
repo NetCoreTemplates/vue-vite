@@ -97,7 +97,7 @@ To do this configure the production url the UI should use for all its `/api` Aja
 `DEPLOY_API` in your `vite.config.ts`:
 
 ```csharp
-const DEPLOY_API = 'https://vue-vite.web-templates.io'
+const DEPLOY_API = 'https://vue-ssg-api.jamstacks.net'
 ```
 
 This template also includes the necessary GitHub Actions to deploy this Apps production static assets to GitHub Pages CDN, 
