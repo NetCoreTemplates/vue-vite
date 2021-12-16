@@ -27,8 +27,6 @@ export const useTodosStore = defineStore('todos', () => {
         const api = await client.api(new QueryTodos())
         if (api.succeeded) {
             todos.value = api.response!.results ?? []
-        } else {
-            error.value = api.error
         }
     }
     const addTodo = async () => {
