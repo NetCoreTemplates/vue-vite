@@ -54,7 +54,7 @@
         <NotoPineapple class="w-5 h-5 inline-flex" />
         todos.ts
       </a>
-      <a href="https://github.com/NetCoreTemplates/vue-vite/blob/main/ui/src/pages/Todos.vue" class="mx-2">
+      <a href="https://github.com/NetCoreTemplates/vue-vite/blob/main/ui/src/pages/TodoMvc.vue" class="mx-2">
         <LogosVue class="w-4 h-4 inline-flex" />
         Todos.vue
       </a>
