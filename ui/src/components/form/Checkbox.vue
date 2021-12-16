@@ -10,26 +10,26 @@
           v-bind="remaining">
     </div>
     <div class="ml-3 text-sm">
-      <label :for="id" class="font-medium text-gray-700 select-none">
-        {{ name }}
-      </label>
-      <InputDescription :id="id" :description="description" :errorField="errorField"/>
+      <label :for="id" class="font-medium text-gray-700 select-none">{{ useLabel }}</label>
+      <p v-if="errorField" class="mt-2 text-sm text-red-500" id="`${id}-error`">{{ errorField }}</p>
+      <p v-else-if="help" class="mt-2 text-sm text-gray-500" id="`${id}-description`">{{ help }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import InputDescription from "@/components/form/InputDescription.vue"
-import { errorResponse, ResponseStatus } from "@servicestack/client"
+import { errorResponse, humanize, ResponseStatus, toPascalCase } from "@servicestack/client"
 import { computed, useAttrs } from "vue";
 import { remainingAttrs } from "@/utils";
 
-const props = withDefaults(defineProps<{
+const props =defineProps<{
   status?: ResponseStatus
   id: string
-  name: string
-  description?: string
-}>(), {})
+  label?: string
+  help?: string
+}>()
+
+const useLabel = computed(() => props.label ?? humanize(toPascalCase(props.id)))
 
 const remaining = computed(() => remainingAttrs(useAttrs(), props))
 

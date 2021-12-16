@@ -10,14 +10,14 @@
         <ErrorSummary :status="status" except="displayName,userName,password,confirmPassword"/>
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
           <div class="flex flex-col gap-y-4">
-            <TextInput :status="status" id="displayName" name="Display Name" description="Your first and last name"
+            <TextInput :status="status" id="displayName" placeholder="Display Name" help="Your first and last name"
                        v-model="displayName"/>
-            <TextInput :status="status" id="userName" name="Email" description="" v-model="username"/>
-            <TextInput :status="status" id="password" type="password" name="Password" description="6 characters or more"
+            <TextInput :status="status" id="userName" placeholder="Email" help="" v-model="username"/>
+            <TextInput :status="status" id="password" type="password" placeholder="Password" help="6 characters or more"
                        v-model="password"/>
-            <TextInput :status="status" id="confirmPassword" type="password" name="Confirm Password"
+            <TextInput :status="status" id="confirmPassword" type="password" placeholder="Confirm Password"
                        v-model="confirmPassword"/>
-            <CheckBox :status="status" id="autoLogin" name="Auto Login"/>
+            <CheckBox :status="status" id="autoLogin" />
           </div>
         </div>
         <div class="pt-5 px-4 py-3 bg-gray-50 text-right sm:px-6">

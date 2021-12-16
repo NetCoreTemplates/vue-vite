@@ -10,11 +10,11 @@
         <ErrorSummary :status="status" except="userName,password"/>
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
           <div class="flex flex-col gap-y-4">
-            <TextInput :status="status" id="userName" name="Email" description="Email you signed up with"
+            <TextInput :status="status" id="userName" placeholder="Email" help="Email you signed up with"
                        v-model="username" data-test="2"/>
-            <TextInput :status="status" id="password" name="Password" type="password" description="6 characters or more"
+            <TextInput :status="status" id="password" type="password" help="6 characters or more"
                        v-model="password"/>
-            <CheckBox :status="status" id="rememberMe" name="Remember Me"/>
+            <CheckBox :status="status" id="rememberMe" />
           </div>
         </div>
         <div class="pt-5 px-4 py-3 bg-gray-50 text-right sm:px-6">

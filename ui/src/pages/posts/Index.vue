@@ -34,6 +34,4 @@ const postRoutes = router.getRoutes()
     .map(r => ({ path: r.path, name: r.name, frontmatter: (r.meta as any)?.frontmatter as FrontMatter }))
     .sort((a, b) => (b.frontmatter.date ?? "")?.localeCompare(a.frontmatter.date ?? ""))
 
-console.log(postRoutes)
-
 </script>
