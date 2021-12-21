@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from "pinia"
 import { ResponseStatus } from "@servicestack/client"
 import { client } from "@/api"
-import { CreateTodo, DeleteTodo, DeleteTodos, QueryTodos, Todo, UpdateTodo } from "@/dtos";
+import { CreateTodo, DeleteTodo, DeleteTodos, QueryTodos, Todo, UpdateTodo } from "@/dtos"
 
 export type Filter = "all" | "finished" | "unfinished"
 
@@ -57,7 +57,7 @@ export const useTodosStore = defineStore('todos', () => {
     const changeFilter = (value:Filter) => filter.value = value
 
     return {
-        errorStatus: error,
+        error,
         newTodo,
         filter,
         finishedTodos,
