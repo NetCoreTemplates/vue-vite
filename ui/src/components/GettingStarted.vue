@@ -13,7 +13,7 @@
 
           <ShellCommand class="mb-2">dotnet tool install -g x</ShellCommand>
           <ShellCommand class="mb-2">mkdir {{project}} &amp;&amp; cd {{project}}</ShellCommand>
-          <ShellCommand class="mb-2">x new vue-vite</ShellCommand>
+          <ShellCommand class="mb-2">x new vue-ssg</ShellCommand>
 
           <h4 class="py-6 text-center text-xl">Build Client UI &amp; Run Dev Server</h4>
           <ShellCommand class="mb-2">cd {{uiPath()}} &amp;&amp; npm run build:local</ShellCommand>
@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import ShellCommand from "@/components/ShellCommand.vue"
-import { ref } from "vue";
+import { ref } from "vue"
 
 const project = ref('ProjectName')
 const resolvePath = (path:string) => navigator.userAgent.indexOf("Win") >= 0 ? path.replace(/\//g,'\\') : path

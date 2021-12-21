@@ -1,6 +1,6 @@
 <template>
   <AppPage title="Sign Up" class="max-w-xl">
-    
+
     <ApiForm v-model:loading="loading"
              v-model:status="status"
              @submit="onSubmit"
@@ -38,7 +38,7 @@
       </button>
     </span>
     </div>
-    
+
   </AppPage>
 </template>
 
@@ -57,7 +57,7 @@ import { createError, leftPart, ResponseStatus, rightPart, serializeToObject, to
 import { client } from "@/api"
 import { Register } from "@/dtos"
 import { auth, revalidate } from "@/auth"
-import { getRedirect } from "@/routing";
+import { getRedirect } from "@/routing"
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()
@@ -75,7 +75,7 @@ let stop = watchEffect(() => {
 })
 
 const setUser = (email: string) => {
-  let first = leftPart(email, '@');
+  let first = leftPart(email, '@')
   let last = rightPart(leftPart(email, '.'), '@')
   displayName.value = toPascalCase(first) + ' ' + toPascalCase(last)
   username.value = email
@@ -89,7 +89,7 @@ const onSubmit = async (e: Event) => {
     password,
     confirmPassword,
     autoLogin
-  } = serializeToObject(e.currentTarget as HTMLFormElement);
+  } = serializeToObject(e.currentTarget as HTMLFormElement)
   if (password !== confirmPassword) {
     throw createError("ValidationException", "Passwords do not match", "confirmPassword")
   }

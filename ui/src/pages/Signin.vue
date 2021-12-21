@@ -1,6 +1,6 @@
 <template>
   <AppPage title="Sign In" class="max-w-xl">
-    
+
     <ApiForm v-model:loading="loading"
              v-model:status="status"
              @submit="onSubmit"
@@ -40,7 +40,7 @@
       </button>
     </span>
     </div>
-    
+
   </AppPage>
 </template>
 
@@ -60,7 +60,7 @@ import { ResponseStatus, serializeToObject } from "@servicestack/client"
 import { client } from "@/api"
 import { Authenticate } from "@/dtos"
 import { auth, revalidate } from "@/auth"
-import { getRedirect } from "@/routing";
+import { getRedirect } from "@/routing"
 
 const loading = ref(false)
 const status = ref<ResponseStatus | undefined>()
@@ -81,7 +81,7 @@ const setUser = (email: string) => {
 }
 
 const onSubmit = async (e: Event) => {
-  const { userName, password, rememberMe } = serializeToObject(e.currentTarget as HTMLFormElement);
+  const { userName, password, rememberMe } = serializeToObject(e.currentTarget as HTMLFormElement)
   return await client.post(new Authenticate({ provider: 'credentials', userName, password, rememberMe }))
 }
 </script>

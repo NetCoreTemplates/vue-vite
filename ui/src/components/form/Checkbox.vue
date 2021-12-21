@@ -19,8 +19,8 @@
 
 <script setup lang="ts">
 import { errorResponse, humanize, ResponseStatus, toPascalCase } from "@servicestack/client"
-import { computed, useAttrs } from "vue";
-import { remainingAttrs } from "@/utils";
+import { computed, useAttrs } from "vue"
+import { remainingAttrs } from "@/utils"
 
 const props =defineProps<{
   status?: ResponseStatus

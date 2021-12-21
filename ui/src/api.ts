@@ -1,7 +1,7 @@
 import { appendQueryString, IReturn, JsonServiceClient, nameOf } from '@servicestack/client'
 import { Authenticate } from "./dtos"
-import { IResponse } from "swrv/dist/types";
-import useSWRV from "swrv";
+import { IResponse } from "swrv/dist/types"
+import useSWRV from "swrv"
 
 declare var API_URL:string //defined in vite.config.ts
 
@@ -26,12 +26,12 @@ export const swrClient = new SwrClient(client)
 
 export const checkAuth = async () => {
     try {
-        return await client.post(new Authenticate());
+        return await client.post(new Authenticate())
     } catch (e) {
         return undefined
     }
 }
 
-export const logout = async () => 
+export const logout = async () =>
     client.post(new Authenticate({ provider: 'logout' }))
 

@@ -28,7 +28,7 @@ function copy(e: MouseEvent) {
   document.body.appendChild($el)
   $el.select()
   document.execCommand("copy")
-  document.body.removeChild($el);
+  document.body.removeChild($el)
 
   if (typeof window.getSelection == "function") {
     const range = document.createRange()

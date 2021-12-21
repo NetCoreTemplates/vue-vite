@@ -27,7 +27,7 @@ export const signedIn = () => auth.value !== undefined
 export const attrs = computed(() => createAttrs(auth.value))
 
 export const signin = (response?: AuthenticateResponse) => {
-    return auth.value = response;
+    return auth.value = response
 }
 
 export const signout = async (router:Router, redirectTo?: string) => {

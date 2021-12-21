@@ -13,7 +13,7 @@
 <script setup lang="ts">
 
 import { errorResponseExcept, ResponseStatus } from "@servicestack/client"
-import { computed } from "vue";
+import { computed } from "vue"
 
 const props = defineProps<{
   status?: ResponseStatus,
