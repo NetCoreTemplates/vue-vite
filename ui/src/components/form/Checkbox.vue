@@ -18,11 +18,10 @@
 </template>
 
 <script setup lang="ts">
-import { errorResponse, humanize, ResponseStatus, toPascalCase } from "@servicestack/client"
+import { errorResponse, humanize, omit, ResponseStatus, toPascalCase } from "@servicestack/client"
 import { computed, useAttrs } from "vue"
-import { remainingAttrs } from "@/utils"
 
-const props =defineProps<{
+const props = defineProps<{
   status?: ResponseStatus
   id: string
   label?: string
@@ -31,7 +30,9 @@ const props =defineProps<{
 
 const useLabel = computed(() => props.label ?? humanize(toPascalCase(props.id)))
 
-const remaining = computed(() => remainingAttrs(useAttrs(), props))
+const remaining = computed(() => omit(useAttrs(), [...Object.keys(props)]))
 
-const errorField = computed(() => errorResponse.call({ responseStatus: props.status }, props.id))
+const errorField = computed(() => errorResponse.call({
+  responseStatus: props.status ?? inject('status', undefined)
+}, props.id))
 </script>

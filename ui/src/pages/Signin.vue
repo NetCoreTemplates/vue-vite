@@ -1,10 +1,7 @@
 <template>
   <AppPage title="Sign In" class="max-w-xl">
-
-    <ApiForm v-model:loading="loading"
-             v-model:status="status"
-             @submit="onSubmit"
-             @success="revalidate">
+    
+    <form @submit.prevent="onSubmit">
 
       <div class="shadow overflow-hidden sm:rounded-md">
         <ErrorSummary :status="status" except="userName,password"/>
@@ -25,14 +22,22 @@
           </div>
         </div>
       </div>
-    </ApiForm>
+    </form>
 
-    <div class="flex mt-8 ml-8">
+    <div class="flex mt-8">
       <h3 class="hidden xs:block mr-4 leading-8 text-gray-500">Quick Links</h3>
       <span class="relative z-0 inline-flex shadow-sm rounded-md">
       <button type="button" @click="setUser('admin@email.com')"
               class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
           admin@email.com
+      </button>
+      <button type="button" @click="setUser('manager@email.com')"
+              class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+              manager@email.com
+      </button>
+      <button type="button" @click="setUser('employee@email.com')"
+              class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+              employee@email.com
       </button>
       <button type="button" @click="setUser('new@user.com')"
               class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
@@ -40,13 +45,12 @@
       </button>
     </span>
     </div>
-
+    
   </AppPage>
 </template>
 
 <script setup lang="ts">
 import AppPage from "@/components/AppPage.vue"
-import ApiForm from "@/components/form/ApiForm.vue"
 import ErrorSummary from "@/components/form/ErrorSummary.vue"
 import TextInput from "@/components/form/TextInput.vue"
 import CheckBox from "@/components/form/Checkbox.vue"
@@ -82,6 +86,14 @@ const setUser = (email: string) => {
 
 const onSubmit = async (e: Event) => {
   const { userName, password, rememberMe } = serializeToObject(e.currentTarget as HTMLFormElement)
-  return await client.post(new Authenticate({ provider: 'credentials', userName, password, rememberMe }))
+  
+  loading.value = true
+  const api = await client.api(new Authenticate({ provider: 'credentials', userName, password, rememberMe }))
+  loading.value = false
+  
+  status.value = api.error
+  if (api.succeeded) {
+    await revalidate()
+  }
 }
 </script>

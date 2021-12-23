@@ -50,14 +50,12 @@
     </div>
 
     <div class="mt-4 text-center text-gray-400 flex justify-center -ml-6">
-      <a href="https://github.com/NetCoreTemplates/vue-ssg/blob/main/ui/src/stores/todos.ts" class="mx-2">
+      <SrcLink href="https://github.com/NetCoreTemplates/vue-vite/blob/main/ui/src/stores/todos.ts">
         <NotoPineapple class="w-5 h-5 inline-flex" />
-        todos.ts
-      </a>
-      <a href="https://github.com/NetCoreTemplates/vue-ssg/blob/main/ui/src/pages/TodoMvc.vue" class="mx-2">
+      </SrcLink>
+      <SrcLink href="https://github.com/NetCoreTemplates/vue-vite/blob/main/ui/src/pages/TodoMvc.vue">
         <LogosVue class="w-4 h-4 inline-flex" />
-        Todos.vue
-      </a>
+      </SrcLink>
     </div>
 
   </AppPage>

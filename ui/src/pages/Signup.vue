@@ -1,10 +1,7 @@
 <template>
   <AppPage title="Sign Up" class="max-w-xl">
-
-    <ApiForm v-model:loading="loading"
-             v-model:status="status"
-             @submit="onSubmit"
-             @success="onSuccess">
+    
+    <form @submit.prevent="onSubmit">
 
       <div class="shadow overflow-hidden sm:rounded-md">
         <ErrorSummary :status="status" except="displayName,userName,password,confirmPassword"/>
@@ -27,7 +24,7 @@
           </div>
         </div>
       </div>
-    </ApiForm>
+    </form>
 
     <div class="flex mt-8 ml-8">
       <h3 class="mr-4 leading-8 text-gray-500">Quick Links</h3>
@@ -38,13 +35,12 @@
       </button>
     </span>
     </div>
-
+    
   </AppPage>
 </template>
 
 <script setup lang="ts">
 import AppPage from "@/components/AppPage.vue"
-import ApiForm from "@/components/form/ApiForm.vue"
 import ErrorSummary from "@/components/form/ErrorSummary.vue"
 import TextInput from "@/components/form/TextInput.vue"
 import CheckBox from "@/components/form/Checkbox.vue"
@@ -93,10 +89,15 @@ const onSubmit = async (e: Event) => {
   if (password !== confirmPassword) {
     throw createError("ValidationException", "Passwords do not match", "confirmPassword")
   }
-  return client.post(new Register({ displayName, email: userName, password, confirmPassword, autoLogin }))
-}
-const onSuccess = async () => {
-  await revalidate()
-  await router.push("/signin")
+
+  loading.value = true
+  const api = await client.api(new Register({ displayName, email: userName, password, confirmPassword, autoLogin }))
+  loading.value = false
+
+  status.value = api.error
+  if (api.succeeded) {
+    await revalidate()
+    await router.push("/signin")
+  }
 }
 </script>

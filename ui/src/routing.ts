@@ -11,8 +11,9 @@ export const Routes = {
 // Use Route Guards to guard against access to pages 
 type RouteGuard = { path:string, attr:string }
 const ROUTE_GUARDS:RouteGuard[] = [
-    { path:'/profile', attr:'auth' },
-    { path:'/admin',   attr:'role:Admin' },
+    { path:'/profile',       attr:'auth' },
+    { path:'/admin',         attr:'role:Admin' },
+    { path:'/bookings-crud', attr:'role:Employee' },
 ]
 
 export function configRouter(router:Router)  {
@@ -26,9 +27,13 @@ export function configRouter(router:Router)  {
             const { path, attr } = ROUTE_GUARDS[i]
             if (!to.path.startsWith(path)) continue
             if (attrs.indexOf(attr) === -1) {
-                const goTo = invalidAttrRedirect(to, attr, attrs)
-                next(goTo)
-                return
+                const isAdmin = attrs.indexOf('role:Admin') >= 0
+                const allowAdmin = isAdmin && (attr.startsWith('role:') || attr.startsWith('perm:'))
+                if (!allowAdmin) {
+                    const goTo = invalidAttrRedirect(to, attr, attrs)
+                    next(goTo)
+                    return
+                }
             }
         }
         next()
