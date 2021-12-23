@@ -1,15 +1,13 @@
 <template>
   <AppPage title="Sign In" class="max-w-xl">
-
+    
     <form @submit.prevent="onSubmit">
       <div class="shadow overflow-hidden sm:rounded-md">
-        <ErrorSummary except="userName,password"/>
+        <ErrorSummary except="userName,password,rememberMe"/>
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
           <div class="flex flex-col gap-y-4">
-            <TextInput id="userName" placeholder="Email" help="Email you signed up with"
-                       v-model="username" data-test="2"/>
-            <TextInput id="password" type="password" help="6 characters or more"
-                       v-model="password"/>
+            <TextInput id="userName" placeholder="Email" help="Email you signed up with" v-model="username" />
+            <TextInput id="password" type="password" help="6 characters or more" v-model="password"/>
             <CheckBox id="rememberMe" />
           </div>
         </div>
@@ -44,7 +42,7 @@
         </button>
       </span>
     </div>
-
+    
   </AppPage>
 </template>
 

@@ -3,16 +3,13 @@
     
     <form @submit.prevent="onSubmit">
       <div class="shadow overflow-hidden sm:rounded-md">
-        <ErrorSummary except="displayName,userName,password,confirmPassword"/>
+        <ErrorSummary except="displayName,userName,password,confirmPassword,autoLogin"/>
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
           <div class="flex flex-col gap-y-4">
-            <TextInput id="displayName" placeholder="Display Name" help="Your first and last name"
-                       v-model="displayName"/>
+            <TextInput id="displayName" help="Your first and last name" v-model="displayName"/>
             <TextInput id="userName" placeholder="Email" help="" v-model="username"/>
-            <TextInput id="password" type="password" placeholder="Password" help="6 characters or more"
-                       v-model="password"/>
-            <TextInput id="confirmPassword" type="password" placeholder="Confirm Password"
-                       v-model="confirmPassword"/>
+            <TextInput id="password" type="password" help="6 characters or more" v-model="password"/>
+            <TextInput id="confirmPassword" type="password" v-model="confirmPassword"/>
             <CheckBox id="autoLogin" />
           </div>
         </div>
@@ -48,7 +45,7 @@ import PrimaryButton from "@/components/form/PrimaryButton.vue"
 
 import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"
-import { createError, leftPart, rightPart, serializeToObject, toPascalCase } from "@servicestack/client"
+import { leftPart, rightPart, serializeToObject, toPascalCase } from "@servicestack/client"
 import { useClient } from "@/api"
 import { Register } from "@/dtos"
 import { auth, revalidate } from "@/auth"
@@ -85,7 +82,8 @@ const onSubmit = async (e: Event) => {
     autoLogin
   } = serializeToObject(e.currentTarget as HTMLFormElement)
   if (password !== confirmPassword) {
-    throw createError("ValidationException", "Passwords do not match", "confirmPassword")
+    client.addFieldError({ fieldName:'confirmPassword', message:'Passwords do not match' })
+    return
   }
 
   const api = await client.api(new Register({ displayName, email: userName, password, confirmPassword, autoLogin }))
