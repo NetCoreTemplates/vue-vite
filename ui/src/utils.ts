@@ -4,8 +4,8 @@ const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
 })
-export const formatCurrency = (n:number) => formatter.format(n)
-export const formatDate = (s:string) => toDateFmt(s)
+export const formatCurrency = (n?:number) => n ? formatter.format(n) : ''
+export const formatDate = (s?:string) => s ? toDateFmt(s) : ''
 
 export const dateInputFormat = (d:Date) => dateFmt(d).replace(/\//g,'-')
 

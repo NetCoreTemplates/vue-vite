@@ -6,7 +6,6 @@ module.exports = {
     "./src/**/*.{vue,md}",
     "./public/**/*.html",
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       // https://github.com/tailwindlabs/tailwindcss-typography

@@ -33,8 +33,6 @@ const remaining = computed(() => omit(useAttrs(), [...Object.keys(props)]))
 
 const errorField = computed(() => errorResponse.call({ responseStatus: props.status }, props.id))
 
-const cssClass = (validCls:string, invalidCls:string) => errorField ? validCls : invalidCls
-
 const kvpValues = computed(() => props.values 
     ? props.values.map(x => ({ key:x, value:x }))
     : props.options 

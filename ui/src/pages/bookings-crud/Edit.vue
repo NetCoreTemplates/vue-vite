@@ -69,7 +69,7 @@ import ConfirmDelete from "@/components/form/ConfirmDelete.vue"
 import SrcLink from "@/components/SrcLink.vue"
 
 import { ResponseStatus } from "@servicestack/client"
-import { DeleteBooking, QueryBookings, RoomType, UpdateBooking } from "@/dtos"
+import { DeleteBooking, QueryBookings, UpdateBooking } from "@/dtos"
 import { useAppStore } from "@/stores/app"
 import { sanitizeForUi } from "@/utils"
 import { client } from "@/api"

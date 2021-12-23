@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup lang="ts">
-const emit = defineEmits<{
+defineEmits<{
   (e:'close'): () => void
 }>()
 </script>

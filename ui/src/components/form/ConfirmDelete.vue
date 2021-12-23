@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-let deleteConfirmed = ref<Boolean>(false)
+let deleteConfirmed = ref<boolean>(false)
 
 const emit = defineEmits<{
   (e:'delete'): void 
