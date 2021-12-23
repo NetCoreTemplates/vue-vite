@@ -2,24 +2,23 @@
   <AppPage title="Sign Up" class="max-w-xl">
     
     <form @submit.prevent="onSubmit">
-
       <div class="shadow overflow-hidden sm:rounded-md">
-        <ErrorSummary :status="status" except="displayName,userName,password,confirmPassword"/>
+        <ErrorSummary except="displayName,userName,password,confirmPassword"/>
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
           <div class="flex flex-col gap-y-4">
-            <TextInput :status="status" id="displayName" placeholder="Display Name" help="Your first and last name"
+            <TextInput id="displayName" placeholder="Display Name" help="Your first and last name"
                        v-model="displayName"/>
-            <TextInput :status="status" id="userName" placeholder="Email" help="" v-model="username"/>
-            <TextInput :status="status" id="password" type="password" placeholder="Password" help="6 characters or more"
+            <TextInput id="userName" placeholder="Email" help="" v-model="username"/>
+            <TextInput id="password" type="password" placeholder="Password" help="6 characters or more"
                        v-model="password"/>
-            <TextInput :status="status" id="confirmPassword" type="password" placeholder="Confirm Password"
+            <TextInput id="confirmPassword" type="password" placeholder="Confirm Password"
                        v-model="confirmPassword"/>
-            <CheckBox :status="status" id="autoLogin" />
+            <CheckBox id="autoLogin" />
           </div>
         </div>
         <div class="pt-5 px-4 py-3 bg-gray-50 text-right sm:px-6">
           <div class="flex justify-end">
-            <FormLoading v-if="loading" class="flex-1"/>
+            <FormLoading class="flex-1"/>
             <PrimaryButton class="ml-3">Sign Up</PrimaryButton>
           </div>
         </div>
@@ -50,13 +49,12 @@ import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"
 import { createError, leftPart, ResponseStatus, rightPart, serializeToObject, toPascalCase } from "@servicestack/client"
-import { client } from "@/api"
+import { useClient } from "@/api"
 import { Register } from "@/dtos"
 import { auth, revalidate } from "@/auth"
 import { getRedirect } from "@/routing"
 
-const loading = ref(false)
-const status = ref<ResponseStatus | undefined>()
+const client = useClient()
 const displayName = ref("")
 const username = ref("")
 const password = ref("")
@@ -90,11 +88,7 @@ const onSubmit = async (e: Event) => {
     throw createError("ValidationException", "Passwords do not match", "confirmPassword")
   }
 
-  loading.value = true
   const api = await client.api(new Register({ displayName, email: userName, password, confirmPassword, autoLogin }))
-  loading.value = false
-
-  status.value = api.error
   if (api.succeeded) {
     await revalidate()
     await router.push("/signin")

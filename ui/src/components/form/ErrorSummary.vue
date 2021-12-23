@@ -13,14 +13,16 @@
 <script setup lang="ts">
 import { errorResponseExcept, ResponseStatus } from "@servicestack/client"
 import { computed } from "vue"
+import { ApiContext } from "@/api"
 
 const props = defineProps<{
-  status?: ResponseStatus,
+  status?: ResponseStatus|undefined,
   except: string | string[]
   class?: string
 }>()
 
-const errorSummary = computed(() => props.status 
-    ? errorResponseExcept.call({ responseStatus: props.status }, props.except) 
+let ctx: ApiContext|undefined = inject('ApiContext', undefined)
+const errorSummary = computed(() => props.status || ctx?.error.value 
+    ? errorResponseExcept.call({ responseStatus: props.status ?? ctx?.error.value }, props.except) 
     : null)
 </script>

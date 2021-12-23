@@ -1,10 +1,10 @@
 <template>
   <router-link v-if="href" :to="href" v-slot="{ navigate }">
-    <button :class="cls" :href="href" @click="navigate">
+    <button :type="type ?? 'button'" :class="cls" :href="href" @click="navigate">
       <slot></slot>
     </button>
   </router-link>
-  <button v-else :type="type" :class="cls" v-bind="$attrs">
+  <button v-else :type="type ?? 'button'" :class="cls" v-bind="$attrs">
     <slot></slot>
   </button>
 </template>

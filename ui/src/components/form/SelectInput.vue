@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { computed, defineProps, useAttrs } from "vue"
 import { errorResponse, humanize, omit, ResponseStatus, toPascalCase } from "@servicestack/client"
+import { ApiContext } from "@/api";
 
 const value = (e:EventTarget|null) => (e as HTMLSelectElement).value //workaround IDE type-check error
 
@@ -31,7 +32,8 @@ const useLabel = computed(() => props.label ?? humanize(toPascalCase(props.id)))
 
 const remaining = computed(() => omit(useAttrs(), [...Object.keys(props)]))
 
-const errorField = computed(() => errorResponse.call({ responseStatus: props.status }, props.id))
+let ctx: ApiContext|undefined = inject('ApiContext', undefined)
+const errorField = computed(() => errorResponse.call({ responseStatus: props.status ?? ctx?.error.value }, props.id))
 
 const kvpValues = computed(() => props.values 
     ? props.values.map(x => ({ key:x, value:x }))

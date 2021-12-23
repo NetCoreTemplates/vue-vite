@@ -2,21 +2,20 @@
   <AppPage title="Sign In" class="max-w-xl">
     
     <form @submit.prevent="onSubmit">
-
       <div class="shadow overflow-hidden sm:rounded-md">
-        <ErrorSummary :status="status" except="userName,password"/>
+        <ErrorSummary except="userName,password"/>
         <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
           <div class="flex flex-col gap-y-4">
-            <TextInput :status="status" id="userName" placeholder="Email" help="Email you signed up with"
+            <TextInput id="userName" placeholder="Email" help="Email you signed up with"
                        v-model="username" data-test="2"/>
-            <TextInput :status="status" id="password" type="password" help="6 characters or more"
+            <TextInput id="password" type="password" help="6 characters or more"
                        v-model="password"/>
-            <CheckBox :status="status" id="rememberMe" />
+            <CheckBox id="rememberMe" />
           </div>
         </div>
         <div class="pt-5 px-4 py-3 bg-gray-50 text-right sm:px-6">
           <div class="flex justify-end">
-            <FormLoading v-if="loading" class="flex-1"/>
+            <FormLoading class="flex-1"/>
             <SecondaryButton href="/signup">Register New User</SecondaryButton>
             <PrimaryButton class="ml-3">Login</PrimaryButton>
           </div>
@@ -60,14 +59,13 @@ import SecondaryButton from "@/components/form/SecondaryButton.vue"
 
 import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"
-import { ResponseStatus, serializeToObject } from "@servicestack/client"
-import { client } from "@/api"
+import { serializeToObject } from "@servicestack/client"
+import { useClient } from "@/api"
 import { Authenticate } from "@/dtos"
 import { auth, revalidate } from "@/auth"
 import { getRedirect } from "@/routing"
 
-const loading = ref(false)
-const status = ref<ResponseStatus | undefined>()
+const client = useClient()
 const username = ref('')
 const password = ref('')
 const router = useRouter()
@@ -86,14 +84,8 @@ const setUser = (email: string) => {
 
 const onSubmit = async (e: Event) => {
   const { userName, password, rememberMe } = serializeToObject(e.currentTarget as HTMLFormElement)
-  
-  loading.value = true
   const api = await client.api(new Authenticate({ provider: 'credentials', userName, password, rememberMe }))
-  loading.value = false
-  
-  status.value = api.error
-  if (api.succeeded) {
+  if (api.succeeded)
     await revalidate()
-  }
 }
 </script>

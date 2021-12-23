@@ -8,35 +8,35 @@
       <fieldset>
         <legend class="text-base font-medium text-gray-900 text-center mb-4">New Booking</legend>
 
-        <ErrorSummary :status="error" :except="visibleFields" class="mb-4" />
+        <ErrorSummary :except="visibleFields" class="mb-4" />
   
         <div class="grid grid-cols-6 gap-6">
 
           <div class="col-span-6 sm:col-span-3">
-            <TextInput :status="error" id="name" v-model="request.name" required placeholder="Name for this booking" />
+            <TextInput id="name" v-model="request.name" required placeholder="Name for this booking" />
           </div>
 
           <div class="col-span-6 sm:col-span-3">
-            <SelectInput :status="error" id="roomType" v-model="request.roomType" :options="app.enumOptions('RoomType')" />
+            <SelectInput id="roomType" v-model="request.roomType" :options="app.enumOptions('RoomType')" />
           </div>
   
           <div class="col-span-6 sm:col-span-3">
-            <TextInput :status="error" type="number" id="roomNumber" v-model="request.roomNumber" min="0" required />
+            <TextInput type="number" id="roomNumber" v-model="request.roomNumber" min="0" required />
           </div>
 
           <div class="col-span-6 sm:col-span-3">
-            <TextInput :status="error" type="number" id="cost" v-model="request.cost" min="0" required />
+            <TextInput type="number" id="cost" v-model="request.cost" min="0" required />
           </div>
   
           <div class="col-span-6 sm:col-span-3">
-            <TextInput :status="error" type="date" id="bookingStartDate" v-model="request.bookingStartDate" required />
+            <TextInput type="date" id="bookingStartDate" v-model="request.bookingStartDate" required />
           </div>
           <div class="col-span-6 sm:col-span-3">
-            <TextInput :status="error" type="date" id="bookingEndDate" v-model="request.bookingEndDate" />
+            <TextInput type="date" id="bookingEndDate" v-model="request.bookingEndDate" />
           </div>
   
           <div class="col-span-6">
-            <TextAreaInput :status="error" id="notes" v-model="request.notes" placeholder="Notes about this booking" style="height:6rem" />
+            <TextAreaInput id="notes" v-model="request.notes" placeholder="Notes about this booking" style="height:6rem" />
           </div>
         </div>
       </fieldset>
@@ -64,11 +64,10 @@ import TextAreaInput from "@/components/form/TextAreaInput.vue"
 import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SrcLink from "@/components/SrcLink.vue"
 
-import { ResponseStatus } from "@servicestack/client"
 import { CreateBooking, RoomType } from "@/dtos"
 import { useAppStore } from "@/stores/app"
 import { dateInputFormat } from "@/utils"
-import { client } from "@/api"
+import { useClient } from "@/api"
 
 const emit = defineEmits<{
   (e:'done'): () => void
@@ -76,19 +75,18 @@ const emit = defineEmits<{
 
 const visibleFields = "name,roomType,roomNumber,bookingStartDate,bookingEndDate,cost,notes"
 
+const app = useAppStore()
+const client = useClient()
+
 const request = new CreateBooking({
   roomType: RoomType.Single,
   roomNumber: 0,
   cost: 0,
   bookingStartDate: dateInputFormat(new Date())
 })
-const error = ref<ResponseStatus|undefined>()
-
-const app = useAppStore()
 
 const onSubmit = async (e: Event) => {
   const api = await client.api(request)
-  error.value = api.error
   if (api.succeeded) close()
 }
 const close = () => emit('done')

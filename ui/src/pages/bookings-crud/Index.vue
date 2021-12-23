@@ -146,7 +146,3 @@ const onDone = () => {
 const toggleAbout = () => expandAbout.value = !expandAbout.value 
 
 </script>
-
-<style scoped>
-
-</style>
