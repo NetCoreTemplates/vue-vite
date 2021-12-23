@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import { computed, defineProps, useAttrs } from "vue"
 import { errorResponse, humanize, omit, ResponseStatus, toPascalCase } from "@servicestack/client"
-import { ApiContext } from "@/api";
+import { ApiState } from "@/api"
 
 const value = (e:EventTarget|null) => (e as HTMLSelectElement).value //workaround IDE type-check error
 

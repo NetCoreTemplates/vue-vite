@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { ApiContext } from "@/api"
+import { ApiState } from "@/api"
 
 const props = withDefaults(defineProps<{
   loading?: boolean
