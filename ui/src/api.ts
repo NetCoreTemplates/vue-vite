@@ -19,14 +19,16 @@ declare var API_URL:string //defined in vite.config.ts
 export const client = new JsonServiceClient(API_URL)
     .useBasePath("/api")
 
-export type ApiContext = {
+export type ApiState = {
     loading: Ref<boolean>,
     error: Ref<ResponseStatus|undefined>
+}
+export type ClientContext = ApiState & {
     api<TResponse>(request: IReturn<TResponse> | ApiRequest, args?: any, method?: string): Promise<ApiResult<TResponse>>
     apiVoid(request: IReturnVoid | ApiRequest, args?: any, method?: string): Promise<ApiResult<EmptyResponse>>
 }
 // Managed client maintaining loading and error states that provides this 'ApiContext' to child components
-export function useClient(): ApiContext {
+export function useClient() : ClientContext {
     const loading = ref<boolean>(false)
     const error = ref<ResponseStatus|undefined>()
 
@@ -47,7 +49,7 @@ export function useClient(): ApiContext {
     }
 
     let ctx = { loading, error, api, apiVoid }
-    provide('ApiContext', ctx)
+    provide('ApiState', ctx)
     return ctx
 }
 

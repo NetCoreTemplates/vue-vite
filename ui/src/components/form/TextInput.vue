@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import { errorResponse, humanize, omit, ResponseStatus, toPascalCase } from "@servicestack/client"
 import { computed, useAttrs } from "vue"
-import { ApiContext } from "@/api";
+import { ApiState } from "@/api"
 
 const value = (e:EventTarget|null) => (e as HTMLInputElement).value //workaround IDE type-check error
 
@@ -46,7 +46,7 @@ const usePlaceholder = computed(() => props.placeholder ?? useLabel.value)
 
 const remaining = computed(() => omit(useAttrs(), [...Object.keys(props)]))
 
-let ctx: ApiContext|undefined = inject('ApiContext', undefined)
+let ctx: ApiState|undefined = inject('ApiState', undefined)
 const errorField = computed(() => errorResponse.call({ responseStatus: props.status ?? ctx?.error.value }, props.id))
 
 const cls = computed(() => ['block w-full sm:text-sm rounded-md', errorField.value

@@ -21,7 +21,7 @@ const props = defineProps<{
   class?: string
 }>()
 
-let ctx: ApiContext|undefined = inject('ApiContext', undefined)
+let ctx: ApiState|undefined = inject('ApiState', undefined)
 const errorSummary = computed(() => props.status || ctx?.error.value 
     ? errorResponseExcept.call({ responseStatus: props.status ?? ctx?.error.value }, props.except) 
     : null)

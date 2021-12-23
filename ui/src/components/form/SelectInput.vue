@@ -32,7 +32,7 @@ const useLabel = computed(() => props.label ?? humanize(toPascalCase(props.id)))
 
 const remaining = computed(() => omit(useAttrs(), [...Object.keys(props)]))
 
-let ctx: ApiContext|undefined = inject('ApiContext', undefined)
+let ctx: ApiState|undefined = inject('ApiState', undefined)
 const errorField = computed(() => errorResponse.call({ responseStatus: props.status ?? ctx?.error.value }, props.id))
 
 const kvpValues = computed(() => props.values 

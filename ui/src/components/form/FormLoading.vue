@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<{
   text: "loading..."
 })
 
-let ctx: ApiContext|undefined = inject('ApiContext', undefined)
+let ctx: ApiState|undefined = inject('ApiState', undefined)
 let loading = computed(() => props.loading ?? ctx?.loading.value)
 
 </script>

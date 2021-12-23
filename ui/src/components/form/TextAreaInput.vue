@@ -38,7 +38,7 @@ const usePlaceholder = computed(() => props.placeholder ?? useLabel.value)
 
 const remaining = computed(() => omit(useAttrs(), [...Object.keys(props)]))
 
-let ctx: ApiContext|undefined = inject('ApiContext', undefined)
+let ctx: ApiState|undefined = inject('ApiState', undefined)
 const errorField = computed(() => errorResponse.call({ responseStatus: props.status ?? ctx?.error.value }, props.id))
 
 const cls = computed(() => ['shadow-sm block w-full sm:text-sm rounded-md', errorField.value
