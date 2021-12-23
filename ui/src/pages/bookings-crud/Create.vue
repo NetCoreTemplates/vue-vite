@@ -17,7 +17,7 @@
           </div>
 
           <div class="col-span-6 sm:col-span-3">
-            <SelectInput :status="error" id="roomType" v-model="request.roomType" :options="app.getEnumOptions('RoomType')" />
+            <SelectInput :status="error" id="roomType" v-model="request.roomType" :options="app.enumOptions('RoomType')" />
           </div>
   
           <div class="col-span-6 sm:col-span-3">
