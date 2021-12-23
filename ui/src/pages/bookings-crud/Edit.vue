@@ -69,9 +69,8 @@ import ConfirmDelete from "@/components/form/ConfirmDelete.vue"
 import SrcLink from "@/components/SrcLink.vue"
 
 import { DeleteBooking, QueryBookings, UpdateBooking } from "@/dtos"
-import { useAppStore } from "@/stores/app"
 import { sanitizeForUi } from "@/utils"
-import { useClient } from "@/api"
+import { useClient, useApp } from "@/api"
 
 const props = defineProps<{
   id: number
@@ -83,7 +82,7 @@ const emit = defineEmits<{
 
 const visibleFields = "name,roomType,roomNumber,bookingStartDate,bookingEndDate,cost,notes"
 
-const app = useAppStore()
+const app = useApp()
 const client = useClient()
 
 const request = ref(new UpdateBooking())

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAppStore } from "@/stores/app"
+import { useApp } from "@/api"
 
 // https://github.com/vueuse/head
 // you can use this to manipulate the document head in any components,
@@ -11,8 +11,8 @@ useHead({
   ],
 })
 
-let store = useAppStore()
-store.load()
+let app = useApp()
+app.load()
 </script>
 
 <template>

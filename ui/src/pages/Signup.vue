@@ -1,6 +1,6 @@
 <template>
   <AppPage title="Sign Up" class="max-w-xl">
-    
+
     <form @submit.prevent="onSubmit">
       <div class="shadow overflow-hidden sm:rounded-md">
         <ErrorSummary except="displayName,userName,password,confirmPassword,autoLogin"/>
@@ -31,7 +31,7 @@
       </button>
     </span>
     </div>
-    
+
   </AppPage>
 </template>
 
@@ -82,7 +82,7 @@ const onSubmit = async (e: Event) => {
     autoLogin
   } = serializeToObject(e.currentTarget as HTMLFormElement)
   if (password !== confirmPassword) {
-    client.addFieldError({ fieldName:'confirmPassword', message:'Passwords do not match' })
+    client.setError({ fieldName:'confirmPassword', message:'Passwords do not match' })
     return
   }
 

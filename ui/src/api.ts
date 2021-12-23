@@ -1,10 +1,13 @@
 import {
     appendQueryString,
+    createErrorStatus,
+    combinePaths, 
     nameOf,
     IReturn,
     ApiResult,
     ApiRequest,
     IReturnVoid,
+    MetadataTypes,
     EmptyResponse,
     ResponseError,
     ResponseStatus,
@@ -24,7 +27,6 @@ export type ApiState = {
     loading: Ref<boolean>,
     error: Ref<ResponseStatus|undefined>
 }
-
 export type ErrorArgs = {
     message:string
     errorCode?:string
@@ -36,7 +38,6 @@ export type FieldErrorArgs = {
     message:string
     errorCode?:string
 }
-
 export type ClientContext = ApiState & {
     setError(args:ErrorArgs): void
     addFieldError(args:FieldErrorArgs): void
@@ -48,12 +49,12 @@ export type ClientContext = ApiState & {
 export function useClient() : ClientContext {
     const loading = ref<boolean>(false)
     const error = ref<ResponseStatus|undefined>()
-    
+
     const setError = ({ message, errorCode, fieldName, errors } : ErrorArgs) => {
         errorCode ??= 'Exception'
         errors ??= []
         return error.value = fieldName
-            ? new ResponseStatus({ errorCode, message, 
+            ? new ResponseStatus({ errorCode, message,
                 errors: [new ResponseError({ fieldName, errorCode, message })] })
             : new ResponseStatus({ errorCode, message, errors });
     }
@@ -62,19 +63,14 @@ export function useClient() : ClientContext {
         errorCode ??= 'Exception'
         if (!error.value) {
             setError({ fieldName, message, errorCode })
-        } else if (error.value.errors && error.value.errors.length > 0) {
-            const existingError = error.value.errors.find(x => x.fieldName.toLowerCase() == fieldName)
-            if (existingError) {
-                existingError.errorCode = errorCode
-                existingError.message = message
-            } else {
-                error.value.errors.push(new ResponseError({ fieldName, message, errorCode }))
-            }
         } else {
-            error.value.errors = [new ResponseError({ fieldName, message, errorCode })]
+            let copy = new ResponseStatus(error.value)
+            copy.errors = [...(copy.errors ?? []).filter(x => x.fieldName.toLowerCase() != fieldName.toLowerCase()),
+                new ResponseError({ fieldName, message, errorCode })]
+            error.value = copy
         }
-    } 
-    
+    }
+
     async function api<TResponse>(request: IReturn<TResponse> | ApiRequest, args?: any, method?: string) {
         loading.value = true
         const apiResult = await client.api(request)
@@ -94,6 +90,51 @@ export function useClient() : ClientContext {
     let ctx = { setError, addFieldError, loading, error, api, apiVoid }
     provide('ApiState', ctx)
     return ctx
+}
+
+const metadata = ref<MetadataTypes|undefined>()
+const error = ref<ResponseStatus|undefined>()
+const loading = ref<Boolean>(false)
+const loaded = computed(() => metadata.value != null)
+
+export function useApp() {
+
+    const load = async (force?:boolean) => {
+        if (metadata.value && !force) return
+        loading.value = true
+        let r = await fetch(combinePaths(client.baseUrl, '/types/metadata.json'))
+        loading.value = false
+        if (r.ok) {
+            let json = await r.text()
+            metadata.value = JSON.parse(json) as MetadataTypes
+        } else {
+            error.value = createErrorStatus(r.statusText)
+        }
+    }
+
+    const getType = (name:string) => metadata.value?.types?.find(x => x.name?.toLowerCase() == name.toLowerCase())
+
+    const enumOptions = (name:string) => {
+        let to:{[key:string]: any} = {}
+        let type = getType(name)
+        if (type && type.isEnum && type.enumNames != null) {
+            for (let i=0; i<type.enumNames.length; i++) {
+                const name = type.enumNames[i]
+                const key = (type.enumValues != null ? type.enumValues[i] : null) ?? name
+                to[key] = name
+            }
+        }
+        return to
+    }
+
+    return {
+        metadata,
+        error,
+        loaded,
+        load,
+        getType,
+        enumOptions,
+    }
 }
 
 export function requestKey<T>(request: IReturn<T>) {
