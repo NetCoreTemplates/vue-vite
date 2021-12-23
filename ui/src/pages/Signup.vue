@@ -48,7 +48,7 @@ import PrimaryButton from "@/components/form/PrimaryButton.vue"
 
 import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"
-import { createError, leftPart, ResponseStatus, rightPart, serializeToObject, toPascalCase } from "@servicestack/client"
+import { createError, leftPart, rightPart, serializeToObject, toPascalCase } from "@servicestack/client"
 import { useClient } from "@/api"
 import { Register } from "@/dtos"
 import { auth, revalidate } from "@/auth"
