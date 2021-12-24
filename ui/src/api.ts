@@ -1,7 +1,7 @@
 import {
     appendQueryString,
     createErrorStatus,
-    combinePaths, 
+    combinePaths,
     nameOf,
     IReturn,
     ApiResult,
@@ -11,7 +11,7 @@ import {
     EmptyResponse,
     ResponseError,
     ResponseStatus,
-    JsonServiceClient, 
+    JsonServiceClient,
 } from "@servicestack/client"
 import { Authenticate } from "./dtos"
 import { IResponse } from "swrv/dist/types"
@@ -20,8 +20,10 @@ import { Ref } from "vue"
 
 declare var API_URL:string //defined in vite.apply.ts
 
-export const client = new JsonServiceClient(API_URL)
-    .useBasePath("/api")
+export const client = new JsonServiceClient(API_URL).apply(c => {
+    c.basePath = "/api"
+    c.headers = new Headers() //avoid pre-flight CORS requests
+})
 
 export type ApiState = {
     loading: Ref<boolean>,
@@ -161,6 +163,6 @@ export const checkAuth = async () => {
     }
 }
 
-export const logout = async () => 
+export const logout = async () =>
     client.post(new Authenticate({ provider: 'logout' }))
 

@@ -1,8 +1,8 @@
 <template>
-  <input id="confirmDelete" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" 
+  <input id="confirmDelete" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
          v-model="deleteConfirmed" />
   <label for="confirmDelete" class="mx-2 select-none">confirm</label>
-  <span type="button" @click.prevent="onClick" :class="cls" v-bind="$attrs">
+  <span @click.prevent="onClick" :class="cls" v-bind="$attrs">
     <slot></slot>
   </span>
 </template>
@@ -11,7 +11,7 @@
 let deleteConfirmed = ref<boolean>(false)
 
 const emit = defineEmits<{
-  (e:'delete'): void 
+  (e:'delete'): void
 }>()
 
 const onClick = () => {
