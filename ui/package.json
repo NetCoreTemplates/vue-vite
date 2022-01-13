@@ -11,7 +11,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "@servicestack/client": "^1.1.13",
+    "@servicestack/client": "^1.1.15",
     "@vueuse/core": "^7.1.2",
     "pinia": "^2.0.6",
     "swrv": "^1.0.0-beta.8",
