@@ -1,5 +1,5 @@
-const fs = require("fs")
-const path = require("path")
+import * as fs from "fs"
+import * as path from "path"
 
 // Replaced in release.yml with GitHub Actions secrets
 const DEPLOY_API = 'https://$DEPLOY_API'

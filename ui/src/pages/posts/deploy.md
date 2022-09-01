@@ -93,8 +93,8 @@ The `post.build.js` script helps when also publishing `/ui` assets to CDN by fir
 `index.html` home page into `404.html` in order to enable full page reloads to use SPA client routing:
 
 ```js
-const fs = require("fs")
-const path = require("path")
+import * as fs from "fs"
+import * as path from "path"
 
 // Replaced in release.yml with GitHub Actions secrets
 const DEPLOY_API = 'https://$DEPLOY_API'
