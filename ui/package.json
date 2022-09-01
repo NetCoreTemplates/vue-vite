@@ -1,5 +1,6 @@
 {
   "name": "my-app",
+  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --open",
@@ -19,7 +20,6 @@
     "@vueuse/core": "^9.1.1",
     "pinia": "^2.0.21",
     "swrv": "^1.0.0-beta.8",
-    "vite-plugin-vue-markdown": "^0.21.1",
     "vue": "^3.2.38",
     "vue-router": "^4.1.5"
   },
@@ -36,6 +36,7 @@
     "@vueuse/head": "^0.7.9",
     "autoprefixer": "^10.4.8",
     "cross-env": "^7.0.3",
+    "front-matter": "^4.0.2",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.8.2",
@@ -46,6 +47,7 @@
     "vite-plugin-inspect": "^0.6.1",
     "vite-plugin-pages": "^0.25.0",
     "vite-plugin-vue-layouts": "^0.7.0",
+    "vite-plugin-vue-markdown": "^0.21.1",
     "vue-tsc": "^0.40.5"
   }
 }
