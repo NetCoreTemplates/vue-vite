@@ -10,7 +10,6 @@ public class AppHost : AppHostBase, IHostingStartup
 {
     public void Configure(IWebHostBuilder builder) => builder
         .ConfigureServices((context, services) => {
-            // Configure ASP.NET Core IOC Dependencies
             services.ConfigureNonBreakingSameSiteCookies(context.HostingEnvironment);
         });
 
