@@ -14,7 +14,8 @@
 <script setup lang="ts">
 import { computed } from "vue"
 import { useRouter } from "vue-router"
-import AppBreadcrumb, { Crumb } from '@/components/AppBreadcrumb.vue'
+import AppBreadcrumb from "@/components/AppBreadcrumb.vue"
+import { Crumb } from "@/env"
 
 type FrontMatter = {
   title: string

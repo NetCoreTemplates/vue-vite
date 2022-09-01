@@ -1,13 +1,12 @@
 // TODO: replace with production URL of .NET App
-
 const DEPLOY_API = 'https://$DEPLOY_API' // e.g. 'https://vue-ssg-api.jamstacks.net'
 const USE_DEV_PROXY = false // Change to use CORS-free dev proxy at: http://localhost:3000/api
 const DEV_API = 'http://localhost:5000'
 
-import fs from "fs"
-import path from "path"
+import matter = require("gray-matter")
+import * as fs from "fs";
+import * as path from "path";
 import { defineConfig } from "vite"
-import matter from "gray-matter"
 import vue from "@vitejs/plugin-vue"
 import Pages from "vite-plugin-pages"
 import Layouts from "vite-plugin-vue-layouts"
@@ -15,7 +14,7 @@ import Components from "unplugin-vue-components/vite"
 import Icons from "unplugin-icons/vite"
 import IconsResolver from "unplugin-icons/resolver"
 import AutoImport from "unplugin-auto-import/vite"
-import Markdown from "vite-plugin-md"
+import Markdown from 'vite-plugin-vue-markdown'
 import Inspect from "vite-plugin-inspect"
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -90,7 +89,7 @@ export default defineConfig(({ command, mode }) => {
                 autoInstall: true
             }),
 
-            // Enable Markdown Support https://github.com/antfu/vite-plugin-md
+            // Enable Markdown Support https://github.com/mdit-vue/vite-plugin-vue-markdown
             Markdown({
                 headEnabled: true,
                 markdownItSetup(md) {

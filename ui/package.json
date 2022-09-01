@@ -19,6 +19,7 @@
     "@vueuse/core": "^9.1.1",
     "pinia": "^2.0.21",
     "swrv": "^1.0.0-beta.8",
+    "vite-plugin-vue-markdown": "^0.21.1",
     "vue": "^3.2.38",
     "vue-router": "^4.1.5"
   },
@@ -43,7 +44,6 @@
     "unplugin-vue-components": "^0.22.4",
     "vite": "^3.0.9",
     "vite-plugin-inspect": "^0.6.1",
-    "vite-plugin-md": "^0.20.4",
     "vite-plugin-pages": "^0.25.0",
     "vite-plugin-vue-layouts": "^0.7.0",
     "vue-tsc": "^0.40.5"

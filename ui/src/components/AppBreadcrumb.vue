@@ -40,11 +40,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue"
-
-export type Crumb = {
-  name:  string,
-  href: string
-}
+import { Crumb } from "@/env"
 
 const { current } = withDefaults(defineProps<{
   crumbs?: Crumb[],

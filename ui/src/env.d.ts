@@ -14,3 +14,8 @@ declare module '*.md' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+export type Crumb = {
+  name:  string,
+  href: string
+}
