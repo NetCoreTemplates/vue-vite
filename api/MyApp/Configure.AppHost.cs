@@ -18,6 +18,7 @@ public class AppHost : AppHostBase, IHostingStartup
     public override void Configure(Container container)
     {
         SetConfig(new HostConfig {
+            UseSameSiteCookies = !HostingEnvironment.IsDevelopment()
         });
 
         Plugins.Add(new SpaFeature {
@@ -25,7 +26,7 @@ public class AppHost : AppHostBase, IHostingStartup
         });
         Plugins.Add(new CorsFeature(allowOriginWhitelist:new[]{ 
             "http://localhost:5000",
-            "http://localhost:3000",
+            "http://localhost:5173",
             "https://localhost:5001",
             "https://" + Environment.GetEnvironmentVariable("DEPLOY_CDN")
         }, allowCredentials:true));

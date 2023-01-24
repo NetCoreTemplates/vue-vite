@@ -31,7 +31,7 @@
             </div>
 
             <h3 class="mt-4 sm:text-2xl">Use npm dev server for UI Development</h3>
-            <div class="text-lg hover:text-green-600"><a href="http://localhost:3000">http://localhost:3000</a></div>
+            <div class="text-lg hover:text-green-600"><a href="http://localhost:5173">http://localhost:5173</a></div>
 
             <h3 class="mt-4 sm:text-2xl">`npm run build:local` to view in .NET App</h3>
             <div class="text-lg hover:text-green-600"><a href="https://localhost:5001">https://localhost:5001</a></div>
