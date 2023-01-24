@@ -18,7 +18,6 @@
 
 <script setup lang="ts">
 import AppPage from "@/components/AppPage.vue"
-import SecondaryButton from "@/components/form/SecondaryButton.vue"
 import { auth, signout } from "@/auth"
 
 const user = auth.value!

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@servicestack/client": "^2.0.0",
+    "@servicestack/vue": "^3.0.11",
     "@vueuse/core": "^9.11.1",
     "pinia": "^2.0.29",
     "swrv": "^1.0.3",

@@ -10,7 +10,7 @@
             <TextInput id="userName" placeholder="Email" help="" v-model="username"/>
             <TextInput id="password" type="password" help="6 characters or more" v-model="password"/>
             <TextInput id="confirmPassword" type="password" v-model="confirmPassword"/>
-            <CheckBox id="autoLogin" />
+            <CheckboxInput id="autoLogin" />
           </div>
         </div>
         <div class="pt-5 px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -37,11 +37,6 @@
 
 <script setup lang="ts">
 import AppPage from "@/components/AppPage.vue"
-import ErrorSummary from "@/components/form/ErrorSummary.vue"
-import TextInput from "@/components/form/TextInput.vue"
-import CheckBox from "@/components/form/Checkbox.vue"
-import FormLoading from "@/components/form/FormLoading.vue"
-import PrimaryButton from "@/components/form/PrimaryButton.vue"
 
 import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"

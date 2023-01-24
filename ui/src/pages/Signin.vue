@@ -8,7 +8,7 @@
           <div class="flex flex-col gap-y-4">
             <TextInput id="userName" placeholder="Email" help="Email you signed up with" v-model="username" />
             <TextInput id="password" type="password" help="6 characters or more" v-model="password"/>
-            <CheckBox id="rememberMe" />
+            <CheckboxInput id="rememberMe" />
           </div>
         </div>
         <div class="pt-5 px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -48,12 +48,6 @@
 
 <script setup lang="ts">
 import AppPage from "@/components/AppPage.vue"
-import ErrorSummary from "@/components/form/ErrorSummary.vue"
-import TextInput from "@/components/form/TextInput.vue"
-import CheckBox from "@/components/form/Checkbox.vue"
-import FormLoading from "@/components/form/FormLoading.vue"
-import PrimaryButton from "@/components/form/PrimaryButton.vue"
-import SecondaryButton from "@/components/form/SecondaryButton.vue"
 
 import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"

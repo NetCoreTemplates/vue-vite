@@ -108,7 +108,6 @@
 <script setup lang="ts">
 import Create from "@/pages/bookings-crud/Create.vue"
 import Edit from "@/pages/bookings-crud/Edit.vue"
-import OutlineButton from "@/components/form/OutlineButton.vue"
 import AppPage from "@/components/AppPage.vue"
 import SrcLink from "@/components/SrcLink.vue"
 

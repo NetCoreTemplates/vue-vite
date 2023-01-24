@@ -36,7 +36,7 @@
           </div>
   
           <div class="col-span-6">
-            <TextAreaInput id="notes" v-model="request.notes" placeholder="Notes about this booking" style="height:6rem" />
+            <TextareaInput id="notes" v-model="request.notes" placeholder="Notes about this booking" style="height:6rem" />
           </div>
         </div>
       </fieldset>
@@ -56,12 +56,6 @@
 </template>
 
 <script setup lang="ts">
-import ErrorSummary from "@/components/form/ErrorSummary.vue"
-import CloseButton from "@/components/form/CloseButton.vue"
-import TextInput from "@/components/form/TextInput.vue"
-import SelectInput from "@/components/form/SelectInput.vue"
-import TextAreaInput from "@/components/form/TextAreaInput.vue"
-import PrimaryButton from "@/components/form/PrimaryButton.vue"
 import SrcLink from "@/components/SrcLink.vue"
 
 import { CreateBooking, RoomType } from "@/dtos"

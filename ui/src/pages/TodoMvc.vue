@@ -65,7 +65,6 @@
 import { h, SetupContext } from "vue"
 import { Filter, useTodosStore } from "@/stores/todos"
 import AppPage from "@/components/AppPage.vue"
-import TextInput from "@/components/form/TextInput.vue"
 
 const store = useTodosStore()
 store.refreshTodos()

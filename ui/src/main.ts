@@ -2,6 +2,7 @@ import "@/styles/index.css"
 import "@/styles/main.css"
 
 import { createApp } from "vue"
+import ServiceStackVue from "@servicestack/vue"
 import { createHead } from "@vueuse/head"
 import { createRouter, createWebHistory } from "vue-router"
 import { createPinia } from "pinia"
@@ -27,4 +28,5 @@ app
     .use(head)
     .use(router)
     .use(pinia)
+    .use(ServiceStackVue)
     .mount('#app')
