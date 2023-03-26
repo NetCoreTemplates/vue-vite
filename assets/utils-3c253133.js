@@ -1,1 +1,0 @@
-import{s as e}from"./index-6fb5f8bf.js";const s=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}),c=t=>t?s.format(t):"",f=t=>t?e.toDateFmt(t):"",n=t=>e.dateFmt(t).replace(/\//g,"-");function i(t){return t?(Object.keys(t).forEach(a=>{let r=t[a];typeof r=="string"&&r.startsWith("/Date")&&(t[a]=n(e.toDate(r)))}),t):{}}export{f as a,n as d,c as f,i as s};
