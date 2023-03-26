@@ -46,6 +46,12 @@
         <MdiChevronRight class="text-gray-400 w-6 h-6 inline" aria-hidden="true"/>
       </div>
     </div>
+    <div class="mt-12">
+      <h2 class="mb-5 sm:text-3xl text-gray-700">
+        Vue <a class="text-green-600 hover:text-green-800" href="https://docs.servicestack.net/vue/gallery/autoquerygrid">AutoQueryGrid</a> Component
+      </h2>
+      <iframe class="youtube" src="https://www.youtube.com/embed/znCoC-Ct0Ps" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
   </AppPage>
 </template>
 
