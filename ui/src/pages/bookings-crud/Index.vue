@@ -79,10 +79,10 @@
           <MdiChevronRight v-if="!expandAbout" class="h-6 w-6" aria-hidden="true"/>
           <MdiChevronDown v-else class="h-6 w-6" aria-hidden="true"/>
           About</a>
-        <SrcLink href="https://github.com/NetCoreTemplates/vue-ssg/blob/main/api/MyApp.ServiceModel/Bookings.cs">
+        <SrcLink href="https://github.com/NetCoreTemplates/vue-vite/blob/main/api/MyApp.ServiceModel/Bookings.cs">
           <MdiCodeTags class="w-5 h-5 inline" />
         </SrcLink>
-        <SrcLink href="https://github.com/NetCoreTemplates/vue-ssg/blob/main/ui/src/pages/bookings-crud/Index.vue">
+        <SrcLink href="https://github.com/NetCoreTemplates/vue-vite/blob/main/ui/src/pages/bookings-crud/Index.vue">
           <LogosVue class="w-5 h-5 inline" />
         </SrcLink>
       </div>
