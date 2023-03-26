@@ -1,6 +1,6 @@
 import type { IReturn, JsonServiceClient } from "@servicestack/client"
 import { appendQueryString, nameOf, JsonApiClient } from "@servicestack/client"
-import { useMetadata } from "@servicestack/vue"
+import { useMetadata, useAuth } from "@servicestack/vue"
 import { Authenticate } from "./dtos"
 import { IResponse } from "swrv/dist/types"
 import useSWRV from "swrv"
@@ -40,7 +40,7 @@ class SwrClient {
 }
 export const swrClient = new SwrClient(client)
 
-export const checkAuth = async () => {
+export async function checkAuth() {
     try {
         return await client.post(new Authenticate())
     } catch (e) {
@@ -48,6 +48,8 @@ export const checkAuth = async () => {
     }
 }
 
-export const logout = async () =>
-    client.post(new Authenticate({ provider: 'logout' }))
-
+export async function logout() {
+    await client.post(new Authenticate({ provider: 'logout' }))
+    const { signOut } = useAuth()
+    signOut()
+}

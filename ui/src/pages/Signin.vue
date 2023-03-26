@@ -1,6 +1,6 @@
 <template>
   <AppPage title="Sign In" class="max-w-xl">
-    
+
     <form @submit.prevent="onSubmit">
       <div class="shadow overflow-hidden sm:rounded-md">
         <ErrorSummary except="userName,password,rememberMe"/>
@@ -41,7 +41,7 @@
         </button>
       </span>
     </div>
-    
+
   </AppPage>
 </template>
 
@@ -51,18 +51,19 @@ import AppPage from "@/components/AppPage.vue"
 import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"
 import { serializeToObject } from "@servicestack/client"
-import { useClient } from "@servicestack/vue"
+import { useClient, useAuth } from "@servicestack/vue"
 import { Authenticate } from "@/dtos"
-import { auth, revalidate } from "@/auth"
+import { revalidate } from "@/auth"
 import { getRedirect } from "@/routing"
 
 const client = useClient()
+const { user, signIn } = useAuth()
 const username = ref('')
 const password = ref('')
 const router = useRouter()
 
 const stop = watchEffect(() => {
-  if (auth.value) {
+  if (user.value) {
     router.push(getRedirect(router) ?? '/')
     nextTick(() => stop())
   }
@@ -76,7 +77,9 @@ function setUser(email: string) {
 async function onSubmit(e: Event) {
   const { userName, password, rememberMe } = serializeToObject(e.currentTarget as HTMLFormElement)
   const api = await client.api(new Authenticate({ provider: 'credentials', userName, password, rememberMe }))
-  if (api.succeeded)
+  if (api.succeeded) {
+    signIn(api.response!)
     await revalidate()
+  }
 }
 </script>

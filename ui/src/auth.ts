@@ -1,9 +1,9 @@
 import { ref, computed } from "vue"
+import { useAuth } from "@servicestack/vue"
 import { checkAuth, logout } from "./api"
-import { AuthenticateResponse } from "./dtos"
 import { Router } from "vue-router"
 
-export function createAttrs(auth?: AuthenticateResponse) {
+export function createAttrs(auth?: { roles?: string[] | undefined; permissions?: string[] | undefined } | null) {
     return auth ? [
         'auth',
         ...(auth?.roles || []).map(role => `role:${role}`),
@@ -11,31 +11,30 @@ export function createAttrs(auth?: AuthenticateResponse) {
     ] : []
 }
 
-export const auth = ref<AuthenticateResponse|undefined>()
-checkAuth().then(r => auth.value = r)
+const { user, hasRole, hasPermission, signIn, signOut } = useAuth()
+
+export { user, hasRole, hasPermission }
+
+checkAuth().then(auth => {
+    if (auth) signIn(auth)
+    else signOut()
+})
 
 export async function revalidate() {
     loading.value = true
-    signin(await checkAuth())
+    const auth = await checkAuth()
+    if (auth) signIn(auth)
+    else signOut()
     loading.value = false
 }
 
 export const loading = ref(false)
 
-export const signedIn = () => auth.value !== undefined
-
-export const attrs = computed(() => createAttrs(auth.value))
-
-export const signin = (response?: AuthenticateResponse) => {
-    return auth.value = response
-}
+export const attrs = computed(() => createAttrs(user.value))
 
 export const signout = async (router:Router, redirectTo?: string) => {
-    auth.value = undefined
+    signOut()
     await logout()
     // Always redirect to force re-running auth route guards
     await router.replace({ path: redirectTo ?? router?.currentRoute?.value.path, force: true })
 }
-
-export const hasRole = (role: string) => (auth?.value?.roles || []).indexOf(role) >= 0
-export const hasPermission = (permission: string) => (auth?.value?.permissions || []).indexOf(permission) >= 0

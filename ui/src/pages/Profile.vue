@@ -18,9 +18,10 @@
 
 <script setup lang="ts">
 import AppPage from "@/components/AppPage.vue"
-import { auth, signout } from "@/auth"
+import { useAuth } from "@servicestack/vue"
+import { signout } from "@/auth"
 
-const user = auth.value!
-const roles = auth.value?.roles ?? []
+const { user } = useAuth()
+const roles = user.value?.roles ?? []
 </script>
  

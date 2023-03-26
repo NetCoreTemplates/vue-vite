@@ -41,12 +41,13 @@ import AppPage from "@/components/AppPage.vue"
 import { ref, watchEffect, nextTick } from "vue"
 import { useRouter } from "vue-router"
 import { leftPart, rightPart, serializeToObject, toPascalCase } from "@servicestack/client"
-import { useClient } from "@servicestack/vue"
+import { useClient, useAuth } from "@servicestack/vue"
 import { Register } from "@/dtos"
-import { auth, revalidate } from "@/auth"
+import { revalidate } from "@/auth"
 import { getRedirect } from "@/routing"
 
 const client = useClient()
+const { user } = useAuth()
 const displayName = ref("")
 const username = ref("")
 const password = ref("")
@@ -54,7 +55,7 @@ const confirmPassword = ref("")
 const router = useRouter()
 
 const stop = watchEffect(() => {
-  if (auth.value) {
+  if (user.value) {
     router.push(getRedirect(router) ?? '/')
     nextTick(stop)
   }
