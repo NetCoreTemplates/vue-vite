@@ -5,7 +5,7 @@ module.exports = {
   content: [
     "./src/**/*.{vue,md}",
     "./public/**/*.html",
-    "./node_modules/@servicestack/vue/dist/**/*.js"
+    "./node_modules/@servicestack/vue/dist/**/*.{js,mjs}"
   ],
   theme: {
     extend: {
