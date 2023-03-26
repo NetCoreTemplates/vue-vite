@@ -17,7 +17,7 @@
           </div>
 
           <div class="col-span-6 sm:col-span-3">
-            <SelectInput id="roomType" v-model="request.roomType" :options="app.enumOptions('RoomType')" />
+            <SelectInput id="roomType" v-model="request.roomType" :options="enumOptions('RoomType')" />
           </div>
   
           <div class="col-span-6 sm:col-span-3">
@@ -60,7 +60,8 @@ import SrcLink from "@/components/SrcLink.vue"
 
 import { CreateBooking, RoomType } from "@/dtos"
 import { dateInputFormat } from "@/utils"
-import { useClient, useApp } from "@/api"
+import { useApp } from "@/api"
+import { useClient, useMetadata } from "@servicestack/vue"
 
 const emit = defineEmits<{
   (e:'done'): () => void
@@ -70,6 +71,7 @@ const visibleFields = "name,roomType,roomNumber,bookingStartDate,bookingEndDate,
 
 const app = useApp()
 const client = useClient()
+const { enumOptions } = useMetadata()
 
 const request = new CreateBooking({
   roomType: RoomType.Single,

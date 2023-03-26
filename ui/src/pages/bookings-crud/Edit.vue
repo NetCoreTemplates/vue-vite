@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-span-6 sm:col-span-3">
-              <SelectInput id="roomType" v-model="request.roomType" :options="app.enumOptions('RoomType')" />
+              <SelectInput id="roomType" v-model="request.roomType" :options="enumOptions('RoomType')" />
             </div>
 
             <div class="col-span-6 sm:col-span-3">
@@ -63,7 +63,8 @@ import SrcLink from "@/components/SrcLink.vue"
 
 import { DeleteBooking, QueryBookings, UpdateBooking } from "@/dtos"
 import { sanitizeForUi } from "@/utils"
-import { useClient, useApp } from "@/api"
+import { useApp } from "@/api"
+import { useClient, useMetadata } from "@servicestack/vue"
 
 const props = defineProps<{
   id: number
@@ -77,6 +78,7 @@ const visibleFields = "name,roomType,roomNumber,bookingStartDate,bookingEndDate,
 
 const app = useApp()
 const client = useClient()
+const { enumOptions } = useMetadata()
 
 const request = ref(new UpdateBooking())
 

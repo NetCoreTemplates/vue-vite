@@ -24,7 +24,7 @@
               <NavLink href="/todomvc">Todos</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/bookings-crud">Bookings</NavLink>
+              <NavLink href="/bookings">Bookings</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/features">Features</NavLink>

@@ -13,6 +13,7 @@ type RouteGuard = { path:string, attr:string }
 const ROUTE_GUARDS:RouteGuard[] = [
     { path:'/profile',       attr:'auth' },
     { path:'/admin',         attr:'role:Admin' },
+    { path:'/bookings',      attr:'role:Employee' },
     { path:'/bookings-crud', attr:'role:Employee' },
 ]
 

@@ -72,19 +72,26 @@
       </div>
     </div>
 
-    <div class="mt-5 flex">
-      <a href="#" @click.prevent="toggleAbout"
-         class="mr-3 flex text-gray-400 hover:text-gray-400 text-decoration-none">
-        <MdiChevronRight v-if="!expandAbout" class="h-6 w-6" aria-hidden="true"/>
-        <MdiChevronDown v-else class="h-6 w-6" aria-hidden="true"/>
-        About</a>
-      <SrcLink href="https://github.com/NetCoreTemplates/vue-ssg/blob/main/api/MyApp.ServiceModel/Bookings.cs">
-        <MdiCodeTags class="w-5 h-5 inline" />
-      </SrcLink>
-      <SrcLink href="https://github.com/NetCoreTemplates/vue-ssg/blob/main/ui/src/pages/bookings-crud/Index.vue">
-        <LogosVue class="w-5 h-5 inline" />
-      </SrcLink>
+    <div class="mt-5 flex justify-between items-center">
+      <div class="flex">
+        <a href="#" @click.prevent="toggleAbout"
+           class="mr-3 flex text-gray-400 hover:text-gray-400 text-decoration-none">
+          <MdiChevronRight v-if="!expandAbout" class="h-6 w-6" aria-hidden="true"/>
+          <MdiChevronDown v-else class="h-6 w-6" aria-hidden="true"/>
+          About</a>
+        <SrcLink href="https://github.com/NetCoreTemplates/vue-ssg/blob/main/api/MyApp.ServiceModel/Bookings.cs">
+          <MdiCodeTags class="w-5 h-5 inline" />
+        </SrcLink>
+        <SrcLink href="https://github.com/NetCoreTemplates/vue-ssg/blob/main/ui/src/pages/bookings-crud/Index.vue">
+          <LogosVue class="w-5 h-5 inline" />
+        </SrcLink>
+      </div>
+      <div>
+        <RouterLink class="text-gray-400 hover:text-gray-600" to="/bookings">Bookings AutoQueryGrid</RouterLink>
+        <MdiChevronRight class="text-gray-400 w-6 h-6 inline" aria-hidden="true"/>
+      </div>
     </div>
+    
     <div v-if="expandAbout" class="mt-3 text-gray-500 max-w-screen-md">
       <h2 class="font-medium text-2xl mb-2">Creating a multi-user .NET Core Booking system in minutes</h2>
 
@@ -99,7 +106,7 @@
         <a href="https://docs.servicestack.net/autoquery-crud-bookings">more...</a>
       </blockquote>
 
-      <iframe class="youtube" src="https://www.youtube.com/embed/nhc4MZufkcM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <iframe class="youtube" src="https://www.youtube.com/embed/rSFiikDjGos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
   </AppPage>

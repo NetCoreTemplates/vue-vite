@@ -11,6 +11,7 @@ import { setupLayouts } from "virtual:generated-layouts"
 import generatedRoutes from "~pages"
 import App from "@/App.vue"
 import { configRouter } from "@/routing"
+import { client } from "@/api"
 
 const app = createApp(App)
 const head = createHead()
@@ -29,4 +30,5 @@ app
     .use(router)
     .use(pinia)
     .use(ServiceStackVue)
+    .provide('client', client)
     .mount('#app')
