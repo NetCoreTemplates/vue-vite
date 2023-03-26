@@ -73,4 +73,4 @@ export const useTodosStore = defineStore('todos', () => {
 })
 
 if (import.meta.hot)
-    import.meta.hot.accept(acceptHMRUpdate(useTodosStore, import.meta.hot))
+    import.meta.hot.accept(acceptHMRUpdate(useTodosStore as any, import.meta.hot))
