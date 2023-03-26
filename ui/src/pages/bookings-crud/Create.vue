@@ -60,7 +60,6 @@ import SrcLink from "@/components/SrcLink.vue"
 
 import { CreateBooking, RoomType } from "@/dtos"
 import { dateInputFormat } from "@/utils"
-import { useApp } from "@/api"
 import { useClient, useMetadata } from "@servicestack/vue"
 
 const emit = defineEmits<{
@@ -69,7 +68,6 @@ const emit = defineEmits<{
 
 const visibleFields = "name,roomType,roomNumber,bookingStartDate,bookingEndDate,cost,notes"
 
-const app = useApp()
 const client = useClient()
 const { enumOptions } = useMetadata()
 

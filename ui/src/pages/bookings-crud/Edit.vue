@@ -63,7 +63,6 @@ import SrcLink from "@/components/SrcLink.vue"
 
 import { DeleteBooking, QueryBookings, UpdateBooking } from "@/dtos"
 import { sanitizeForUi } from "@/utils"
-import { useApp } from "@/api"
 import { useClient, useMetadata } from "@servicestack/vue"
 
 const props = defineProps<{
@@ -76,7 +75,6 @@ const emit = defineEmits<{
 
 const visibleFields = "name,roomType,roomNumber,bookingStartDate,bookingEndDate,cost,notes"
 
-const app = useApp()
 const client = useClient()
 const { enumOptions } = useMetadata()
 

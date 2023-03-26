@@ -11,7 +11,7 @@
       New Booking
     </OutlineButton>
     <DataGrid :items="bookings" :visible-from="{ name:'xl', bookingStartDate:'sm', bookingEndDate:'xl' }"
-              @row-selected="editId = editId == $event.id ? null : $event.id" :is-selected="row => editId == row.id">
+              @row-selected="editId = editId == $event.id ? null : $event.id" :is-selected="(row:Booking) => editId == row.id">
       <template #id="{ id }">
         <span class="text-gray-900">{{ id }}</span>
       </template>
