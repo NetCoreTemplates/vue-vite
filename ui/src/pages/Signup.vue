@@ -53,14 +53,14 @@ const password = ref("")
 const confirmPassword = ref("")
 const router = useRouter()
 
-let stop = watchEffect(() => {
+const stop = watchEffect(() => {
   if (auth.value) {
     router.push(getRedirect(router) ?? '/')
     nextTick(stop)
   }
 })
 
-const setUser = (email: string) => {
+function setUser(email: string) {
   let first = leftPart(email, '@')
   let last = rightPart(leftPart(email, '.'), '@')
   displayName.value = toPascalCase(first) + ' ' + toPascalCase(last)
@@ -68,7 +68,7 @@ const setUser = (email: string) => {
   confirmPassword.value = password.value = 'p@55wOrd'
 }
 
-const onSubmit = async (e: Event) => {
+async function onSubmit(e: Event) {
   const {
     displayName,
     userName,

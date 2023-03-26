@@ -61,19 +61,19 @@ const username = ref('')
 const password = ref('')
 const router = useRouter()
 
-let stop = watchEffect(() => {
+const stop = watchEffect(() => {
   if (auth.value) {
     router.push(getRedirect(router) ?? '/')
     nextTick(() => stop())
   }
 })
 
-const setUser = (email: string) => {
+function setUser(email: string) {
   username.value = email
   password.value = "p@55wOrd"
 }
 
-const onSubmit = async (e: Event) => {
+async function onSubmit(e: Event) {
   const { userName, password, rememberMe } = serializeToObject(e.currentTarget as HTMLFormElement)
   const api = await client.api(new Authenticate({ provider: 'credentials', userName, password, rememberMe }))
   if (api.succeeded)
