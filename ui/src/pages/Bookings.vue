@@ -1,49 +1,23 @@
 <template>
   <AppPage title="Bookings AutoQueryGrid" class="sm:max-w-fit">
-    <AutoCreateForm v-if="create" type="CreateBooking" @done="done" @save="done"/>
-    <AutoEditForm v-else-if="edit" type="UpdateBooking" :deleteType="canDelete ? 'DeleteBooking' : null" v-model="edit"
-                  @done="done" @save="done" @delete="done"/>
-    <OutlineButton @click="() => reset({ create:true })">
-      <svg class="w-5 h-5 mr-1 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50"
-           xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"></path>
-      </svg>
-      New Booking
-    </OutlineButton>
-    <DataGrid :items="bookings" :visible-from="{ name:'xl', bookingStartDate:'sm', bookingEndDate:'xl' }"
-              @row-selected="editId = editId == $event.id ? null : $event.id" :is-selected="(row:Booking) => editId == row.id">
-      <template #id="{ id }">
-        <span class="text-gray-900">{{ id }}</span>
-      </template>
-      <template #name="{ name }">
-        {{ name }}
-      </template>
-      <template #roomNumber-header>
-        <span class="hidden lg:inline">Room </span>No
-      </template>
-      <template #cost="{ cost }">
-        <span v-html="currency(cost)"></span>
-      </template>
-
-      <template #bookingStartDate-header>
-        Start<span class="hidden lg:inline"> Date</span>
-      </template>
-      <template #bookingEndDate-header>
-        End<span class="hidden lg:inline"> Date</span>
-      </template>
-      <template #createdBy-header>
-        Employee
-      </template>
-      <template #createdBy="{ createdBy }">{{ createdBy }}</template>
-    </DataGrid>
+    <AutoQueryGrid type="Booking"
+                   selected-columns="id,name,roomType,roomNumber,bookingStartDate,bookingEndDate"
+                   :visible-from="{ name:'xl', bookingStartDate:'sm', bookingEndDate:'xl' }" />
     <div class="mt-5 flex justify-between items-center">
       <div>
         <LogosVue class="w-5 h-5 inline" />
         <SrcLink href="https://github.com/NetCoreTemplates/vue-vite/blob/main/ui/src/pages/Bookings.vue"/>
       </div>
-      <div>
-        <RouterLink class="text-gray-400 hover:text-gray-600" to="/bookings-crud">Custom Bookings</RouterLink>
-        <MdiChevronRight class="text-gray-400 w-6 h-6 inline" aria-hidden="true"/>
+      <div class="flex justify-between">
+        <div>
+          <MdiChevronLeft class="text-gray-400 w-6 h-6 inline" aria-hidden="true"/>
+          <RouterLink class="text-gray-400 hover:text-gray-600" to="/bookings-crud">Custom Bookings</RouterLink>
+        </div>
+        <div class="mx-4 text-gray-400">|</div>
+        <div>
+          <RouterLink class="text-gray-400 hover:text-gray-600" to="/bookingsdata">Bookings DataGrid</RouterLink>
+          <MdiChevronRight class="text-gray-400 w-6 h-6 inline" aria-hidden="true"/>
+        </div>
       </div>
     </div>
     <div class="mt-12">

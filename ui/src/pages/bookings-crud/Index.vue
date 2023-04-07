@@ -86,26 +86,23 @@
           <LogosVue class="w-5 h-5 inline" />
         </SrcLink>
       </div>
-      <div>
-        <RouterLink class="text-gray-400 hover:text-gray-600" to="/bookings">Bookings AutoQueryGrid</RouterLink>
-        <MdiChevronRight class="text-gray-400 w-6 h-6 inline" aria-hidden="true"/>
+      <div class="flex justify-between">
+        <div>
+          <MdiChevronLeft class="text-gray-400 w-6 h-6 inline" aria-hidden="true"/>
+          <RouterLink class="text-gray-400 hover:text-gray-600" to="/bookingsdata">Bookings DataGrid</RouterLink>
+        </div>
+        <div class="mx-4 text-gray-400">|</div>
+        <div>
+          <RouterLink class="text-gray-400 hover:text-gray-600" to="/bookings">Bookings AutoQueryGrid</RouterLink>
+          <MdiChevronRight class="text-gray-400 w-6 h-6 inline" aria-hidden="true"/>
+        </div>
       </div>
     </div>
-    
-    <div v-if="expandAbout" class="mt-3 text-gray-500 max-w-screen-md">
-      <h2 class="font-medium text-2xl mb-2">Creating a multi-user .NET Core Booking system in minutes</h2>
 
-      <blockquote class="mb-4">
-        The Bookings service implementation is built using
-        <a href="https://docs.servicestack.net/autoquery-crud">AutoQuery CRUD</a>
-        which enables rapid development of typed CRUD Services using only declarative POCO DTOs, allowing for
-        developing entire
-        <a href="https://docs.servicestack.net/autoquery-crud#advanced-crud-example">audited</a>
-        and <a href="https://docs.servicestack.net/autoquery-audit-log">verifiably logged</a>
-        data-driven systems in a fraction of time
-        <a href="https://docs.servicestack.net/autoquery-crud-bookings">more...</a>
-      </blockquote>
-
+    <div class="mt-12">
+      <h2 class="mb-5 sm:text-3xl text-gray-700">
+        <a class="text-green-600 hover:text-green-800" href="https://docs.servicestack.net/autoquery">Creating a multi-user .NET Core Booking system in minutes</a>
+      </h2>
       <iframe class="youtube" src="https://www.youtube.com/embed/rSFiikDjGos" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
