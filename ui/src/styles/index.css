@@ -2,6 +2,7 @@
 @tailwind base;
 
 /* Write your own custom base styles here */
+[v-cloak] {display:none}
 
 /* Start purging... */
 @tailwind components;
