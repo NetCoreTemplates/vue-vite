@@ -74,11 +74,6 @@
 
     <div class="mt-5 flex justify-between items-center">
       <div class="flex">
-        <a href="#" @click.prevent="toggleAbout"
-           class="mr-3 flex text-gray-400 hover:text-gray-400 text-decoration-none">
-          <MdiChevronRight v-if="!expandAbout" class="h-6 w-6" aria-hidden="true"/>
-          <MdiChevronDown v-else class="h-6 w-6" aria-hidden="true"/>
-          About</a>
         <SrcLink href="https://github.com/NetCoreTemplates/vue-vite/blob/main/api/MyApp.ServiceModel/Bookings.cs">
           <MdiCodeTags class="w-5 h-5 inline" />
         </SrcLink>
@@ -123,8 +118,6 @@ import { client } from "@/api"
 const newBooking = ref<boolean>(false)
 const editBookingId = ref<number|undefined>()
 
-const expandAbout = ref<boolean>(false)
-
 const bookings = ref<Booking[]>([])
 
 const refreshBookings = async () => {
@@ -145,7 +138,5 @@ const onDone = () => {
   reset()
   refreshBookings()
 }
-
-const toggleAbout = () => expandAbout.value = !expandAbout.value
 
 </script>
