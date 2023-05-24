@@ -20,7 +20,6 @@
     "@servicestack/vue": "^3.0.77",
     "@vueuse/core": "^9.13.0",
     "pinia": "^2.0.33",
-    "swrv": "^1.0.3",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
