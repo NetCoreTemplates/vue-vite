@@ -1,9 +1,6 @@
-import type { IReturn, JsonServiceClient } from "@servicestack/client"
-import { appendQueryString, nameOf, JsonApiClient } from "@servicestack/client"
+import { JsonApiClient } from "@servicestack/client"
 import { useMetadata, useAuth } from "@servicestack/vue"
 import { Authenticate } from "./dtos"
-import { IResponse } from "swrv/dist/types"
-import useSWRV from "swrv"
 
 declare var API_URL:string //defined in vite.apply.ts
 
@@ -23,22 +20,6 @@ export function useApp() {
         client,
     }
 }
-
-export function requestKey<T>(request: IReturn<T>) {
-    return appendQueryString(nameOf(request), request)
-}
-
-class SwrClient {
-    client:JsonServiceClient
-    constructor(client:JsonServiceClient) { this.client = client }
-    get<T>(fn: () => IReturn<T> | string) : IResponse<T, any> {
-        return useSWRV(() => {
-            let request = fn()
-            return appendQueryString(`SwrClient:${nameOf(request)}`, request)
-        }, key => this.client.get(fn()))
-    }
-}
-export const swrClient = new SwrClient(client)
 
 export async function checkAuth() {
     try {
