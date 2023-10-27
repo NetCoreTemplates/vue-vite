@@ -3,6 +3,7 @@
 # dotnet
 .vs/
 wwwroot/
+
 *.user
 #sqlite
 *.sqlite
@@ -11,7 +12,7 @@ wwwroot/
 *.sqlite-wal
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.js
 
