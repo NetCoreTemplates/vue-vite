@@ -1,0 +1,1 @@
+import{o as e,c as o,b as t}from"./index-e03d9f34.js";const n={viewBox:"0 0 24 24",width:"1.2em",height:"1.2em"},c=t("path",{fill:"currentColor",d:"M15.41 16.58L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.42Z"},null,-1),l=[c];function s(r,_){return e(),o("svg",n,[...l])}const a={name:"mdi-chevron-left",render:s};export{a as _};
