@@ -1,5 +1,5 @@
 
-# .NET 6.0 Vue 3 + Vite + Tailwindcss Template
+# .NET 8.0 Vue 3 + Vite + Tailwindcss Template
 
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/vue-vite.png)](https://vue-vite.jamstacks.net)
 [![](https://raw.githubusercontent.com/ServiceStack/Assets/master/csharp-templates/start/vue-vite.png)](https://vue-vite.jamstacks.net)
