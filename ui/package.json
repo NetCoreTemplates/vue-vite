@@ -17,8 +17,8 @@
     "rerun:last": "npm run revert:last && npm run migrate"
   },
   "dependencies": {
-    "@servicestack/client": "^2.0.17",
-    "@servicestack/vue": "^3.0.84",
+    "@servicestack/client": "^2.1.1",
+    "@servicestack/vue": "^3.0.86",
     "@vueuse/core": "^10.5.0",
     "pinia": "^2.1.7",
     "vue": "^3.3.7",
