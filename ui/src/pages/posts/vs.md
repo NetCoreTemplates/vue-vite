@@ -35,7 +35,7 @@ Then in a new Terminal Window, start a new watched C# .NET Server build with:
 $ dotnet watch
 ```
 
-With both projects started you can open and leave a browser tab running at `http://localhost:5174` where it 
+With both projects started you can open and leave a browser tab running at `http://localhost:5173` where it 
 will automatically reload itself at every `Ctrl+S` save point.
 
 When you're ready to preview a development build of the Client UI in your .NET App, run:

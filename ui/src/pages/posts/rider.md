@@ -53,7 +53,7 @@ This launch vite in HMR mode where any changes to `/ui` assets will have immedia
 
 Then to start the back-end C# project, right-click on the Host Project and click **Run** on the projects context menu.
 
-With both projects started you can open and leave a browser tab running at `http://localhost:5174`
+With both projects started you can open and leave a browser tab running at `http://localhost:5173`
 where it will automatically reload itself at every `Ctrl+S`.
 
 When you're ready to preview a development build of the Client UI in your .NET App, run:
